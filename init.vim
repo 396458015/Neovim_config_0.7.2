@@ -1971,7 +1971,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
                 Constructor = "",
                 Field = "⌘",
                 Variable = "",
-                Class = "",
+                Class = "𝓒",
                 Interface = "ﰮ",
                 Module = "",
                 Property = "",
@@ -2231,7 +2231,8 @@ require "lualine".setup {
             'windows',
             show_modified_status = true,
             symbols = {
-                modified = ' [+]',
+                --modified = ' [+]',
+                modified = ' [𝓐 ]',
                 --modified = ' ',
                 --modified = ' -->🈚',
                 alternate_file = ' o',

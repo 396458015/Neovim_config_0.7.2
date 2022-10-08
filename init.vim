@@ -126,11 +126,11 @@ Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/cmp-calc'
 Plug 'mstanciu552/cmp-matlab'
 Plug 'lukas-reineke/cmp-under-comparator'
+Plug 'uga-rosa/cmp-dictionary'
 
 " Auto completion-Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-
 
 "------------------------------------------------------------------------
 "--------------------------- Modified plugins ---------------------------
@@ -146,7 +146,6 @@ Plug g:plug_home. '/lualine.nvim-master'
 
 " 2. weather report for 3 days
 Plug g:plug_home. '/weather3day.nvim-main'
-
 
 
 call plug#end()
@@ -1888,7 +1887,7 @@ EOF
 " {{{ Auto completion plugins :1'nvim-cmp', 2'nvim-lspconfig', 3'cmp-nvim-lsp', 4'cmp-buffer',
 "                              5'cmp-path', 6'cmp-cmdline', 7'cmp_luasnip',
 "                              8'cmp-emoji' 9'cmp-calc',10'cmp-matlab',
-"                              11'cmp-under-comparator'
+"                              11'cmp-under-comparator',12'cmp-dictionary'
 lua <<EOF
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
   -- Setup nvim-cmp.
@@ -2018,9 +2017,9 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
                 -- tmux = '[TMUX]',
                 -- conjure = '[CJ]',
                 -- orgmode = '[ORG]'
-                cmp_matlab = '[MAT]'
+                cmp_matlab = '[MAT]',
+                dictionary = '[Dict]'
             })[entry.source.name]
-
             return vim_item
         end,
     },
@@ -2033,6 +2032,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
       { name = 'calc' },
       { name = 'cmp_matlab' },
       { name = 'neorg' },
+      {	name = "dictionary", keyword_length = 2 },
     })
   })
   -- Set configuration for specific filetype.
@@ -2083,6 +2083,22 @@ cmp.setup.cmdline(':', {
     })
 })
 
+-- uga-rosa/cmp-dictionary
+require("cmp_dictionary").setup({
+	dic = {
+		["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-8813.dic" },
+		--["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-69903.dic" },
+	},
+	-- The following are default values.
+	exact = 2,
+	first_case_insensitive = false,
+	document = false,
+	document_command = "wn %s -over",
+	async = false,
+	max_items = -1,
+	capacity = 5,
+	debug = false,
+})
 
 
 EOF

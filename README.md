@@ -1,3 +1,2 @@
-neovim configs on WIN10
-
-neovim version: 0.72
+* Features
+Neovim(v0.7.2) configs on WIN10

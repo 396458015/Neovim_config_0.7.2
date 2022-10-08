@@ -2086,16 +2086,16 @@ cmp.setup.cmdline(':', {
 -- uga-rosa/cmp-dictionary
 require("cmp_dictionary").setup({
 	dic = {
-		["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-8813.dic" },
-		--["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-69903.dic" },
+		--["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-8813.dic" },
+		["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-69903.dic" },
 	},
 	-- The following are default values.
 	exact = 2,
-	first_case_insensitive = false,
+	first_case_insensitive = true,
 	document = false,
 	document_command = "wn %s -over",
-	async = false,
-	max_items = -1,
+	async = true,     --If you are using a very large dictionary and the body operation is blocked, try 'true'
+	max_items = -1,   --This is the maximum number of candidates that this source will return to the nvim-cmp body. -1 means no limit.
 	capacity = 5,
 	debug = false,
 })

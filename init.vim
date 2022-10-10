@@ -3,7 +3,7 @@
 " License           : 0.0.2
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
-" Last Modified Date: 2022.07.19
+" Last Modified Date: 2022.10.10
 " Desc              : NEOVIM (support Python, Lua)
 "  __  ____   __   ___     _____ __  __ ____   ____
 " |  \/  \ \ / /    \ \   / /_ _|  \/  |  _ \ / ___|
@@ -1803,17 +1803,17 @@ require('hlslens').setup({
 
 EOF
 
-" Integrate with other plugins vim-visual-multi
-lua << EOF
-vim.cmd([[
-    aug VMlens
-        au!
-        au User visual_multi_start lua require('vmlens').start()
-        au User visual_multi_exit lua require('vmlens').exit()
-    aug END
-]])
+" Integrate with  vim-visual-multi
+" lua << EOF
+" --vim.cmd([[
+" --    aug VMlens
+" --        au!
+" --        au User visual_multi_start lua require('vmlens').start()
+" --        au User visual_multi_exit lua require('vmlens').exit()
+" --    aug END
+" --]])
+" EOF
 
-EOF
 " mapping
 nnoremap <leader>/ /\<<C-R>=expand("<cword>")<CR>\><left><left>
 

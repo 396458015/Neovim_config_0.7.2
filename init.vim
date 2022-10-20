@@ -29,7 +29,8 @@ Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-endwise', { 'for': [ 'matlab' ] }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
-Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+Plug 'chrisbra/csv.vim'
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
 Plug 'terryma/vim-expand-region', { 'on': [ '<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)'] }
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -127,6 +128,7 @@ Plug 'hrsh7th/cmp-calc'
 Plug 'mstanciu552/cmp-matlab'
 Plug 'lukas-reineke/cmp-under-comparator'
 Plug 'uga-rosa/cmp-dictionary'
+Plug 'kdheepak/cmp-latex-symbols'
 
 " Auto completion-Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -922,6 +924,8 @@ augroup matlab_run
     autocmd!
     autocmd FileType matlab nnoremap <silent><C-CR> :! matlab -nosplash -nodesktop -r %:r<CR><CR>
 augroup END
+
+" TERMINAL运行matlab代码,以'test.m'代码为例 'matlab -nosplash -nodesktop -r test'
 " }}}
 
 ""{{{ neovim 调用SumatraPdf 打开pdf
@@ -1672,7 +1676,7 @@ EOF
 nnoremap <silent> <leader>e :NvimTreeToggle<CR>
 " 跳转到 目录, 浏览文件
 nnoremap <leader>. :NvimTreeOpen  :\<left><left>
-nnoremap <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
+nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
 " }}}
 "
 " {{{ scroll << neoscroll >>
@@ -1803,7 +1807,7 @@ require('hlslens').setup({
 
 EOF
 
-" Integrate with  vim-visual-multi
+" Integrate with vim-visual-multi
 " lua << EOF
 " --vim.cmd([[
 " --    aug VMlens
@@ -2013,12 +2017,12 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
                 -- treesitter = '[TS]',
                 nvim_lsp = '[LSP]',
                 -- cmp_tabnine = '[TN]',
-                -- latex_symbols = '[TEX]',
                 -- tmux = '[TMUX]',
                 -- conjure = '[CJ]',
-                -- orgmode = '[ORG]'
+                -- orgmode = '[ORG]',
                 cmp_matlab = '[MAT]',
-                dictionary = '[Dict]'
+                dictionary = '[Dict]',
+                latex_symbols = '[TEX]',
             })[entry.source.name]
             return vim_item
         end,
@@ -2033,6 +2037,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
       { name = 'cmp_matlab' },
       { name = 'neorg' },
       {	name = "dictionary", keyword_length = 2 },
+      {	name = "latex_symbols" },
     })
   })
   -- Set configuration for specific filetype.

@@ -129,6 +129,8 @@ Plug 'mstanciu552/cmp-matlab'
 Plug 'lukas-reineke/cmp-under-comparator'
 Plug 'uga-rosa/cmp-dictionary'
 Plug 'kdheepak/cmp-latex-symbols'
+Plug 'ray-x/cmp-treesitter'
+
 
 " Auto completion-Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -2014,7 +2016,6 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
                 -- nuspell = '[SPELL]',
                 -- spell = '[SPELL]',
                 emoji = '[EMOJI]',
-                -- treesitter = '[TS]',
                 nvim_lsp = '[LSP]',
                 -- cmp_tabnine = '[TN]',
                 -- tmux = '[TMUX]',
@@ -2023,6 +2024,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
                 cmp_matlab = '[MAT]',
                 dictionary = '[Dict]',
                 latex_symbols = '[TEX]',
+                treesitter = '[TS]',
             })[entry.source.name]
             return vim_item
         end,
@@ -2038,6 +2040,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
       { name = 'neorg' },
       {	name = "dictionary", keyword_length = 2 },
       {	name = "latex_symbols" },
+      {	name = "treesitter" },
     })
   })
   -- Set configuration for specific filetype.

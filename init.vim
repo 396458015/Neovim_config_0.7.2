@@ -1474,7 +1474,7 @@ set nrformats=alpha,octal,hex
 " }}}
 
 " {{{ StartupTime << StartupTime >>
-let g:startuptime_tries = 10
+let g:startuptime_tries = 7
 "augroup startuptime_mapping
 "  autocmd!
 "  autocmd CmdlineEnter : cnoremap sta StartupTime
@@ -2225,7 +2225,7 @@ require('luatab').setup{
             local _, mtch = string.match(file, "term:(.*):(%a+)")
             return mtch ~= nil and mtch or vim.fn.fnamemodify(vim.env.SHELL, ':t')
         elseif file == '' then
-            return '[Empty]'
+            return '[Unnamed]'
         else
             return vim.fn.fnamemodify(file, ':p:h:t') .. '/' .. vim.fn.fnamemodify(file, ':t')
         end

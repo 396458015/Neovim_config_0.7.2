@@ -976,6 +976,13 @@ let g:startify_bookmarks            = [
             \]
 " 设置footer(header)
 let g:startify_custom_footer = [
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
             \ '            ,                                                      ',
             \ '           / \,,_  ."|                                             ',
             \ '         [[| /]]]]/_."                                             ',
@@ -1584,6 +1591,8 @@ vnoremap <leader>w :ReplSend<Cr>
 
 " {{{ tree << nvim-tree >>
 lua <<EOF
+-- change color for arrows in tree to light blue
+vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
 local tree = require'nvim-tree'
 local lib = require'nvim-tree.lib'
@@ -1596,79 +1605,86 @@ end
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 require'nvim-tree'.setup {
-  sort_by = "case_sensitive",
-  disable_netrw = true, -- disables netrw completely
-  hijack_netrw = true, -- hijack netrw window on startup
-  open_on_setup = true, -- open the tree when running this setup function
-  ignore_ft_on_setup = { "startify", "dashboard", "alpha", }, -- will not open on setup if the filetype is in this list
-  open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-  hijack_cursor = true, --- hijack the cursor in the tree to put it at the start of the filename
-  update_focused_file = {enable = true, update_cwd = true, ignore_list = {}},
+    sort_by = "case_sensitive",
+    disable_netrw = true, -- disables netrw completely
+    hijack_netrw = true, -- hijack netrw window on startup
+    open_on_setup = true, -- open the tree when running this setup function
+    ignore_ft_on_setup = { "startify", "dashboard", "alpha", }, -- will not open on setup if the filetype is in this list
+    open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
+    hijack_cursor = true, --- hijack the cursor in the tree to put it at the start of the filename
+    update_focused_file = {enable = true, update_cwd = true, ignore_list = {}},
 
-  view = {
-    adaptive_size = true,
-    number = true,
-    relativenumber = false,
-    signcolumn = "yes",
-    mappings = {
-      custom_only = true,
-      list = {
-        { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
-        --{ key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
-        { key = "<C-v>",                        cb = tree_cb("vsplit") },
-        { key = "<C-x>",                        cb = tree_cb("split") },
-        { key = "<C-t>",                        cb = tree_cb("tabnew") },
-        --{ key = "<",                            cb = tree_cb("prev_sibling") },
-        --{ key = ">",                            cb = tree_cb("next_sibling") },
-        --{ key = {"P"},                          cb = tree_cb("parent_node") },
-        --{ key = "<BS>",                         cb = tree_cb("close_node") },
-        --{ key = "<S-CR>",                       cb = tree_cb("close_node") },
-        --{ key = "<Tab>",                        cb = tree_cb("preview") },
-        --{ key = "K",                            cb = tree_cb("first_sibling") },
-        --{ key = "J",                            cb = tree_cb("last_sibling") },
-        --{ key = "I",                            cb = tree_cb("toggle_ignored") },
-        --{ key = {"H","<BS>"},                   cb = tree_cb("toggle_dotfiles") },
-        { key = "R",                            cb = tree_cb("refresh") },
-        { key = "c",                            cb = tree_cb("create") },
-        { key = "d",                            cb = tree_cb("remove") },
-        { key = "r",                            cb = tree_cb("rename") },
-        --{ key = "<C-r>",                        cb = tree_cb("full_rename") },
-        { key = "x",                            cb = tree_cb("cut") },
-        { key = "y",                            cb = tree_cb("copy") },
-        { key = "p",                            cb = tree_cb("paste") },
-        { key = "Y",                            cb = tree_cb("copy_name") },
-        --{ key = "Y",                            cb = tree_cb("copy_path") },
-        --{ key = "Y",                            cb = tree_cb("copy_absolute_path") },
-        --{ key = "gy",                           cb = tree_cb("copy_absolute_path") },
-        --{ key = "[c",                           cb = tree_cb("prev_git_item") },
-        --{ key = "]c",                           cb = tree_cb("next_git_item") },
-        { key = {"-","h"},                      cb = tree_cb("dir_up") },
-        --{ key = "s",                            cb = tree_cb("system_open") },
-        --{ key = "s",                            cb = tree_cb("close") },
-        { key = {"q"},                          cb = tree_cb("close") },
-        --{ key = "g?",                           cb = tree_cb("toggle_help") },
-        { key = "<BS>",                            action = "cd_dot",		action_cb = cd_dot_cb, }, -- run_file_command
-      },
+    view = {
+        adaptive_size = true,
+        number = true,
+        relativenumber = false,
+        signcolumn = "yes",
+        mappings = {
+            custom_only = true,
+            list = {
+                { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+                --{ key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
+                { key = "<C-v>",                        cb = tree_cb("vsplit") },
+                { key = "<C-x>",                        cb = tree_cb("split") },
+                { key = "<C-t>",                        cb = tree_cb("tabnew") },
+                --{ key = "<",                            cb = tree_cb("prev_sibling") },
+                --{ key = ">",                            cb = tree_cb("next_sibling") },
+                --{ key = {"P"},                          cb = tree_cb("parent_node") },
+                --{ key = "<BS>",                         cb = tree_cb("close_node") },
+                --{ key = "<S-CR>",                       cb = tree_cb("close_node") },
+                --{ key = "<Tab>",                        cb = tree_cb("preview") },
+                --{ key = "K",                            cb = tree_cb("first_sibling") },
+                --{ key = "J",                            cb = tree_cb("last_sibling") },
+                --{ key = "I",                            cb = tree_cb("toggle_ignored") },
+                --{ key = {"H","<BS>"},                   cb = tree_cb("toggle_dotfiles") },
+                { key = "R",                            cb = tree_cb("refresh") },
+                { key = "c",                            cb = tree_cb("create") },
+                { key = "d",                            cb = tree_cb("remove") },
+                { key = "r",                            cb = tree_cb("rename") },
+                --{ key = "<C-r>",                        cb = tree_cb("full_rename") },
+                { key = "x",                            cb = tree_cb("cut") },
+                { key = "y",                            cb = tree_cb("copy") },
+                { key = "p",                            cb = tree_cb("paste") },
+                { key = "Y",                            cb = tree_cb("copy_name") },
+                --{ key = "Y",                            cb = tree_cb("copy_path") },
+                --{ key = "Y",                            cb = tree_cb("copy_absolute_path") },
+                --{ key = "gy",                           cb = tree_cb("copy_absolute_path") },
+                --{ key = "[c",                           cb = tree_cb("prev_git_item") },
+                --{ key = "]c",                           cb = tree_cb("next_git_item") },
+                { key = {"-","h"},                      cb = tree_cb("dir_up") },
+                --{ key = "s",                            cb = tree_cb("system_open") },
+                --{ key = "s",                            cb = tree_cb("close") },
+                { key = {"q"},                          cb = tree_cb("close") },
+                --{ key = "g?",                           cb = tree_cb("toggle_help") },
+                { key = "<BS>",                            action = "cd_dot",		action_cb = cd_dot_cb, }, -- run_file_command
+            },
+        },
     },
-  },
-  renderer = {
-    group_empty = true,
-    indent_markers = { enable = true, icons = { corner = '└ ', edge = '│ ', none = '  ' } },
-    icons = { webdev_colors = true, },
-    highlight_opened_files = "all", --"none"`, `"icon"`, `"name"` or `"all"`
-    root_folder_modifier = ":~",
-  },
-  filters = {
-    dotfiles = true,
-  },
-  actions = {
-    use_system_clipboard = true,
-    change_dir = {
-      enable = false,
-      global = true,
-      restrict_above_cwd = false,
+    renderer = {
+        group_empty = true,
+        indent_markers = { enable = true, icons = { corner = '└ ', edge = '│ ', none = '  ' } },
+        icons = {
+            glyphs = {
+                folder = {
+                    arrow_closed = "", -- arrow when folder is closed
+                    arrow_open = "", -- arrow when folder is open
+                },
+            },
+        },
+        highlight_opened_files = "all", --"none"`, `"icon"`, `"name"` or `"all"`
+        root_folder_modifier = ":~",
     },
-  },
+    actions = {
+        use_system_clipboard = true,
+        change_dir = {
+            enable = false,
+            global = true,
+            restrict_above_cwd = false,
+        },
+    },
+    filters = {
+        dotfiles = true,
+    },
 }
 
 --创建文档后自动打开

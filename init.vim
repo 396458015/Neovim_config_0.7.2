@@ -61,6 +61,7 @@ Plug 'markonm/traces.vim', { 'on': []}
 Plug 'machakann/vim-highlightedyank', { 'on': []}
 Plug 'triglav/vim-visual-increment', { 'on': []}
 Plug 'itchyny/vim-cursorword', { 'on': []}
+Plug 'bronson/vim-visual-star-search', { 'on': []}  " Start a * or # search from a visual block
 
 call timer_start(700, 'LoadPlug_Vim')
 function! LoadPlug_Vim(timer) abort
@@ -73,6 +74,7 @@ function! LoadPlug_Vim(timer) abort
     call plug#load('vim-highlightedyank')
     call plug#load('vim-visual-increment')
     call plug#load('vim-cursorword')
+    call plug#load('vim-visual-star-search')
 endfunction
 
 "Plug g:plug_home. '/vimtex-master', { 'for': 'tex' }
@@ -150,6 +152,11 @@ Plug g:plug_home. '/lualine.nvim-master'
 
 " 2. weather report for 3 days
 Plug g:plug_home. '/weather3day.nvim-main'
+
+
+
+
+
 
 
 call plug#end()

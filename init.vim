@@ -153,12 +153,6 @@ Plug g:plug_home. '/lualine.nvim-master'
 " 2. weather report for 3 days
 Plug g:plug_home. '/weather3day.nvim-main'
 
-
-
-
-
-
-
 call plug#end()
 
 

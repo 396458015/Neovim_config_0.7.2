@@ -2247,14 +2247,16 @@ require "lualine".setup {
         -- component_separators = { left = '', right = '\\' },
         component_separators = { left = '', right = '\\' },
         section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
+        disabled_filetypes = {'NvimTree'},
         always_divide_middle = true,
-        globalstatus = true,
+        globalstatus = false,
     },
     sections = {
         lualine_a = {{
             'windows',
             show_modified_status = true,
+            mode = 0,
+            max_length = vim.o.columns * 2 / 3,
             symbols = {
                 --modified = ' [+]',
                 modified = ' [𝓐 ]',
@@ -2263,6 +2265,10 @@ require "lualine".setup {
                 alternate_file = ' o',
                 directory = ' z',
             },
+            filetype_names = {
+                startify = 'Startify',
+                --dashboard = 'Dashboard',
+            }, -- Shows specific window name for that filetype ( { `filetype` = `window_name`, ... } )
         }},
         lualine_b = { 'branch', 'diff', {
             "diagnostics",

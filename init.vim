@@ -333,11 +333,12 @@ if exists('g:neovide')
     "set guifont=Consolas:h12.5
     "set guifont=monaco:h12.5:cANSI                         " no Powerline/Nerd Font
     "set guifont=inconsolata_nerd_font_mono:h12.5:cANSI     " Nerd Font
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
+
+    set guifont=CodeNewRoman_Nerd_Font_Mono:h11:cANSI       " Nerd Font
+    set guifontwide=inconsolatago_qihei_nf:h11.5:cANSI      " 中文 Nerd Font
 else
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
+    set guifont=CodeNewRoman_Nerd_Font_Mono:h11:cANSI       " Nerd Font
+    set guifontwide=inconsolatago_qihei_nf:h11.5:cANSI      " 中文 Nerd Font
 endif
 
 " }}}
@@ -995,6 +996,12 @@ let g:startify_custom_footer = [
             \ '                                                                   ',
             \ '                                                                   ',
             \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
             \ '            ,                                                      ',
             \ '           / \,,_  ."|                                             ',
             \ '         [[| /]]]]/_."                                             ',
@@ -1042,6 +1049,19 @@ highlight StartifyHeader ctermfg=10 guifg=#a600ff
 
 highlight StartifyFooter ctermfg=10 guifg=#F7768E
 highlight StartifySpecial ctermfg=10 guifg=#444B6A
+
+
+" show startify icon
+lua << EOF
+function _G.webDevIcons(path)
+  local filename = vim.fn.fnamemodify(path, ':t')
+  local extension = vim.fn.fnamemodify(path, ':e')
+  return require'nvim-web-devicons'.get_icon(filename, extension, { default = true })
+end
+EOF
+function! StartifyEntryFormat() abort
+  return 'v:lua.webDevIcons(absolute_path) . " " . entry_path'
+endfunction
 
 " }}}
 

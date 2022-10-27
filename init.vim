@@ -813,6 +813,17 @@ function! DeleteTillSlash()
 endfunc
 
 
+" 驼峰和下划线转换
+fun! ToggleHump()
+    let [l, c1, c2] = [line('.'), col("'<"), col("'>")]
+    let line = getline(l)
+    echo c1 c2
+    let w = line[c1 - 1 : c2 - 2]
+    let w = w =~ '_' ? substitute(w, '\v_(.)', '\u\1', 'G') : substitute(substitute(w, '\v^(\u)', '\l\1', 'G'), '\v(\u)', '_\l\1', 'G')
+    call setbufline('%', l, printf('%s%s%s', c1 == 1 ? '' : line[:c1-2], w, c2 == 1 ? '' : line[c2-1:]))
+    call cursor(l, c1)
+endf
+vnoremap <localleader>t :call ToggleHump()<CR>
 " }}}
 
 " {{{ 代码折叠
@@ -2268,7 +2279,7 @@ require "lualine".setup {
             filetype_names = {
                 startify = 'Startify',
                 --dashboard = 'Dashboard',
-            }, -- Shows specific window name for that filetype ( { `filetype` = `window_name`, ... } )
+            },
         }},
         lualine_b = { 'branch', 'diff', {
             "diagnostics",
@@ -2610,6 +2621,21 @@ function WhichKeyNorg()
         },
     }, { prefix = ',' })
 end
+
+local LL_md = require('which-key')
+vim.cmd('autocmd FileType markdown lua WhichKeyMarkdown()')
+function WhichKeyMarkdown()
+    LL_md.register({
+    ['m'] = {'<Plug>MarkdownPreview<Cr>', 'MD Preview'},
+    }, { prefix = ',' })
+end
+
+local LL_others = require('which-key')
+LL_others.register({
+--['t'] = {':call ToggleHump()<CR>', ''},
+['t'] = {'Underline to Hump'},
+}, { prefix = ',' })
+
 
 EOF
 "}}}

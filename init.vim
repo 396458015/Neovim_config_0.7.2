@@ -2226,7 +2226,7 @@ require('luatab').setup{
             local _, mtch = string.match(file, "term:(.*):(%a+)")
             return mtch ~= nil and mtch or vim.fn.fnamemodify(vim.env.SHELL, ':t')
         elseif file == '' then
-            return '[Unnamed]'
+            return '[No Name]'
         else
             return vim.fn.fnamemodify(file, ':p:h:t') .. '/' .. vim.fn.fnamemodify(file, ':t')
         end

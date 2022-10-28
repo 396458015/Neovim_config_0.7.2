@@ -1609,6 +1609,7 @@ nnoremap <silent> <leader>fs :Telescope search_history<cr>
 " <C-h>/h	toggle_hidden	Toggle hidden files/folders
 " <C-s>/s	toggle_all	    Toggle all entries ignoring ./ and ../
 
+" 多选      <Tab>
 " }}}
 
 " {{{ Repl << reply >>
@@ -2571,16 +2572,15 @@ L_all.register({
     ['i'] = {'Uncomment' },
     },
 ['e'] = {'Tree'},
---f = {
---    name = "File Search",
---    b = {"T_File" },
---    c = {"L_color" },
---    f = {"L_file path" },
---    p = {"T_File path" },
---    t = {"L_tag" },
---    u = {"L_function" },
---    w = {"L_line" },
---    },
+f = {
+    name = "Telescope",
+    s = {"Search History" },
+    c = {"Command History" },
+    b = {"File" },
+    p = {"Fuzze Word" },
+    l = {"Word Line" },
+    f = {"File Browser" },
+    },
 ['z'] = {'Replace Word'},
 ['x'] = {'Close Tab'},
 ['q'] = {'Close Buffer'},
@@ -2653,7 +2653,21 @@ end
 local LL_others = require('which-key')
 LL_others.register({
 --['t'] = {':call ToggleHump()<CR>', ''},
-['t'] = {'Underline to Hump'},
+['t'] = {'Underline <--> Hump'},
+f = {
+    name = "LeaderF",
+    b = {"Open File" },
+    c = {"Colorscheme" },
+    f = {"Function" },
+    l = {"Word Line" },
+    p = {"Fuzze Word" },
+    t = {"Tag" },
+    },
+w = {
+    name = "Weather Forecast",
+    d = {"3 day" },
+    e = {"1 day" },
+    },
 }, { prefix = ',' })
 
 
@@ -2675,7 +2689,7 @@ if exists('g:neovide')
     let g:neovide_cursor_antialiasing=v:true
     let g:neovide_cursor_animation_length=0.02
 
-    let g:neovide_transparency=0.94
+    let g:neovide_transparency=0.90
     let g:neovide_fullscreen=v:false
     let g:neovide_remember_window_size=v:true
     let g:neovide_remember_window_position=v:true

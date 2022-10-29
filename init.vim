@@ -37,7 +37,6 @@ Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'AndrewRadev/linediff.vim', { 'on': 'Linediff' }
 Plug 'tommcdo/vim-exchange', { 'on': [ '<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)'] }
 Plug 'alpertuna/vim-header', { 'on': 'AddHeader' }
-Plug 'rhysd/reply.vim', { 'on': [ 'Repl', 'ReplAuto'] }
 Plug 'iqxd/vim-mine-sweeping', { 'on': [ 'MineSweep' ]}
 
 "Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
@@ -49,12 +48,14 @@ Plug 'mhinz/vim-startify'
 Plug 'zef/vim-cycle'
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
+Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
+
 
 "------------------- lazy load vim plug -------------------
 
 Plug 'tpope/vim-eunuch', { 'on': []}
 Plug 'ntpeters/vim-better-whitespace', { 'on': []}
-Plug 'skywind3000/asyncrun.vim', { 'on': []}
+" Plug 'skywind3000/asyncrun.vim', { 'on': []}
 Plug 'rhysd/clever-f.vim', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}
@@ -67,7 +68,6 @@ call timer_start(700, 'LoadPlug_Vim')
 function! LoadPlug_Vim(timer) abort
     call plug#load('vim-eunuch')
     call plug#load('vim-better-whitespace')
-    call plug#load('asyncrun.vim')
     call plug#load('clever-f.vim')
     call plug#load('vim-interestingwords')
     call plug#load('traces.vim')
@@ -484,7 +484,6 @@ vnoremap          p          Pgvy
 "nnoremap          dd         yydd
 
 " 状态行显示的内容 [包括系统平台/文件类型/坐标/所占比例/时间等]
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %y%r%m%*%=\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 set laststatus=2                          " 开启状态栏信息
 set cmdheight=1                           " 命令行的高度,默认为1,这里设为2
 
@@ -649,6 +648,10 @@ nmap <m-h> <ESC>0
 
 " INSERT Mode下 Ctrl + Z 取代ESC模式键
 ":inoremap  <ESC>
+
+" gf vim垂直分屏打开文件
+nnoremap gf <C-w>f<C-w>L
+vnoremap gf <C-w>f<C-w>L
 
 " ----------------- find and replace --------------
 nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>/<C-R>=expand("<cword>")<CR>/g<left><left>
@@ -916,25 +919,7 @@ nnoremap <silent>   <C-left>  :vertical resize +3<CR>
 nnoremap <silent>   <C-right>  :vertical resize -3<CR>
 " }}}
 
-" {{{ Python编译
-" -------------------------------编译python -----------------------------------
-" <Ctrl-ENTER>组合键通过插件AsyncRun运行代码,quickfix显示结果.
-let g:asyncrun_encs='gbk'                              "跟系统编码一致,解决输出中文乱码
-let $PYTHONUNBUFFERED=1                                "禁用python stdout缓冲
-"<Ctrl-ENTER>执行python
-nnoremap <silent><C-CR> :call <SID>CompileRunGcc()<CR>
-function s:CompileRunGcc()
-    if &filetype == 'python'
-        exec "w"
-        exec 'AsyncRun -raw python "%"'
-        vertical rightbelow copen 40                       "右侧quickfix窗口显示,宽度40
-        "copen 8                                            "底侧quickfix窗口显示,高度8
-        wincmd w                                           "光标在编辑区
-    endif
-endfunction
-" }}}
-
-" {{{ 调用 matlab
+" {{{ CMD 调用 matlab scripts
 augroup matlab_run
     autocmd!
     autocmd FileType matlab nnoremap <silent><C-CR> :! matlab -nosplash -nodesktop -r %:r<CR><CR>
@@ -948,12 +933,39 @@ augroup END
 nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 ""}}}
 
-"{{{ gf vim垂直分屏打开文件
-nnoremap gf <C-w>f<C-w>L
-vnoremap gf <C-w>f<C-w>L
-"}}}
-
 " ------------------------------- Plugins Config --------------------------------
+" {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
+let $PYTHONUNBUFFERED=1                                "禁用python stdout缓冲
+
+tnoremap <Esc> <C-\><C-n>
+" nnoremap <S-p> :FloatermNew ipython<CR>
+" nnoremap <S-p> :FloatermNew  python<CR>
+augroup Compiler_code
+    autocmd!
+    autocmd FileType floaterm nnoremap <buffer> <Esc> :q<CR>
+    " Python
+    autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<CR>
+    autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<CR>
+    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<CR>
+    " Python REPL
+    nnoremap <S-p> :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<CR>
+    autocmd FileType python nnoremap <leader>w :FloatermSend<Cr>
+    autocmd FileType python vnoremap <leader>w :FloatermSend<Cr>
+    " FORTRAN
+    autocmd FileType fortran nnoremap <C-CR> :FloatermNew<Cr>compilervars.bat intel64<Cr>ifort
+augroup END
+
+let g:floaterm_autoclose=0  "0: Always do NOT close floaterm window
+hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
+
+noremap  <leader>to  :FloatermNew<CR>
+noremap  <leader>tt  :FloatermToggle<CR>
+tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
+" TOOl rg
+noremap <leader>tr :FloatermNew rg.exe
+
+ "}}}
+"
 " {{{ << Plugin - startify >>
 "let g:ascii = [
 "let g:startify_custom_header = [
@@ -1317,7 +1329,6 @@ xmap <leader>, <Plug>(visual-crunch-operator)
 
 " }}}
 
-
 "{{{ << Plugin - highlightedyank >>
 let g:highlightedyank_highlight_duration = 120
 highlight HighlightedyankRegion ctermbg=237 guibg=#994797
@@ -1515,8 +1526,8 @@ let g:startuptime_tries = 7
 nnoremap <silent> <F12> :StartupTime<Cr>
 " }}}
 
-
-"=========================== NEOVIM ===========================
+" ==============================================================
+" =========================== NEOVIM ===========================
 
 " {{{ screach << Telescope >>
 "" Find files using Telescope command-line sugar.
@@ -1610,16 +1621,6 @@ nnoremap <silent> <leader>fs :Telescope search_history<cr>
 " <C-s>/s	toggle_all	    Toggle all entries ignoring ./ and ../
 
 " 多选      <Tab>
-" }}}
-
-" {{{ Repl << reply >>
-tnoremap <Esc> <C-\><C-n>
-augroup python_reply
-    autocmd!
-    autocmd FileType python nnoremap <S-p> :Repl python<Cr>
-augroup END
-nnoremap <leader>w :ReplSend<Cr>
-vnoremap <leader>w :ReplSend<Cr>
 " }}}
 
 " {{{ tree << nvim-tree >>
@@ -2653,7 +2654,7 @@ end
 local LL_others = require('which-key')
 LL_others.register({
 --['t'] = {':call ToggleHump()<CR>', ''},
-['t'] = {'Underline <--> Hump'},
+['t'] = {'Underline <-> Hump'},
 f = {
     name = "LeaderF",
     b = {"Open File" },

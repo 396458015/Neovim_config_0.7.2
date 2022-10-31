@@ -3,7 +3,7 @@
 " License           : 0.0.2
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
-" Last Modified Date: 2022.10.10
+" Last Modified Date: 2022.10.31
 " Desc              : NEOVIM (support Python, Lua)
 "  __  ____   __   ___     _____ __  __ ____   ____
 " |  \/  \ \ / /    \ \   / /_ _|  \/  |  _ \ / ___|
@@ -29,7 +29,6 @@ Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-endwise', { 'for': [ 'matlab' ] }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
-" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'chrisbra/csv.vim'
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
 Plug 'terryma/vim-expand-region', { 'on': [ '<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)'] }
@@ -38,24 +37,20 @@ Plug 'AndrewRadev/linediff.vim', { 'on': 'Linediff' }
 Plug 'tommcdo/vim-exchange', { 'on': [ '<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)'] }
 Plug 'alpertuna/vim-header', { 'on': 'AddHeader' }
 Plug 'iqxd/vim-mine-sweeping', { 'on': [ 'MineSweep' ]}
-
-"Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
-
 Plug 'Yggdroot/LeaderF', { 'on': [ 'LeaderfFile', 'Leaderf', 'LeaderfLine'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
 Plug 'mhinz/vim-startify'
 Plug 'zef/vim-cycle'
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
-Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
-
+Plug 'wellle/targets.vim'
 
 "------------------- lazy load vim plug -------------------
 
 Plug 'tpope/vim-eunuch', { 'on': []}
 Plug 'ntpeters/vim-better-whitespace', { 'on': []}
-" Plug 'skywind3000/asyncrun.vim', { 'on': []}
 Plug 'rhysd/clever-f.vim', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}
@@ -77,6 +72,7 @@ function! LoadPlug_Vim(timer) abort
     call plug#load('vim-visual-star-search')
 endfunction
 
+"Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
 "Plug g:plug_home. '/vimtex-master', { 'for': 'tex' }
 "Plug g:plug_home. '/pangu.vim-master'
 "Plug g:plug_home. '/vim-repeat-master'
@@ -133,7 +129,6 @@ Plug 'uga-rosa/cmp-dictionary'
 Plug 'kdheepak/cmp-latex-symbols'
 Plug 'ray-x/cmp-treesitter'
 
-
 " Auto completion-Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
@@ -144,7 +139,6 @@ Plug 'rafamadriz/friendly-snippets'
 " 1. add SpeedDatingFormat
 Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
 
-
 " --------------------------
 " Modified plugins (lua)
 " 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
@@ -154,7 +148,6 @@ Plug g:plug_home. '/lualine.nvim-master'
 Plug g:plug_home. '/weather3day.nvim-main'
 
 call plug#end()
-
 
 lua <<EOF
 _G.__luacache_config = {
@@ -200,119 +193,13 @@ EOF
 ""     打开折叠 zo zO     所有 zR
 "" }}}
 
-"" {{{ ENV-python
-let g:python_host_prog  = 'C:\Python\Python37\python.exe'
-let g:python3_host_prog = 'C:\Python\Python37\python.exe'
-"" }}}
-
-" {{{ 高亮设置
-syntax enable                        " 打开语法高亮
-syntax on                            " 开启文件类型侦测
-syntax sync minlines=64
-" }}}
-"
-" -------------------------- neovim colorscheme -----------------------------
-"{{{  nightfox
-lua <<EOF
-require('nightfox').setup({
-  options = {
-    -- Compiled file's destination location
-    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-    compile_file_suffix = "_compiled", -- Compiled file suffix
-    transparent = false,    -- Disable setting background
-    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-    dim_inactive = false,   -- Non focused panes set to alternative background
-    styles = {              -- Style to be applied to different syntax groups
-      comments = "NONE",    -- Value is any valid attr-list value `:help attr-list`
-      conditionals = "NONE",
-      constants = "NONE",
-      --functions = "NONE",
-      --keywords = "NONE",
-      --numbers = "NONE",
-      operators = "NONE",
-      strings = "NONE",
-      types = "NONE",
-      variables = "NONE",
-
-      functions = "italic",
-      keywords = "italic",
-      numbers = "italic",
-    },
-    inverse = {             -- Inverse highlight for different types
-      match_paren = true,
-      visual = false,
-      --visual = true,
-      search = false,
-    },
-    modules = {             -- List of various plugins and additional options
-      nvimtree = true,
-      cmp = true,
-      telescope = true,
-      treesitter = true,
-      whichkey = true,
-    },
-    }
-})
-
---note: nightfox color change: (1) white:   #dfdfe0 -> #abb2bf  ps:白色变浅
---                             (2) fg1:     #cdcecf -> #abb2bf  ps:白色变浅,同上
---                             (3) comment: #738091 -> #5c6370  ps:注释颜色变浅
---                             (4) sel0:    #2b3b51 -> #3e4452  ps:V模式框选颜色变深
---                             file: "D:\Program Files\Neovim\share\nvim\Mine\Plugged\nightfox.nvim-main\lua\nightfox\palette\nightfox.lua"
-local palettes = {
-  nightfox  = {
-    white   = "#abb2bf",
-    fg1     = "#b2b2b2",
-    comment = "#5c6370",
-    sel0    = "#364a82", --visual
-    sel1    = "#228b22", --visual Selected
-  },
-  dayfox    = {
-    bg1     = "#e1e2e7",
-    fg1     = "#4d688e",
-    fg3     = "#a8aecb", --line number
-    sel0    = "#99a7df", --visual
-    orange  = "#b15c00", --number
-  },
-  carbonfox  = {
-    white   = "#abb2bf",
-    fg1     = "#b2b2b2",
-    comment = "#5c6370",
-    sel0    = "#364a82", --visual
-    sel1    = "#228b22", --visual Selected
-  },
-}
-
-require("nightfox").setup({ palettes = palettes })
---Dark:  nightfox duskfox terafox nordfox Carbonfox
---Light: dayfox dawnfox
-
---vim.cmd("colorscheme nightfox")
---vim.cmd("colorscheme dayfox")
-EOF
-"}}}
-colorscheme nightfox
-" colorscheme dayfox
-" colorscheme carbonfox
-
-"" {{{ Alt快捷键BUG解决方案
-"" BUG点:Alt快捷键生效与否 与 utf-8 在vimrc位置关系.
-"" 1: <A-CR>快捷键设置在"编码格式"位置后,<A-CR>失效.
-"" 2: <A-CR>以外的Alt快捷键,若设置在"编码格式"位置前,快捷键失效.
-"" 所以,<A-CR>快捷应设置在"编码格式"位置前;其余Alt快捷键应设置在"编码格式"位置后.均可生效.
-"" }}}
-
 " {{{ 编码格式
 " 设置文件编码格式
 if has('multi_byte')
     " 内部工作编码
     set encoding=utf-8
-
     set termencoding=utf-8
-
-    " 文件默认编码
     set fileencoding=utf-8
-
     " 打开文件时自动尝试下面顺序的编码
     "set fileencodings=ucs-bom,utf-8,gbk,gb18030,big5,euc-jp,latin1
     set fileencodings=utf-8,gbk,gb18030,big5,ucs-bom,euc-jp,latin1
@@ -344,31 +231,24 @@ endif
 " }}}
 
 " {{{ 常规设置
-language en
 
+" 高亮设置
+syntax enable                        " 打开语法高亮
+syntax on                            " 开启文件类型侦测
+syntax sync minlines=64
+if &bg == 'dark'
+    hi CursorLine gui=NONE guibg=#3C4452
+elseif &bg == 'light'
+    hi CursorLine gui=NONE guibg=#c6cbd9
+    " hi CursorLine gui=NONE guibg=#CCCCCC
+endif
+
+language en
+language messages zh_CN.utf-8  " 解决consle提示信息输出乱码
 filetype on                          " 侦测文件类型
 filetype indent on                   " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on                   " 针对不同的文件类型加载对应的插件
 filetype plugin indent on
-
-augroup load_rpy
-    autocmd!
-    autocmd BufNewFile,BufRead *.rpy set syntax=python | autocmd! load_rpy
-augroup END
-
-"禁止屏闪和铃声
-augroup genconfiggroup
-    autocmd!
-    autocmd GUIEnter * set vb t_vb=
-    autocmd VimEnter * set vb t_vb=
-augroup END
-
-" PythonPEP8风格的缩进
-augroup python_pep8
-    autocmd!
-    au BufNewFile,BufRead *.py
-                \set fileformat=unix     " 以unix格式存储文件,避免在推送到GITHUB或分享给其他用户时出现文件转换问题.
-augroup END
 
 set autoindent                       " 自动对齐
 set tabstop=4                        " 设置tab键的宽度
@@ -376,7 +256,6 @@ set softtabstop=4                    " 退格键的长度
 set expandtab                        " 在输入tab后,vim用个空格来填充这个tab
 set lazyredraw                       " 延时绘制(提升性能)
 set shortmess-=S
-"setlocal cm=blowfish2                " cm=zip/blowfish/blowfish2
 
 "set wildmode=list:longest,full       " Command <Tab> completion, list matches
 set wildmode=longest,full       " Command <Tab> completion, list matches
@@ -392,6 +271,8 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
+set laststatus=2                     " 开启状态栏信息
+set cmdheight=1                      " 命令行的高度,默认为1,这里设为2
 set linebreak                        " 整词换行
 set backspace=2                      " 设置退格键可用
 set shiftwidth=4                     " 换行时行间交错使用4个空格
@@ -410,22 +291,41 @@ set smartcase
 set vb t_vb=                         " 关闭提示音
 set guicursor+=a:blinkon0            " 设置光标不闪烁
 set hidden                           " 允许在有未保存的修改时切换缓冲区
+set winaltkeys=no                    " 设置 alt 键不映射到菜单栏
+set scrolloff=5                      " 设置目标行与顶部底部的距离(5行)
+set writebackup                      " 设置无备份文件
+set nobackup
+set autochdir                        " 设定文件浏览器目录为当前目录
+set wrap                             " 设置一行太长,自动换行
+"set norelativenumber                " 不显示相对行号
+set relativenumber                   " 显示相对行号
+set showcmd
+set formatoptions+=m                 " 如遇Unicode值大于255的文本,不必等到空格再折行
+set formatoptions+=B                 " 合并两行中文时,不在中间加空格
+set whichwrap+=<,>,h,l               " 允许backspace和光标键跨越行边界
+set magic                            " For regular expressions turn magic on
+
+" 代码折叠
+set foldmethod=marker                " 折叠类型---对文中标志折叠
+"set foldmethod=manual              " 折叠类型---手工
+"set foldmethod=syntax              " 折叠类型---语法高亮
+"set foldmethod=indent              " 折叠类型---缩进
+set foldcolumn=2                     " 显示折叠标志
+set foldlevel=33
+"set foldcolumn&                     " 去掉折叠标志
+
+" 分屏设置
+set splitright                       " 新的窗口在右边打开
+set splitbelow                       " 新的窗口在下边打开
 
 "set listchars=tab:\|\ ,                                         " 显示Tab符,使用一高亮竖线代替
 set listchars=trail:.,extends:>,precedes:<,space:.               " 将空格用.表示
 "set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣ " <F3>为显示空格的开关
-nnoremap <F3> :set list!<CR>
-inoremap <F3> <C-o>:set list!<CR>
-cnoremap <F3> <C-c>:set list!<CR>
-
 
 set backspace=indent,eol,start    " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
 
-set whichwrap+=<,>,h,l                        " 允许backspace和光标键跨越行边界
-set magic                                     " For regular expressions turn magic on
-
-"IOS:Windows  降低 clipboard 启动速率
-set clipboard+=unnamed                        " 公用剪切板
+"IOS:Windows  设置 clipboard 提高Nvim启动速率
+set clipboard+=unnamed               " 公用剪切板
 let g:clipboard = {
             \ 'name': 'win32yank',
             \ 'copy': {
@@ -439,25 +339,35 @@ let g:clipboard = {
                     \ 'cache_enabled': 0,
                     \ }
 
+" ENV-python
+let g:python_host_prog  = 'C:\Python\Python37\python.exe'
+let g:python3_host_prog = 'C:\Python\Python37\python.exe'
+let $PYTHONUNBUFFERED=1              " 禁用python stdout缓冲
 
-set winaltkeys=no                             " 设置 alt 键不映射到菜单栏
-set scrolloff=5                               " 设置目标行与顶部底部的距离(5行)
-set writebackup                               " 设置无备份文件
-set nobackup
-set autochdir                                 " 设定文件浏览器目录为当前目录
-set wrap                                      " 设置一行太长,自动换行
-"set norelativenumber                          " 不显示相对行号
-set relativenumber                            " 显示相对行号
-set showcmd
+augroup load_rpy
+    autocmd!
+    autocmd BufNewFile,BufRead *.rpy set syntax=python | autocmd! load_rpy
+augroup END
+
+" PythonPEP8风格的缩进
+augroup python_pep8
+    autocmd!
+    au BufNewFile,BufRead *.py
+                \set fileformat=unix     " 以unix格式存储文件,避免在推送到GITHUB或分享给其他用户时出现文件转换问题.
+augroup END
+
+"禁止屏闪和铃声
+augroup genconfiggroup
+    autocmd!
+    autocmd GUIEnter * set vb t_vb=
+    autocmd VimEnter * set vb t_vb=
+augroup END
 
 augroup tex_md_width
     autocmd!
     autocmd FileType tex set textwidth=72         " 文本超过一定长度时自动换行
     autocmd FileType markdown set textwidth=80    " 文本超过一定长度时自动换行
 augroup END
-
-set formatoptions+=m                          " 如遇Unicode值大于255的文本,不必等到空格再折行
-set formatoptions+=B                          " 合并两行中文时,不在中间加空格
 
 augroup line_font
     autocmd!
@@ -466,6 +376,52 @@ augroup line_font
     " Fortran语言,高亮加下划线显示每行第72个字符(遵循Fortran77固定格式)
     au BufRead,BufNewFile *.for 2match Underlined /.\%73v/
 augroup END
+
+" Return to last edit position when opening files (You want this!)
+lua <<EOF
+vim.cmd([[ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
+EOF
+
+" 当剩余的窗口都不是文件编辑窗口时,自动退出vim
+augroup Buffer_quit
+    autocmd!
+    autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+augroup END
+
+" ------------------- 行/列高亮 ----------------------
+" augroup BgHighlight
+"     autocmd!
+"     autocmd WinEnter * set cul       " 进入窗口 高亮当前行
+"     autocmd WinEnter * set cuc       " 进入窗口 高亮当前列
+"     autocmd WinLeave * set nocul     " 离开窗口 取消 高亮当前行
+"     autocmd WinLeave * set nocuc     " 离开窗口 取消 高亮当前列
+"     autocmd InsertEnter * set nocul  " 插入模式 取消 高亮当前行
+"     autocmd InsertEnter * set nocuc  " 插入模式 取消 高亮当前列
+"     autocmd InsertLeave * set cul    " 离开插入模式 恢复 高亮当前行
+"     autocmd InsertLeave * set cuc    " 离开插入模式 恢复 高亮当前列
+" augroup END
+
+" }}}
+
+" {{{ 自定义映射
+" ; 代替 :
+map ; :
+
+" Disable the default s key
+noremap s <nop>
+xmap s <nop>
+
+" 更改leader键,从默认的'\'改为'<Space>'
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ","
+
+" 显示list 用.表示空格
+nnoremap <F3> :set list!<CR>
+inoremap <F3> <C-o>:set list!<CR>
+cnoremap <F3> <C-c>:set list!<CR>
+
+" 高亮光标行列
+nnoremap <silent> <F4> :set cuc! cul!<CR>
 
 " only delete (not cut) in Vim 寄存器
 " 以下3行为d为复制,不更改寄存器。将以下三行注释后,d为剪切
@@ -483,77 +439,13 @@ vnoremap          p          Pgvy
 " dd 剪切
 "nnoremap          dd         yydd
 
-" 状态行显示的内容 [包括系统平台/文件类型/坐标/所占比例/时间等]
-set laststatus=2                          " 开启状态栏信息
-set cmdheight=1                           " 命令行的高度,默认为1,这里设为2
-
-" Return to last edit position when opening files (You want this!)
-lua <<EOF
-vim.cmd([[ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
-EOF
-
-" 当剩余的窗口都不是文件编辑窗口时,自动退出vim
-augroup Buffer_quit
-    autocmd!
-    autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
-augroup END
-" ------------------- 行/列高亮 ----------------------
-" vim 行+列高亮 显示(cuc = cursorcolumn cul = cursorline)
-if &bg == 'dark'
-    hi CursorLine gui=NONE guibg=#3C4452
-elseif &bg == 'light'
-    hi CursorLine gui=NONE guibg=#c6cbd9
-    " hi CursorLine gui=NONE guibg=#CCCCCC
-endif
-nnoremap <silent> <F4> :set cuc! cul!<CR>
-
-" augroup BgHighlight
-"     autocmd!
-"     autocmd WinEnter * set cul       " 进入窗口 高亮当前行
-"     autocmd WinEnter * set cuc       " 进入窗口 高亮当前列
-"     autocmd WinLeave * set nocul     " 离开窗口 取消 高亮当前行
-"     autocmd WinLeave * set nocuc     " 离开窗口 取消 高亮当前列
-"     autocmd InsertEnter * set nocul  " 插入模式 取消 高亮当前行
-"     autocmd InsertEnter * set nocuc  " 插入模式 取消 高亮当前列
-"     autocmd InsertLeave * set cul    " 离开插入模式 恢复 高亮当前行
-"     autocmd InsertLeave * set cuc    " 离开插入模式 恢复 高亮当前列
-" augroup END
-
-" 窗口中文菜单乱码解决方案
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-" 解决consle提示信息输出乱码
-language messages zh_CN.utf-8
-" }}}
-
-" {{{ 自定义快捷键
-" ---------------- useful stuff -------------------
-"inoremap jk <ESC>
-
-"单词的 选/改/删
-nnoremap <silent> vi viw
-nnoremap <silent> ci ciw
-nnoremap <silent> di diw
+" 单词的 选/改/删
+" nnoremap <silent> vi viw
+" nnoremap <silent> ci ciw
+" nnoremap <silent> di diw
 
 " IDE like delete
 inoremap <C-BS> <Esc>bdei
-
-"单词 变大写
-"nnoremap U <esc>viwU
-
-" Disable the default s key
-noremap s <nop>
-xmap s <nop>
-
-"  ; 代替 :
-map ; :
-
-" 更改leader键,从默认的'\'改为'<Space>'
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ","
-
-"显示list 用.表示空格
-"<F3>
 
 " 取消高亮
 map <silent> <BS> :nohlsearch<CR>
@@ -572,13 +464,14 @@ cnoremap <C-V> <C-R>+
 iab xtime <c-r>=strftime("20%y-%m-%d %a %H:%M")<CR>
 iab xdate <c-r>=strftime("20%y-%m-%d (%a)")<CR>
 
-" chche vim
-:command Q q
-:command W w
-:command WQ wq
-:command Wq wq
-:command Qa qa
-:command QA qa
+" 代码折叠
+nnoremap <silent> <Tab> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" zf                        --创建折叠,仅在manual/marker中有效(eg:v{motion}zf v{motion}指Shift+v)
+" zd                        --删除折叠,仅在manual/marker中有效
+" zD                        --删除嵌套折叠,仅在manual/marker中有效
+" za                        --打开/关闭当前折叠
+" zM                        --关闭所有折叠
+" zR                        --打开所有折叠
 
 "-------------------- vimrc ----------------------
 " 打开配置文件vimrc
@@ -604,16 +497,6 @@ map <leader>sa zg
 map <leader>s? z=
 
 " ------------------- 光标移动 --------------------
-"     ^
-"     k
-" < h   l >
-"     j
-"     v
-
-" NORNAL Mode faster navigation
-"noremap <silent> U 5k
-"noremap <silent> E 5j
-
 " INSERT Mode下使用光标移动指令
 inoremap <m-h> <Left>
 inoremap <m-j> <Down>
@@ -625,33 +508,26 @@ inoremap <C-h> <C-Left>
 inoremap <C-l> <C-Right>
 
 " INSERT Mode Cursor Movement
-inoremap <C-a> <ESC>I
-inoremap <C-e> <ESC>A
+" inoremap <C-a> <ESC>I
+" inoremap <C-e> <ESC>A
 
 " NORMAL Mode下 Alt + L将光标移动到行尾
-nmap <m-l> <ESC>$
+" nnoremap <m-l> <ESC>$
 
 " NORMAL Mode下 Alt + H将光标移动到行首
-nmap <m-h> <ESC>0
+" nnoremap <m-h> <ESC>0
 
 " NORMAL Mode下 Alt + K 将光标移到上一行的末尾
-"nmap <A-k> <ESC>k$
+" nnoremap <A-k> <ESC>k$
 
 " INSERT Mode下 Ctrl + K 将光标移到上一行的末尾
-"imap  <ESC>kA
+" inoremap  <ESC>kA
 
 " INSERT Mode下 Ctrl + L 将光标移到行尾
-"imap  <ESC>A
+" inoremap  <ESC>A
 
 " INSERT Mode下 Ctrl + H 将光标移到行首
-"imap  <ESC>I
-
-" INSERT Mode下 Ctrl + Z 取代ESC模式键
-":inoremap  <ESC>
-
-" gf vim垂直分屏打开文件
-nnoremap gf <C-w>f<C-w>L
-vnoremap gf <C-w>f<C-w>L
+" inoremap  <ESC>I
 
 " ----------------- find and replace --------------
 nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>/<C-R>=expand("<cword>")<CR>/g<left><left>
@@ -666,11 +542,67 @@ nnoremap <leader>b :put =range(,,1)<left><left><left><left>
 nnoremap < <<
 nnoremap > >>
 
+" ------------ 分屏设置 ------------
+" buffers/quickfix 分屏窗口移动,split navigations,smart way to move between windows
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+"nnoremap <C-j> <C-W><C-J>
+"nnoremap <C-k> <C-W><C-K>
+" ----------------- quick move --------------
+nnoremap <C-k> 4k
+nnoremap <C-j> 4j
+
+" terminal 分屏窗口移动,split navigations,smart way to move between windows
+tnoremap <C-h> <C-w><C-h>
+tnoremap <C-j> <C-w><C-j>
+tnoremap <C-k> <C-w><C-k>
+tnoremap <C-l> <C-w><C-l>
+
+" 分屏后,让参考屏上下滚动
+nnoremap <M-u> <C-w>p<C-u><C-w>p
+nnoremap <M-d> <C-w>p<C-d><C-w>p
+
+" 使terminal变为NORMAL模式,从而可以看历史记录
+tnoremap <C-n> <C-w>N
+tnoremap <ScrollWheelUp> <C-w>Nk
+tnoremap <ScrollWheelDown> <C-w>Nj
+
+"----------------分屏快捷键设置--------------------------------------------------
+" 新建一个垂直分割窗口,放置在当前窗口右侧
+nnoremap <silent> sl :set splitright<CR>:vsplit<CR>
+" 新建一个垂直分割窗口startify,放置在当前窗口右侧
+nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
+" 新建一个水平分割窗口,放置在当前窗口下方
+nnoremap <silent> sj :set splitbelow<CR>:split<CR>
+
+" 设置两个分屏为垂直分割.Place the two screens side by side
+nnoremap sv <C-w>t<C-w>H
+" 设置两个分屏为水平分割.Place the two screens up and down
+nnoremap sh <C-w>t<C-w>K
+
+" 互换分割窗口.Rotate screens
+nnoremap srv <C-w>b<C-w>H
+nnoremap srh <C-w>b<C-w>K
+
+" Press <LEADER> + q to close the window below the current window
+"nnoremap <LEADER>q <C-w>j:q<CR>
+
+" gf vim垂直分屏打开文件
+nnoremap gf <C-w>f<C-w>L
+vnoremap gf <C-w>f<C-w>L
+
+"----------------调整分屏尺寸--------------------------------------------------
+" 调整上下分屏尺寸
+nnoremap <silent>   <C-up>  :resize -3<CR>
+" 调整上下分屏尺寸
+nnoremap <silent>   <C-down>  :resize +3<CR>
+" 调整左右分屏尺寸
+nnoremap <silent>   <C-left>  :vertical resize +3<CR>
+" 调整左右分屏尺寸
+nnoremap <silent>   <C-right>  :vertical resize -3<CR>
+
 " -------------------- tabs -----------------------
 map <leader>tn :tabnew<CR>
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " 让gvim支持Alt+n来切换标签页
 :nn <M-1> 1gt
@@ -689,7 +621,6 @@ nn <silent> <M-left> :if tabpagenr() == 1\|exe "tabm ".tabpagenr("$")\|el\|exe "
 nn <silent> <M-right> :if tabpagenr() == tabpagenr("$")\|tabm 0\|el\|exe "tabm ".tabpagenr()\|en<CR>
 
 " 标签页的标题修改
-" 使用了自定义函数  GuiTabLabel()
 set guitablabel=%{GuiTabLabel()}
 " 修改标签页的标题
 " set up tab labels with tab number, buffer name, number of windows
@@ -816,7 +747,6 @@ function! DeleteTillSlash()
     return g:cmd_edited
 endfunc
 
-
 " 驼峰和下划线转换
 fun! ToggleHump()
     let [l, c1, c2] = [line('.'), col("'<"), col("'>")]
@@ -828,114 +758,103 @@ fun! ToggleHump()
     call cursor(l, c1)
 endf
 vnoremap <localleader>t :call ToggleHump()<CR>
-" }}}
 
-" {{{ 代码折叠
-"-------------------- 类型 -----------------------
-set foldmethod=marker         " 折叠类型---对文中标志折叠
-"set foldmethod=manual        " 折叠类型---手工
-"set foldmethod=syntax        " 折叠类型---语法高亮
-"set foldmethod=indent        " 折叠类型---缩进
-"-------------------- 设置 -----------------------
-" , 映射为打开/关闭折叠
-"nnoremap <silent> ` @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap <silent> <Tab> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-set foldcolumn=2               " 显示折叠标志
-set foldlevel=33
-"set foldcolumn&               " 去掉折叠标志
-
-"au FileType matlab set foldmethod=syntax foldcolumn=2 foldlevel=33       " matlab
-"au FileType python set foldmethod=marker foldcolumn=2 foldlevel=33       " matlab
-
-"au BufWinLeave * silent mkview      " 退出时自动保存折叠,':mkview':保存折叠.仅对manual有效,marker有标记.
-"au BufWinEnter * silent loadview    " 打开时自动加载折叠,':loadview':载入折叠.仅对manual有效,marker有标记.
-"------------------- hot key ----------------------
-" zf                        --创建折叠,仅在manual/marker中有效(eg:v{motion}zf v{motion}指Shift+v)
-" zd                        --删除折叠,仅在manual/marker中有效
-" zD                        --删除嵌套折叠,仅在manual/marker中有效
-" za                         " 打开/关闭当前折叠
-" zM                         " 关闭所有折叠
-" zR                         " 打开所有折叠
-" }}}
-
-" {{{ 分屏设置
-set splitright      " 新的窗口在右边打开
-set splitbelow      " 新的窗口在下边打开
-
-" buffers/quickfix 分屏窗口移动,split navigations,smart way to move between windows
-nnoremap <C-l> <C-W><C-L>
-nnoremap <C-h> <C-W><C-H>
-"nnoremap <C-j> <C-W><C-J>
-"nnoremap <C-k> <C-W><C-K>
-
-" ----------------- quick move --------------
-nnoremap <C-k> 4k
-nnoremap <C-j> 4j
-
-" terminal 分屏窗口移动,split navigations,smart way to move between windows
-tnoremap <C-h> <C-w><C-h>
-tnoremap <C-j> <C-w><C-j>
-tnoremap <C-k> <C-w><C-k>
-tnoremap <C-l> <C-w><C-l>
-
-
-" 分屏后,让参考屏上下滚动
-nnoremap <M-u> <C-w>p<C-u><C-w>p
-nnoremap <M-d> <C-w>p<C-d><C-w>p
-
-" 使terminal变为NORMAL模式,从而可以看历史记录
-tnoremap <C-n> <C-w>N
-tnoremap <ScrollWheelUp> <C-w>Nk
-tnoremap <ScrollWheelDown> <C-w>Nj
-
-"----------------分屏快捷键设置--------------------------------------------------
-" 新建一个垂直分割窗口,放置在当前窗口右侧
-nnoremap <silent> sl :set splitright<CR>:vsplit<CR>
-" 新建一个垂直分割窗口startify,放置在当前窗口右侧
-nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
-" 新建一个水平分割窗口,放置在当前窗口下方
-nnoremap <silent> sj :set splitbelow<CR>:split<CR>
-
-" 设置两个分屏为垂直分割.Place the two screens side by side
-nnoremap sv <C-w>t<C-w>H
-" 设置两个分屏为水平分割.Place the two screens up and down
-nnoremap sh <C-w>t<C-w>K
-
-" 互换分割窗口.Rotate screens
-nnoremap srv <C-w>b<C-w>H
-nnoremap srh <C-w>b<C-w>K
-
-" Press <LEADER> + q to close the window below the current window
-"nnoremap <LEADER>q <C-w>j:q<CR>
-
-"----------------调整分屏尺寸--------------------------------------------------
-" 调整上下分屏尺寸
-nnoremap <silent>   <C-up>  :resize -3<CR>
-" 调整上下分屏尺寸
-nnoremap <silent>   <C-down>  :resize +3<CR>
-" 调整左右分屏尺寸
-nnoremap <silent>   <C-left>  :vertical resize +3<CR>
-" 调整左右分屏尺寸
-nnoremap <silent>   <C-right>  :vertical resize -3<CR>
-" }}}
-
-" {{{ CMD 调用 matlab scripts
+" CMD 调用 matlab scripts
 augroup matlab_run
     autocmd!
     autocmd FileType matlab nnoremap <silent><C-CR> :! matlab -nosplash -nodesktop -r %:r<CR><CR>
 augroup END
-
 " TERMINAL运行matlab代码,以'test.m'代码为例 'matlab -nosplash -nodesktop -r test'
+
+" neovim 调用SumatraPdf 打开pdf, pdf名字存在空格, 对文件名单引号处理 '*.pdf'
+nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 " }}}
 
-""{{{ neovim 调用SumatraPdf 打开pdf
-" pdf名字存在空格, 对文件名单引号处理 '*.pdf'
-nnoremap gX :!SumatraPdf <C-r><C-l><CR>
-""}}}
+"{{{ colorscheme << nightfox >>
+lua <<EOF
+require('nightfox').setup({
+  options = {
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+    compile_file_suffix = "_compiled", -- Compiled file suffix
+    transparent = false,    -- Disable setting background
+    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,   -- Non focused panes set to alternative background
+    styles = {              -- Style to be applied to different syntax groups
+      comments = "NONE",    -- Value is any valid attr-list value `:help attr-list`
+      conditionals = "NONE",
+      constants = "NONE",
+      --functions = "NONE",
+      --keywords = "NONE",
+      --numbers = "NONE",
+      operators = "NONE",
+      strings = "NONE",
+      types = "NONE",
+      variables = "NONE",
+
+      functions = "italic",
+      keywords = "italic",
+      numbers = "italic",
+    },
+    inverse = {             -- Inverse highlight for different types
+      match_paren = true,
+      visual = false,
+      --visual = true,
+      search = false,
+    },
+    modules = {             -- List of various plugins and additional options
+      nvimtree = true,
+      cmp = true,
+      telescope = true,
+      treesitter = true,
+      whichkey = true,
+    },
+    }
+})
+
+--note: nightfox color change: (1) white:   #dfdfe0 -> #abb2bf  ps:白色变浅
+--                             (2) fg1:     #cdcecf -> #abb2bf  ps:白色变浅,同上
+--                             (3) comment: #738091 -> #5c6370  ps:注释颜色变浅
+--                             (4) sel0:    #2b3b51 -> #3e4452  ps:V模式框选颜色变深
+--                             file: "D:\Program Files\Neovim\share\nvim\Mine\Plugged\nightfox.nvim-main\lua\nightfox\palette\nightfox.lua"
+local palettes = {
+  nightfox  = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
+  dayfox    = {
+    bg1     = "#e1e2e7",
+    fg1     = "#4d688e",
+    fg3     = "#a8aecb", --line number
+    sel0    = "#99a7df", --visual
+    orange  = "#b15c00", --number
+  },
+  carbonfox  = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
+}
+
+require("nightfox").setup({ palettes = palettes })
+--Dark:  nightfox duskfox terafox nordfox Carbonfox
+--Light: dayfox dawnfox
+
+--vim.cmd("colorscheme nightfox")
+--vim.cmd("colorscheme dayfox")
+EOF
+"}}}
+colorscheme nightfox
+" colorscheme dayfox
+" colorscheme carbonfox
 
 " ------------------------------- Plugins Config --------------------------------
 " {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
-let $PYTHONUNBUFFERED=1                                "禁用python stdout缓冲
 
 tnoremap <Esc> <C-\><C-n>
 " nnoremap <S-p> :FloatermNew ipython<CR>
@@ -944,25 +863,30 @@ augroup Compiler_code
     autocmd!
     autocmd FileType floaterm nnoremap <buffer> <Esc> :q<CR>
     " Python
-    autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<CR>
-    autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<CR>
-    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<CR>
+    autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<Cr>
+    autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<Cr>
+    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<Cr>
     " Python REPL
-    nnoremap <S-p> :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<CR>
+    nnoremap <S-p> :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<Cr>
     autocmd FileType python nnoremap <leader>w :FloatermSend<Cr>
     autocmd FileType python vnoremap <leader>w :FloatermSend<Cr>
     " FORTRAN
-    autocmd FileType fortran nnoremap <C-CR> :FloatermNew<Cr>compilervars.bat intel64<Cr>ifort
+    autocmd FileType fortran nnoremap <C-CR> :FloatermNew<Cr>compilervars.bat intel64<Cr>ifort<Space>
 augroup END
 
 let g:floaterm_autoclose=0  "0: Always do NOT close floaterm window
 hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
 
-noremap  <leader>to  :FloatermNew<CR>
-noremap  <leader>tt  :FloatermToggle<CR>
-tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
+noremap  <leader>to  :FloatermNew<Cr>
+noremap  <leader>ta  :FloatermNew<Cr>runas /user:administrator cmd<Cr>1234<Cr>
+noremap  <leader>tt  :FloatermToggle<Cr>
+tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<Cr>
 " TOOl rg
-noremap <leader>tr :FloatermNew rg.exe
+noremap <leader>tr :FloatermNew<Cr>rg.exe<Space>
+
+" 开启管理员账号: net user administrator /active:yes
+" 关闭管理员账号: net user administrator /active:no
+" 设置管理员密码(1234): net user administrator 1234
 
  "}}}
 "
@@ -1014,6 +938,12 @@ let g:startify_custom_footer = [
             \ '                                                                   ',
             \ '                                                                   ',
             \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
+            \ '                                                                   ',
             \ '            ,                                                      ',
             \ '           / \,,_  ."|                                             ',
             \ '         [[| /]]]]/_."                                             ',
@@ -1033,7 +963,6 @@ let g:startify_custom_footer = [
             \ '                                                                   ',
             \]
 
-
 highlight StartifyBracket ctermfg=10 guifg=#444B6A
 " highlight StartifyFile ctermfg=10 guifg=#9ECE6A
 " highlight StartifyFile ctermfg=10 guifg=#12970e
@@ -1044,7 +973,6 @@ if &background ==# 'dark'
 elseif &background ==# 'light'
     highlight StartifyFile ctermfg=10 guifg=#12970e
 endif
-
 
 "highlight StartifyPath ctermfg=10 guifg=#444B6A
 "highlight StartifySlash ctermfg=10 guifg=#444B6A
@@ -1061,7 +989,6 @@ highlight StartifyHeader ctermfg=10 guifg=#a600ff
 
 highlight StartifyFooter ctermfg=10 guifg=#F7768E
 highlight StartifySpecial ctermfg=10 guifg=#444B6A
-
 
 " show startify icon
 lua << EOF
@@ -1171,7 +1098,6 @@ augroup markdown_type
 augroup END
 let g:vim_markdown_toc_autofit = 1                 " Enable TOC window auto-fit,调节合适的窗口尺寸
 
-
 let g:vim_markdown_conceal = 0                     " 取消隐藏 Markdown          语法符号
 let g:vim_markdown_conceal_code_blocks = 0         " 取消隐藏 代码块            符号 ```
 let g:tex_conceal = ""                             " 取消隐藏 LaTeX math syntax 符号
@@ -1201,7 +1127,6 @@ let g:vim_markdown_fenced_languages = [
 
 let g:vim_markdown_follow_anchor = 1
 let g:vim_markdown_edit_url_in = 'vsplit'       " tab  vsplit  hsplit  current
-
 
 let g:vim_markdown_folding_disabled = 0         " 开启折叠功能
 let g:vim_markdown_folding_style_pythonic = 1   " 折叠样式
@@ -1404,7 +1329,17 @@ nnoremap <F2> :AddHeader<CR>
 "SpeedDatingFormat %Y-%m-%d %a                     " define 3
  "}}}
 
-" ------------------------------- 需要python支持的Plugins --------------------------------
+" {{{ text objects  << targets.vim >>
+" d/c/y  +  i/I/a/A  +  b
+" d/c/y  +  i/I/a/A  +  q
+" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n  +  b
+" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n  +  q
+" d/c/y  +  i/I/a/A  +  (/[/,/...
+" d/c/y  +  i/I/a/A  +  "/'/`/...
+" --b:block   q:quote
+ "}}}
+
+" ------------------------------- 需要Python支持的Plugins --------------------------------
 " {{{ << Plugin - LeaderF >>
 " 安装 C extension, 速度提高10倍
 " :LeaderfInstallCExtension
@@ -1517,7 +1452,7 @@ set nrformats=alpha,octal,hex
 " }}}
 
 " {{{ StartupTime << StartupTime >>
-let g:startuptime_tries = 7
+let g:startuptime_tries = 10
 "augroup startuptime_mapping
 "  autocmd!
 "  autocmd CmdlineEnter : cnoremap sta StartupTime
@@ -1527,7 +1462,7 @@ nnoremap <silent> <F12> :StartupTime<Cr>
 " }}}
 
 " ==============================================================
-" =========================== NEOVIM ===========================
+" ===================== NEOVIM lua Plugins =====================
 
 " {{{ screach << Telescope >>
 "" Find files using Telescope command-line sugar.
@@ -2119,7 +2054,6 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
 --    }
 --  })
 
-
 local search_config = {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -2157,7 +2091,6 @@ require("cmp_dictionary").setup({
 	capacity = 5,
 	debug = false,
 })
-
 
 EOF
 "}}}
@@ -2221,7 +2154,6 @@ vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_increase", {})
 vim.api.nvim_set_keymap("x", "<leader>cc", "<Plug>kommentary_visual_increase", {})
 vim.api.nvim_set_keymap("n", "<leader>ci", "<Plug>kommentary_line_decrease", {})
 vim.api.nvim_set_keymap("x", "<leader>ci", "<Plug>kommentary_visual_decrease", {})
-
 
 EOF
  "}}}
@@ -2328,7 +2260,6 @@ require "lualine".setup {
 
 END
 
-
 " ✗ ✖️ ❌ ⚡ ⚠️ 🔍📝❓🚫⛔❗🍅⏰
 " Modified 📝
 "⏰⏳⌛
@@ -2343,6 +2274,22 @@ endif
 
 " {{{ indentLine << indent-blankline.nvim >>
 lua << EOF
+vim.g.indent_blankline_buftype_exclude = {
+    "terminal",
+    "nofile",
+    "quickfix",
+    "prompt",
+}
+
+vim.g.indent_blankline_filetype_exclude = {
+    "help",
+    "startify",
+    "lspinfo",
+    --"packer",
+    --"neogitstatus",
+    "NvimTree",
+    "checkhealth",
+}
 
 require("indent_blankline").setup {
     space_char_blankline = " ",
@@ -2607,6 +2554,12 @@ f = {
     ['i'] = {'WhiteSpace' },
     ['?'] = {'Word Candidate' },
     },
+['t'] = {
+    name = 'Terminal',
+    ['o'] = {'Terminal' },
+    ['t'] = {'Terminal rg' },
+    ['r'] = {'Toggle Terminal' },
+    },
 }, { prefix = '<leader>' })
 
 local s_all = require('which-key')
@@ -2670,7 +2623,6 @@ w = {
     e = {"1 day" },
     },
 }, { prefix = ',' })
-
 
 EOF
 "}}}

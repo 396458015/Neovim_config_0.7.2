@@ -324,7 +324,7 @@ set listchars=trail:.,extends:>,precedes:<,space:.               " 将空格用.
 
 set backspace=indent,eol,start    " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
 
-"IOS:Windows  设置 clipboard 提高Nvim启动速率
+" IOS:Windows  设置 clipboard 提高Nvim启动速率
 set clipboard+=unnamed               " 公用剪切板
 let g:clipboard = {
             \ 'name': 'win32yank',
@@ -423,21 +423,14 @@ cnoremap <F3> <C-c>:set list!<CR>
 " 高亮光标行列
 nnoremap <silent> <F4> :set cuc! cul!<CR>
 
-" only delete (not cut) in Vim 寄存器
-" 以下3行为d为复制,不更改寄存器。将以下三行注释后,d为剪切
-"vnoremap          d          "_d
-"nnoremap          d          "_d
-"xnoremap          d          "_d
-" 以下几行为x,c为复制,不更改寄存器.
+" x,c仅复制,不更改寄存器.(ps: d为剪切)
 nnoremap          x          "_x
 vnoremap          x          "_x
-nnoremap          Y           y$
+nnoremap          c          "_c
 vnoremap          c          "_c
+nnoremap          Y           y$
 vnoremap          p          pgvy
-vnoremap          p          Pgvy
-
-" dd 剪切
-"nnoremap          dd         yydd
+vnoremap          P          Pgvy
 
 " 单词的 选/改/删
 " nnoremap <silent> vi viw

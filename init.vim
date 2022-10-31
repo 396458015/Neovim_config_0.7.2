@@ -438,7 +438,7 @@ vnoremap          P          Pgvy
 " nnoremap <silent> di diw
 
 " IDE like delete
-inoremap <C-BS> <Esc>bdei
+inoremap <C-BS> <Esc>b"_dei
 
 " 取消高亮
 map <silent> <BS> :nohlsearch<CR>

@@ -1339,13 +1339,15 @@ autocmd User targets#mappings#user call targets#mappings#extend({
         \ ]
     \},
 \})
-" d/c/y  +  i/I/a/A  +  b
-" d/c/y  +  i/I/a/A  +  q
-" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n  +  b
-" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n  +  q
+" d/c/y  +  i/I/a/A  +  b               (默认为n向右搜索)
+" d/c/y  +  i/I/a/A  +  a               (默认为n向右搜索)
+" d/c/y  +  i/I/a/A  +  q               (默认为n向右搜索)
+" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n/l(可省略)  +  b
+" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n/l(可省略)  +  a
+" d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n/l(可省略)  +  q
 " d/c/y  +  i/I/a/A  +  (/[/,/...
 " d/c/y  +  i/I/a/A  +  "/'/`/...
-" --b:block   q:quote
+" --b:block   q:quote    a:argument
  "}}}
 
 " ------------------------------- 需要Python支持的Plugins --------------------------------

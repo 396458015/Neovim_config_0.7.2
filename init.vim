@@ -870,16 +870,21 @@ augroup END
 let g:floaterm_autoclose=0  "0: Always do NOT close floaterm window
 hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
 
-noremap  <leader>to  :FloatermNew<Cr>
-noremap  <leader>ta  :FloatermNew<Cr>runas /user:administrator cmd<Cr>1234<Cr>
-noremap  <leader>tt  :FloatermToggle<Cr>
+" CMD mode
+nnoremap  <leader>to  :FloatermNew<Cr>
+nnoremap  <leader>tt  :FloatermToggle<Cr>
 tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<Cr>
-" TOOl rg
-noremap <leader>tr :FloatermNew<Cr>rg.exe<Space>
 
+" Administrator CMD mode
+nnoremap  <leader>ta  :FloatermNew<Cr>runas /user:ThinkPad\Administrator cmd<Cr>1234<Cr>
+" nnoremap  <leader>ta  :FloatermNew<Cr>runas /user:administrator cmd<Cr>1234<Cr>
+" 'runas /user:administrator cmd' 进入管理员CMD的前提是开启管理员账号
 " 开启管理员账号: net user administrator /active:yes
 " 关闭管理员账号: net user administrator /active:no
 " 设置管理员密码(1234): net user administrator 1234
+
+" TOOl rg
+nnoremap <leader>tr :FloatermNew<Cr>rg.exe<Space>
 
  "}}}
 "
@@ -1323,6 +1328,17 @@ nnoremap <F2> :AddHeader<CR>
  "}}}
 
 " {{{ text objects  << targets.vim >>
+" add '<>' in block
+autocmd User targets#mappings#user call targets#mappings#extend({
+    \ 'b': {
+        \'pair': [
+            \{'o':'(', 'c':')'},
+            \{'o':'[', 'c':']'},
+            \{'o':'{', 'c':'}'},
+            \{'o':'<', 'c':'>'},
+        \ ]
+    \},
+\})
 " d/c/y  +  i/I/a/A  +  b
 " d/c/y  +  i/I/a/A  +  q
 " d/c/y  +  2/3/4/...(可省略)  +  i/I/a/A  +  n  +  b

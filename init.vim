@@ -275,6 +275,7 @@ set laststatus=2                     " 开启状态栏信息
 set cmdheight=1                      " 命令行的高度,默认为1,这里设为2
 set linebreak                        " 整词换行
 set backspace=2                      " 设置退格键可用
+set backspace=indent,eol,start    " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
 set shiftwidth=4                     " 换行时行间交错使用4个空格
 set cindent shiftwidth=4             " 自动缩进4空格
 set smartindent                      " 智能自动缩进
@@ -322,8 +323,6 @@ set splitbelow                       " 新的窗口在下边打开
 set listchars=trail:.,extends:>,precedes:<,space:.               " 将空格用.表示
 "set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣ " <F3>为显示空格的开关
 
-set backspace=indent,eol,start    " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
-
 " IOS:Windows  设置 clipboard 提高Nvim启动速率
 set clipboard+=unnamed               " 公用剪切板
 let g:clipboard = {
@@ -339,7 +338,7 @@ let g:clipboard = {
                     \ 'cache_enabled': 0,
                     \ }
 
-" ENV-python
+" ENV-Python
 let g:python_host_prog  = 'C:\Python\Python37\python.exe'
 let g:python3_host_prog = 'C:\Python\Python37\python.exe'
 let $PYTHONUNBUFFERED=1              " 禁用python stdout缓冲
@@ -349,7 +348,7 @@ augroup load_rpy
     autocmd BufNewFile,BufRead *.rpy set syntax=python | autocmd! load_rpy
 augroup END
 
-" PythonPEP8风格的缩进
+" Python:PEP8风格的缩进
 augroup python_pep8
     autocmd!
     au BufNewFile,BufRead *.py

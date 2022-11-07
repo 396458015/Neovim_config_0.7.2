@@ -440,7 +440,7 @@ vnoremap          P          Pgvy
 inoremap <C-BS> <Esc>b"_dei
 
 " 取消高亮
-map <silent> <BS> :nohlsearch<CR>
+nnoremap <silent> <BS> :nohlsearch<CR>
 
 " Open Startify
 nnoremap <silent> <leader>st :Startify<CR>
@@ -479,14 +479,14 @@ command! Filename execute ":echo expand('%:p')"
 
 " --------------- Spell checking ------------------
 " 拼写检查
-map <Leader>sc :set spell!<CR>
+nnoremap <Leader>sc :set spell!<CR>
 
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
+nnoremap <leader>sn ]s
+nnoremap <leader>sp [s
+nnoremap <leader>sa zg
 
 " 显示单词拼写建议
-map <leader>s? z=
+nnoremap <leader>s? z=
 
 " ------------------- 光标移动 --------------------
 " INSERT Mode下使用光标移动指令
@@ -550,15 +550,6 @@ tnoremap <C-j> <C-w><C-j>
 tnoremap <C-k> <C-w><C-k>
 tnoremap <C-l> <C-w><C-l>
 
-" 分屏后,让参考屏上下滚动
-nnoremap <M-u> <C-w>p<C-u><C-w>p
-nnoremap <M-d> <C-w>p<C-d><C-w>p
-
-" 使terminal变为NORMAL模式,从而可以看历史记录
-tnoremap <C-n> <C-w>N
-tnoremap <ScrollWheelUp> <C-w>Nk
-tnoremap <ScrollWheelDown> <C-w>Nj
-
 "----------------分屏快捷键设置--------------------------------------------------
 " 新建一个垂直分割窗口,放置在当前窗口右侧
 nnoremap <silent> sl :set splitright<CR>:vsplit<CR>
@@ -594,7 +585,7 @@ nnoremap <silent>   <C-left>  :vertical resize +3<CR>
 nnoremap <silent>   <C-right>  :vertical resize -3<CR>
 
 " -------------------- tabs -----------------------
-map <leader>tn :tabnew<CR>
+nnoremap <leader>tn :tabnew<CR>
 
 " 让gvim支持Alt+n来切换标签页
 :nn <M-1> 1gt
@@ -649,12 +640,8 @@ function! GuiTabLabel()
 endfunction
 
 " -------------------- Buffer ---------------------
-" 切换buffer
-map gb :bnext<cr>
-map gB :bprevious<cr>
-
 " Close the current buffer
-map <leader>x :Bclose<cr>:tabclose<cr>gT
+nnoremap <leader>x :Bclose<cr>:tabclose<cr>gT
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -855,38 +842,38 @@ augroup Compiler_code
     autocmd!
     autocmd FileType floaterm nnoremap <buffer> <Esc> :q<CR>
     " Python
-    autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<Cr>
-    autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<Cr>
-    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<Cr>
+    autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<CR>
+    autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<CR>
+    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<CR>
     " Python REPL
-    nnoremap <S-p> :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<Cr>
-    autocmd FileType python nnoremap <leader>w :FloatermSend<Cr>
-    autocmd FileType python vnoremap <leader>w :FloatermSend<Cr>
+    nnoremap <leader>tp :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<CR>
+    autocmd FileType python nnoremap <leader>w :FloatermSend<CR>
+    autocmd FileType python vnoremap <leader>w :FloatermSend<CR>
     " FORTRAN
-    autocmd FileType fortran nnoremap <C-CR> :FloatermNew<Cr>compilervars.bat intel64<Cr>ifort<Space>
+    autocmd FileType fortran nnoremap <C-CR> :FloatermNew<CR>compilervars.bat intel64<CR>ifort<Space>
 augroup END
 
 let g:floaterm_autoclose=0  "0: Always do NOT close floaterm window
 hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
 
 " CMD mode
-nnoremap  <leader>to  :FloatermNew<Cr>
-nnoremap  <leader>tt  :FloatermToggle<Cr>
-tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<Cr>
+nnoremap  <leader>to  :FloatermNew<CR>
+nnoremap  <leader>tt  :FloatermToggle<CR>
+tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
 
 " Administrator CMD mode
-nnoremap  <leader>ta  :FloatermNew<Cr>runas /user:ThinkPad\Administrator cmd<Cr>1234<Cr>
-" nnoremap  <leader>ta  :FloatermNew<Cr>runas /user:administrator cmd<Cr>1234<Cr>
+nnoremap  <leader>ta  :FloatermNew<CR>runas /user:ThinkPad\Administrator cmd<CR>1234<CR>
+" nnoremap  <leader>ta  :FloatermNew<CR>runas /user:administrator cmd<CR>1234<CR>
 " 'runas /user:administrator cmd' 进入管理员CMD的前提是开启管理员账号
 " 开启管理员账号: net user administrator /active:yes
 " 关闭管理员账号: net user administrator /active:no
 " 设置管理员密码(1234): net user administrator 1234
 
 " TOOl rg
-nnoremap <leader>tr :FloatermNew<Cr>rg.exe<Space>
+nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
 
  "}}}
-"
+
 " {{{ << Plugin - startify >>
 "let g:ascii = [
 "let g:startify_custom_header = [
@@ -1090,8 +1077,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " << Plugin - plasticboyvim - markdown >>
 augroup markdown_type
     autocmd!
-    autocmd FileType markdown nnoremap <leader>to :Toc<Cr>
-    au FileType markdown setl conceallevel=2
+    " autocmd FileType markdown nnoremap <leader>to :Toc<CR>
+    autocmd FileType markdown setl conceallevel=2
 augroup END
 let g:vim_markdown_toc_autofit = 1                 " Enable TOC window auto-fit,调节合适的窗口尺寸
 
@@ -1144,7 +1131,7 @@ augroup END
 ":GenTocGFM  :GenTocRedcarpet :GenTocGitLab :GenTocMarked
 augroup markdown_gentoc
     autocmd!
-    autocmd FileType markdown nnoremap <leader>tc :GenTocMarked<Cr>
+    autocmd FileType markdown nnoremap <leader>tc :GenTocMarked<CR>
 augroup END
 
 " << Plugin - icebreaker gustav >> todo list
@@ -1195,7 +1182,7 @@ let g:mkdp_page_title = '「${name}」'
 "nmap <F12> <Plug>MarkdownPreview
 augroup markdown_preview
     autocmd!
-    autocmd FileType markdown map <localleader>m <Plug>MarkdownPreview
+    autocmd FileType markdown nnoremap <C-CR> <Plug>MarkdownPreview
 augroup END
 
 " 设置预览代码高亮(绝对路径)
@@ -1221,21 +1208,21 @@ let g:vimtex_syntax_conceal_default = 0
 
 augroup latex_set
     autocmd!
-    autocmd FileType tex map <localleader>li <plug>(vimtex-info)
-    autocmd FileType tex map <localleader>lt <plug>(vimtex-toc-open)
-    autocmd FileType tex map <localleader>lT <plug>(vimtex-toc-toggle)
-    autocmd FileType tex map <localleader>lv <plug>(vimtex-view)
-    autocmd FileType tex map <localleader>ll <plug>(vimtex-compile)
-    autocmd FileType tex map <localleader>lo <plug>(vimtex-compile-output)
-    autocmd FileType tex map <localleader>lg <plug>(vimtex-status)
-    autocmd FileType tex map <localleader>lG <plug>(vimtex-status-all)
-    autocmd FileType tex map <localleader>lc <plug>(vimtex-clean)
-    autocmd FileType tex map <localleader>lC <plug>(vimtex-clean-full)
+    autocmd FileType tex nnoremap <localleader>li <plug>(vimtex-info)
+    autocmd FileType tex nnoremap <localleader>lt <plug>(vimtex-toc-open)
+    autocmd FileType tex nnoremap <localleader>lT <plug>(vimtex-toc-toggle)
+    autocmd FileType tex nnoremap <localleader>lv <plug>(vimtex-view)
+    autocmd FileType tex nnoremap <localleader>ll <plug>(vimtex-compile)
+    autocmd FileType tex nnoremap <localleader>lo <plug>(vimtex-compile-output)
+    autocmd FileType tex nnoremap <localleader>lg <plug>(vimtex-status)
+    autocmd FileType tex nnoremap <localleader>lG <plug>(vimtex-status-all)
+    autocmd FileType tex nnoremap <localleader>lc <plug>(vimtex-clean)
+    autocmd FileType tex nnoremap <localleader>lC <plug>(vimtex-clean-full)
 augroup END
 " }}}
 
 " {{{ 屏保插件 << Plugin - itchyny/screensaver.vim >>
-map <silent><F11> :ScreenSaver<CR>
+nnoremap <silent><F11> :ScreenSaver<CR>
 " }}}
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
@@ -1468,7 +1455,7 @@ let g:startuptime_tries = 10
 "  autocmd CmdlineEnter : cnoremap sta StartupTime
 "  autocmd CmdlineLeave : cunmap sta
 "augroup END
-nnoremap <silent> <F12> :StartupTime<Cr>
+nnoremap <silent> <F12> :StartupTime<CR>
 " }}}
 
 " ==============================================================
@@ -1675,7 +1662,7 @@ nnoremap <silent> <leader>e :NvimTreeToggle<CR>
 nnoremap <leader>. :NvimTreeOpen  :\<left><left>
 nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
 " }}}
-"
+
 " {{{ scroll << neoscroll >>
 lua <<EOF
 require('neoscroll').setup({
@@ -2334,8 +2321,8 @@ EOF
 lua <<EOF
 vim.g.weather_city = "Xi'an"
 EOF
-nnoremap <silent> <localleader>we :Weather<Cr>
-nnoremap <silent> <localleader>wd :Weather3day<Cr>
+nnoremap <silent> <localleader>we :Weather<CR>
+nnoremap <silent> <localleader>wd :Weather3day<CR>
  "}}}
 
 " {{{ todo highlight << todo-comments.nvim >>
@@ -2567,8 +2554,10 @@ f = {
 ['t'] = {
     name = 'Terminal',
     ['o'] = {'Terminal' },
-    ['t'] = {'Terminal rg' },
-    ['r'] = {'Toggle Terminal' },
+    ['t'] = {'Term-Toggle' },
+    ['r'] = {'Terminal rg' },
+    ['p'] = {'IPyhon' },
+    ['a'] = {'Terminal(Admin)' },
     },
 }, { prefix = '<leader>' })
 
@@ -2589,10 +2578,10 @@ local LL_norg = require('which-key')
 vim.cmd('autocmd FileType norg lua WhichKeyNorg()')
 function WhichKeyNorg()
     LL_norg.register({
-    ['c'] = {':Neorg keybind norg core.gtd.base.capture<Cr>', 'Neorg Capture'},
-    ['e'] = {':Neorg keybind norg core.gtd.base.edit<Cr>', 'Neorg Edit'},
-    ['v'] = {':Neorg gtd views<Cr>', 'Neorg GTD'},
-    ['n'] = {':Neorg keybind norg core.norg.dirman.new.note<Cr>', 'Neorg NewNote'},
+    ['c'] = {':Neorg keybind norg core.gtd.base.capture<CR>', 'Neorg Capture'},
+    ['e'] = {':Neorg keybind norg core.gtd.base.edit<CR>', 'Neorg Edit'},
+    ['v'] = {':Neorg gtd views<CR>', 'Neorg GTD'},
+    ['n'] = {':Neorg keybind norg core.norg.dirman.new.note<CR>', 'Neorg NewNote'},
     [','] = {
         name = 'Todo',
         ['d'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_done<CR>', 'Done' },
@@ -2603,14 +2592,6 @@ function WhichKeyNorg()
         ['r'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_recurring<CR>', 'Recurring' },
         ['c'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_cancelled<CR>', 'Cancelled' },
         },
-    }, { prefix = ',' })
-end
-
-local LL_md = require('which-key')
-vim.cmd('autocmd FileType markdown lua WhichKeyMarkdown()')
-function WhichKeyMarkdown()
-    LL_md.register({
-    ['m'] = {'<Plug>MarkdownPreview<Cr>', 'MD Preview'},
     }, { prefix = ',' })
 end
 
@@ -2637,7 +2618,7 @@ w = {
 EOF
 "}}}
 
-" GUI
+" ------- GUI -------
 " {{{ GUI << NEOVIDE >>
 if exists('g:neovide')
     let g:neovide_cursor_vfx_mode = "railgun"
@@ -2673,7 +2654,7 @@ if exists('g:neovide')
             let g:neovide_fullscreen=v:true
         endif
     endfunction
-    map <m-CR> :call Neovide_fullscreen()<cr>
+    nnoremap <m-CR> :call Neovide_fullscreen()<cr>
 
 "Adjust fontsize
     let s:guifontsize=12

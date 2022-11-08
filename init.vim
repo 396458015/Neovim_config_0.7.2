@@ -410,7 +410,9 @@ map ; :
 noremap s <nop>
 xmap s <nop>
 
-" 更改leader键,从默认的'\'改为'<Space>'
+" leader & localleader keys
+nnoremap <Space> <nop>
+nnoremap , <nop>
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
 
@@ -534,15 +536,37 @@ nnoremap <leader>b :put =range(,,1)<left><left><left><left>
 nnoremap < <<
 nnoremap > >>
 
-" ------------ 分屏设置 ------------
+" ----------------- quick move --------------
+nnoremap <C-k> 4k
+nnoremap <C-j> 4j
+
+"---------------- 分屏快捷键设置 ----------------
+" 新建一个垂直分割窗口,放置在当前窗口右侧
+nnoremap <silent> sh :set splitright<CR>:vsplit<CR>
+" 新建一个垂直分割窗口startify,放置在当前窗口右侧
+nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
+" 新建一个水平分割窗口,放置在当前窗口下方
+nnoremap <silent> sj :set splitbelow<CR>:split<CR>
 " buffers/quickfix 分屏窗口移动,split navigations,smart way to move between windows
+
+" 设置两个分屏为垂直分割.Place the two screens side by side
+" nnoremap sv <C-w>t<C-w>H
+" 设置两个分屏为水平分割.Place the two screens up and down
+" nnoremap sh <C-w>t<C-w>K
+
+" 互换分割窗口.Rotate screens
+" nnoremap srv <C-w>b<C-w>H
+nnoremap <S-h> <C-w>b<C-w>H
+" nnoremap srh <C-w>b<C-w>K
+
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
 "nnoremap <C-j> <C-W><C-J>
 "nnoremap <C-k> <C-W><C-K>
-" ----------------- quick move --------------
-nnoremap <C-k> 4k
-nnoremap <C-j> 4j
+
+" gf vim垂直分屏打开文件
+nnoremap gf <C-w>f<C-w>L
+vnoremap gf <C-w>f<C-w>L
 
 " terminal 分屏窗口移动,split navigations,smart way to move between windows
 tnoremap <C-h> <C-w><C-h>
@@ -550,32 +574,7 @@ tnoremap <C-j> <C-w><C-j>
 tnoremap <C-k> <C-w><C-k>
 tnoremap <C-l> <C-w><C-l>
 
-"----------------分屏快捷键设置--------------------------------------------------
-" 新建一个垂直分割窗口,放置在当前窗口右侧
-nnoremap <silent> sl :set splitright<CR>:vsplit<CR>
-" 新建一个垂直分割窗口startify,放置在当前窗口右侧
-nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
-" 新建一个水平分割窗口,放置在当前窗口下方
-nnoremap <silent> sj :set splitbelow<CR>:split<CR>
-
-" 设置两个分屏为垂直分割.Place the two screens side by side
-nnoremap sv <C-w>t<C-w>H
-" 设置两个分屏为水平分割.Place the two screens up and down
-nnoremap sh <C-w>t<C-w>K
-
-" 互换分割窗口.Rotate screens
-nnoremap srv <C-w>b<C-w>H
-nnoremap srh <C-w>b<C-w>K
-
-" Press <LEADER> + q to close the window below the current window
-"nnoremap <LEADER>q <C-w>j:q<CR>
-
-" gf vim垂直分屏打开文件
-nnoremap gf <C-w>f<C-w>L
-vnoremap gf <C-w>f<C-w>L
-
-"----------------调整分屏尺寸--------------------------------------------------
-" 调整上下分屏尺寸
+"---------------- 调整分屏尺寸 ----------------
 nnoremap <silent>   <C-up>  :resize -3<CR>
 " 调整上下分屏尺寸
 nnoremap <silent>   <C-down>  :resize +3<CR>
@@ -687,9 +686,9 @@ endfunction
 
 "------------- Command Mode related ---------------
 " Bash like keys for the command line
-cnoremap <C-A>      <Home>
-cnoremap <C-E>      <End>
-cnoremap <C-K>      <C-U>
+cnoremap <C-a>      <Home>
+cnoremap <C-e>      <End>
+" cnoremap <C-K>      <C-U>
 cnoremap <C-h>      <C-Left>
 cnoremap <C-l>      <C-Right>
 
@@ -2563,7 +2562,7 @@ f = {
 
 local s_all = require('which-key')
 s_all.register({
-['l'] = {'Vsplit'},
+['h'] = {'Vsplit'},
 ['j'] = {'Split'},
 ['t'] = {'Vsplit-Startify'},
 }, { prefix = 's' })

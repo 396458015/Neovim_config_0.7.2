@@ -450,8 +450,6 @@ nnoremap <silent> <leader>st :Startify<CR>
 " 比较
 nnoremap <leader>dt :diffthis<CR>
 
-" 在命令行粘贴的快捷键
-cnoremap <C-V> <C-R>+
 
 " 插入时间
 "iab xtime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>
@@ -699,6 +697,12 @@ cnoremap <m-k>      <up>
 
 cnoremap <C-j>      <down>
 cnoremap <C-k>      <up>
+
+" 在命令行粘贴的快捷键
+cnoremap <C-V> <C-R>+
+
+" cmp path bug
+cnoremap / \
 
 " $q is super useful when browsing on the command line
 " it deletes everything until the last slash

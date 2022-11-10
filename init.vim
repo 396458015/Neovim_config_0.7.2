@@ -78,7 +78,8 @@ endfunction
 "Plug g:plug_home. '/vim-repeat-master'
 "Plug g:plug_home. '/vimcdoc-master'
 
-"--------------------------- lua plugins ---------------------------
+" ===================================================================
+" --------------------------- lua plugins ---------------------------
 Plug 'nathom/filetype.nvim'
 Plug 'lewis6991/impatient.nvim'
 Plug 'alvarosevilla95/luatab.nvim'
@@ -94,10 +95,6 @@ Plug 'folke/which-key.nvim'
 Plug 'b3nj5m1n/kommentary'
 Plug 'ellisonleao/weather.nvim'
 
-" notes
-Plug 'folke/todo-comments.nvim'
-Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
-
 " colorscheme
 Plug 'EdenEast/nightfox.nvim'
 
@@ -105,6 +102,11 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-lua/plenary.nvim'
+
+" notes
+Plug 'folke/todo-comments.nvim'
+Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
+Plug 'nvim-neorg/neorg-telescope'
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
@@ -1832,7 +1834,7 @@ lua <<EOF
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"python","fortran","c","vim","lua","latex","markdown","norg","matlab"},
+  ensure_installed = {"python","fortran","c","vim","lua","latex","markdown","norg","norg_meta","matlab"},
   --ensure_installed = "maintained",
   -- 启用代码高亮功能
   highlight = {
@@ -2437,6 +2439,11 @@ require('neorg').setup {
 EOF
 nnoremap <silent> <leader>ss :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\notes_norg\index.norg<CR>
  "}}}
+" {{{ << neorg-telescope >>
+lua << EOF
+local neorg_callbacks = require("neorg.callbacks")
+EOF
+ "}}}
 
 "" {{{ << Plugin - which-key.nvim >>
 "set timeout ttimeout timeoutlen=300 ttimeoutlen=0
@@ -2581,12 +2588,18 @@ local LL_norg = require('which-key')
 vim.cmd('autocmd FileType norg lua WhichKeyNorg()')
 function WhichKeyNorg()
     LL_norg.register({
-    ['c'] = {':Neorg keybind norg core.gtd.base.capture<CR>', 'Neorg Capture'},
-    ['e'] = {':Neorg keybind norg core.gtd.base.edit<CR>', 'Neorg Edit'},
-    ['v'] = {':Neorg gtd views<CR>', 'Neorg GTD'},
-    ['n'] = {':Neorg keybind norg core.norg.dirman.new.note<CR>', 'Neorg NewNote'},
+    ['f'] = {
+        ['h'] = {':Telescope neorg search_headings<CR>', 'Headings'},
+        },
+    ['n'] = {
+        name = 'Neorg',
+        ['c'] = {':Neorg keybind norg core.gtd.base.capture<CR>', 'Neorg Capture'},
+        ['e'] = {':Neorg keybind norg core.gtd.base.edit<CR>', 'Neorg Edit'},
+        ['v'] = {':Neorg gtd views<CR>', 'Neorg GTD'},
+        ['n'] = {':Neorg keybind norg core.norg.dirman.new.note<CR>', 'Neorg NewNote'},
+        },
     [','] = {
-        name = 'Todo',
+        name = 'Neorg Todo',
         ['d'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_done<CR>', 'Done' },
         ['u'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_undone<CR>', 'Undone' },
         ['p'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_pending<CR>', 'Pending' },
@@ -2596,6 +2609,24 @@ function WhichKeyNorg()
         ['c'] = {':Neorg keybind norg core.norg.qol.todo_items.todo.task_cancelled<CR>', 'Cancelled' },
         },
     }, { prefix = ',' })
+end
+
+--<< plugin-neorg-telescope >>
+local LL_norg_tele = require('which-key')
+vim.cmd('autocmd FileType norg lua WhichKeyNorg_tele()')
+function WhichKeyNorg_tele()
+    LL_norg_tele.register({
+    ['f'] = {
+        ['h'] = {':Telescope neorg search_headings<CR>',        'Headings'},
+        ['i'] = {':Telescope neorg insert_link<CR>',            'Insert Link'},
+        --['h'] = {':Telescope neorg find_linkable<CR>',          'History'},
+        --['h'] = {':Telescope neorg insert_file_link<CR>',       'File Link'},
+        --['h'] = {':Telescope neorg find_aof_tasks<CR>',         'Aof Tasks'},
+        --['h'] = {':Telescope neorg find_aof_project_tasks<CR>', 'Aof Project Tasks'},
+        --['h'] = {':Telescope neorg find_context_tasks<CR>',     'Context Tasks'},
+        --['h'] = {':Telescope neorg find_project_tasks<CR>',     'Project Tasks'},
+        },
+    }, { prefix = '<leader>' })
 end
 
 local LL_others = require('which-key')
@@ -2626,7 +2657,7 @@ EOF
 if exists('g:neovide')
     let g:neovide_cursor_vfx_mode = "railgun"
     "let g:neovide_cursor_vfx_mode = "torpedo"
-    "let g:neovide_cursor_vfx_mode = "pixiedust"
+    " let g:neovide_cursor_vfx_mode = "pixiedust"
     "let g:neovide_cursor_vfx_mode = "ripple"
     let g:neovide_cursor_vfx_particle_density=7.0
     let g:neovide_cursor_trail_length=0.05

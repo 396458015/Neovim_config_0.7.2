@@ -2588,9 +2588,6 @@ local LL_norg = require('which-key')
 vim.cmd('autocmd FileType norg lua WhichKeyNorg()')
 function WhichKeyNorg()
     LL_norg.register({
-    ['f'] = {
-        ['h'] = {':Telescope neorg search_headings<CR>', 'Headings'},
-        },
     ['n'] = {
         name = 'Neorg',
         ['c'] = {':Neorg keybind norg core.gtd.base.capture<CR>', 'Neorg Capture'},
@@ -2656,9 +2653,9 @@ EOF
 " {{{ GUI << NEOVIDE >>
 if exists('g:neovide')
     let g:neovide_cursor_vfx_mode = "railgun"
-    "let g:neovide_cursor_vfx_mode = "torpedo"
+    " let g:neovide_cursor_vfx_mode = "torpedo"
     " let g:neovide_cursor_vfx_mode = "pixiedust"
-    "let g:neovide_cursor_vfx_mode = "ripple"
+    " let g:neovide_cursor_vfx_mode = "ripple"
     let g:neovide_cursor_vfx_particle_density=7.0
     let g:neovide_cursor_trail_length=0.05
 

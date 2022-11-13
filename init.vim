@@ -54,7 +54,6 @@ Plug 'ntpeters/vim-better-whitespace', { 'on': []}
 Plug 'rhysd/clever-f.vim', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}
-Plug 'machakann/vim-highlightedyank', { 'on': []}
 Plug 'triglav/vim-visual-increment', { 'on': []}
 Plug 'itchyny/vim-cursorword', { 'on': []}
 Plug 'bronson/vim-visual-star-search', { 'on': []}  " Start a * or # search from a visual block
@@ -66,7 +65,6 @@ function! LoadPlug_Vim(timer) abort
     call plug#load('clever-f.vim')
     call plug#load('vim-interestingwords')
     call plug#load('traces.vim')
-    call plug#load('vim-highlightedyank')
     call plug#load('vim-visual-increment')
     call plug#load('vim-cursorword')
     call plug#load('vim-visual-star-search')
@@ -387,6 +385,14 @@ EOF
 augroup Buffer_quit
     autocmd!
     autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+augroup END
+
+" highlihgt yank
+highlight HighlightedyankRegion ctermbg=237 guibg=#994797
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=120}
+    " au TextYankPost * silent! lua vim.highlight.on_yank{higroup="HighlightedyankRegion", timeout=120}
 augroup END
 
 " ------------------- 行/列高亮 ----------------------
@@ -879,6 +885,31 @@ nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
 
  "}}}
 
+" {{{ << vim-visual-multi >>
+augroup visual_multi_yank
+    autocmd!
+    autocmd User visual_multi_mappings nmap <buffer> <leader>y "+y
+augroup END
+
+" let g:VM_theme                      = 'ocean'
+let g:VM_theme                      = 'iceblue'
+let g:VM_highlight_matches          = 'underline'
+let g:VM_maps                       = {}
+let g:VM_maps['Find Under']         = '<C-n>'
+let g:VM_maps['Find Subword Under'] = '<C-n>'
+let g:VM_maps['Select All']         = '<C-z>'
+" let g:VM_maps['Select h']           = '<C-Left>'
+" let g:VM_maps['Select l']           = '<C-Right>'
+
+let g:VM_maps['Add Cursor Up']      = '<C-k>'
+let g:VM_maps['Add Cursor Down']    = '<C-j>'
+
+" let g:VM_maps['Add Cursor At Pos']  = '<C-x>'
+" let g:VM_maps['Add Cursor At Word'] = '<C-w>'
+" let g:VM_maps['Remove Region']      = 'q'
+
+ "}}}
+
 " {{{ << Plugin - startify >>
 "let g:ascii = [
 "let g:startify_custom_header = [
@@ -1242,11 +1273,6 @@ nmap <leader>, <Plug>(crunch-operator-line)
 xmap <leader>, <Plug>(visual-crunch-operator)
 
 " }}}
-
-"{{{ << Plugin - highlightedyank >>
-let g:highlightedyank_highlight_duration = 120
-highlight HighlightedyankRegion ctermbg=237 guibg=#994797
-"}}}
 
 "{{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
 
@@ -2531,7 +2557,7 @@ f = {
     name = "Telescope",
     s = {"Search History" },
     c = {"Command History" },
-    b = {"File" },
+    b = {"CWD File" },
     p = {"Fuzze Word" },
     l = {"Word Line" },
     f = {"File Browser" },
@@ -2614,8 +2640,8 @@ vim.cmd('autocmd FileType norg lua WhichKeyNorg_tele()')
 function WhichKeyNorg_tele()
     LL_norg_tele.register({
     ['f'] = {
-        ['h'] = {':Telescope neorg search_headings<CR>',        'Headings'},
-        ['i'] = {':Telescope neorg insert_link<CR>',            'Insert Link'},
+        ['h'] = {':Telescope neorg search_headings<CR>',        'Neorg Headings'},
+        ['i'] = {':Telescope neorg insert_link<CR>',            'Neorg Insert Link'},
         --['h'] = {':Telescope neorg find_linkable<CR>',          'History'},
         --['h'] = {':Telescope neorg insert_file_link<CR>',       'File Link'},
         --['h'] = {':Telescope neorg find_aof_tasks<CR>',         'Aof Tasks'},

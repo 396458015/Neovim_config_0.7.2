@@ -755,7 +755,7 @@ augroup END
 nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 " }}}
 
-"{{{ colorscheme << nightfox >>
+" {{{ colorscheme << nightfox >>
 lua <<EOF
 require('nightfox').setup({
   options = {
@@ -833,7 +833,7 @@ require("nightfox").setup({ palettes = palettes })
 --vim.cmd("colorscheme nightfox")
 --vim.cmd("colorscheme dayfox")
 EOF
-"}}}
+" }}}
 colorscheme nightfox
 " colorscheme dayfox
 " colorscheme carbonfox
@@ -881,7 +881,7 @@ nnoremap  <leader>ta  :FloatermNew<CR>runas /user:ThinkPad\Administrator cmd<CR>
 " TOOl rg
 nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
 
- "}}}
+" }}}
 
 " {{{ << vim-visual-multi >>
 augroup visual_multi_yank
@@ -906,7 +906,7 @@ let g:VM_maps['Add Cursor Down']    = '<C-j>'
 " let g:VM_maps['Add Cursor At Word'] = '<C-w>'
 " let g:VM_maps['Remove Region']      = 'q'
 
- "}}}
+" }}}
 
 " {{{ << Plugin - startify >>
 "let g:ascii = [
@@ -1272,7 +1272,7 @@ xmap <leader>, <Plug>(visual-crunch-operator)
 
 " }}}
 
-"{{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
+" {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
 
 let g:exchange_no_mappings = 1
 
@@ -1281,9 +1281,9 @@ xmap X <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 nmap cxc <Plug>(ExchangeClear)
 
-"}}}
+" }}}
 
-"{{{ 循环 C-a C-x << Plugin -zef/vim-cycle >>
+" {{{ 循环 C-a C-x << Plugin -zef/vim-cycle >>
 
 augroup vim_cycle
     autocmd!
@@ -1313,7 +1313,7 @@ augroup vim_cycle
     au VimEnter * call AddCycleGroup(['TODO', 'DONE', 'WAITING', 'INPROGRESS', 'CANCELED', 'NOTE'])
 augroup END
 "
-"}}}
+" }}}
 
 " {{{ 选中文字加括号 << Plugin - sandwich >>
 " use vim-sandwich with vim-surround keymappings
@@ -1340,7 +1340,7 @@ nnoremap <F2> :AddHeader<CR>
 "SpeedDatingFormat %Y-%m-%d %a %H:%M               " define 1
 "SpeedDatingFormat %Y-%m-%d (%a)%*                 " define 2
 "SpeedDatingFormat %Y-%m-%d %a                     " define 3
- "}}}
+" }}}
 
 " {{{ text objects  << targets.vim >>
 " add '<>' in block
@@ -1363,7 +1363,7 @@ autocmd User targets#mappings#user call targets#mappings#extend({
 " d/c/y  +  i/I/a/A  +  (/[/,/...
 " d/c/y  +  i/I/a/A  +  "/'/`/...
 " --b:block   q:quote    a:argument
- "}}}
+" }}}
 
 " ------------------------------- 需要Python支持的Plugins --------------------------------
 " {{{ << Plugin - LeaderF >>
@@ -1900,7 +1900,7 @@ EOF
 lua <<EOF
 require("luasnip/loaders/from_vscode").lazy_load()
 EOF
-"}}}
+" }}}
 " {{{ Auto completion plugins :1'nvim-cmp', 2'nvim-lspconfig', 3'cmp-nvim-lsp', 4'cmp-buffer',
 "                              5'cmp-path', 6'cmp-cmdline', 7'cmp_luasnip',
 "                              8'cmp-emoji' 9'cmp-calc',10'cmp-matlab',
@@ -2119,7 +2119,7 @@ require("cmp_dictionary").setup({
 })
 
 EOF
-"}}}
+" }}}
 " {{{ lsp << nvim-lsp-installer >> << nvim-lspconfig >>
 " nvim-lsp-installer
 lua <<EOF
@@ -2171,7 +2171,7 @@ end
 -- 取消代码诊断信息显示
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 EOF
- "}}}
+" }}}
 
 " {{{ commnet << kommentary >>
 lua <<EOF
@@ -2182,7 +2182,7 @@ vim.api.nvim_set_keymap("n", "<leader>ci", "<Plug>kommentary_line_decrease", {})
 vim.api.nvim_set_keymap("x", "<leader>ci", "<Plug>kommentary_visual_decrease", {})
 
 EOF
- "}}}
+" }}}
 
 " {{{ tabline << luatab >>
 lua <<EOF
@@ -2224,7 +2224,7 @@ require('luatab').setup{
     end
 }
 EOF
- "}}}
+" }}}
 
 "" {{{ << Plugin - lualine >>
 lua << END
@@ -2296,7 +2296,7 @@ elseif &bg == 'light'
     lua require'lualine'.setup {options = { theme = 'max_lualine_theme_dayfox' }}
 endif
 
-"}}}
+" }}}
 
 " {{{ indentLine << indent-blankline.nvim >>
 lua << EOF
@@ -2344,7 +2344,7 @@ require("indent_blankline").setup {
 --    },
 --}
 EOF
- "}}}
+" }}}
 
 " {{{ weather << nvim-weather >> << nvim-weather3day >>
 lua <<EOF
@@ -2352,7 +2352,7 @@ vim.g.weather_city = "Xi'an"
 EOF
 nnoremap <silent> <localleader>we :Weather<CR>
 nnoremap <silent> <localleader>wd :Weather3day<CR>
- "}}}
+" }}}
 
 " {{{ todo highlight << todo-comments.nvim >>
 lua <<EOF
@@ -2403,7 +2403,7 @@ EOF
 " , , , , ,
 " , , , ,﫠
 "
- "}}}
+" }}}
 " {{{ norg << nvim-norg >>
 lua <<EOF
 
@@ -2462,12 +2462,12 @@ require('neorg').setup {
 
 EOF
 nnoremap <silent> <leader>ss :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\notes_norg\index.norg<CR>
- "}}}
+" }}}
 " {{{ << neorg-telescope >>
 lua << EOF
 local neorg_callbacks = require("neorg.callbacks")
 EOF
- "}}}
+" }}}
 
 "" {{{ << Plugin - which-key.nvim >>
 "set timeout ttimeout timeoutlen=300 ttimeoutlen=0
@@ -2671,7 +2671,7 @@ w = {
 }, { prefix = ',' })
 
 EOF
-"}}}
+" }}}
 
 " ------- GUI -------
 " {{{ GUI << NEOVIDE >>
@@ -2723,7 +2723,7 @@ if exists('g:neovide')
     nnoremap <m-BS> :set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
 
 endif
- "}}}
+" }}}
 
 
 

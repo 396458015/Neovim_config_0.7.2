@@ -477,14 +477,9 @@ nnoremap <silent> <Tab> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "-------------------- vimrc ----------------------
 " 打开配置文件vimrc
 nnoremap <silent> <leader>rc :edit $MYVIMRC<cr>
-command! Config execute ":e $MYVIMRC"
 
 " 重新加载vimrc
 nnoremap <silent> <leader>rr :source $MYVIMRC<CR>
-command! Reload execute ":source $MYVIMRC"
-
-" -------------------- 查看文件名称和路径 ----------------------
-command! Filename execute ":echo expand('%:p')"
 
 " --------------- Spell checking ------------------
 " 拼写检查
@@ -872,7 +867,6 @@ hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
 nnoremap  <leader>to  :FloatermNew<CR>
 nnoremap  <leader>tt  :FloatermToggle<CR>
 tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
-
 " nnoremap <F5> :FloatermNew<CR>git add init.vim<CR>git commit --allow-empty-message -m ""<CR>git push<CR>
 command! Push execute "FloatermNew!git add init.vim<CR>git commit --allow-empty-message -m \"\"<CR>git push<CR>"
 

@@ -164,33 +164,33 @@ require('impatient')
 EOF
 " }}}
 
-"" {{{ vim 技巧
-"" 1.NORMAL模式下, SHIFT 相当于移动加速键,  w b e 移动光标很慢, 但是 W B E 走的很快.
-"" 2.NORMAL模式下, C-o 跳转到光标之前的位置.
-"" 3.插入模式下, CTRL-X CTRL-F 可以方便的补全当前目录的文件名.
-"" 4.插入模式下, 当你发现一个单词写错了, 应该多用 CTRL-W 这比 <BackSpace> 快.
-"" 5.VISUAL模式下, 用 v 命令选择文本时, 可以用 o 掉头选择, 有时很有用.
-"" 6.排版
-""      :ce(nter) 本行文字居中  :le(ft) 本行文字靠左  :le(ft) 本行文字靠左  :ri(ght) 本行文字靠右
-""      gq 对选中的文字重排, 即对过长的文字进行断行
-""      :Pangu 格式化
-"" 7.查看历史命令记录,NORMAL模式下'q:'
-"" 8.在 每一 行尾 添加 something ,":'<,'>s/$/something/g"
-""   在 每一 行首 添加 something ,":'<,'>s/^/something/g"
-"" 9.VISUAL模式选中后,zf可以自动为选中的部分生成{{{}}}折叠符,zd可以删除折叠符
-"" 10.大小写互换,VISUAl选中后u/U可以大小写互换，同样~也可以
-"" 11.INSERT模式下<c-w>删除上一个单词,<C-u>删除这一行光标前的所有内容
-"" 11.数字序列生成.VISUAL块选数字后,g <C-a>:累计+1,<C-x>:累计-1
-"" 12.删除某段行,":1,100d",删除1-100行
-"" 13.第1列排序:'sort n' 增序; 'sort! n' 降序; '1,4sort n' 对指定行排序
-""    第2列排序(逗号隔开):'sort /[^,]*,/ n' 增序;'sort! /[^,]*,/ n'降序
-"" 14.'sort nu' 排序+去重
-"" 15. 相对行号的使用: 1) 向下跳转行 nj; 向上跳转行 nk;
-""                     2）删除多行 ndj, 删除从光标行-光标行以下的多行(相对行号);
-""                        区别于使用ndd, 非相对行号时使用ndd, 相当于删除n行,包含光标行, 删除相对行号的n-1行
-"" 16. 折叠     zc zC     所有 zM
-""     打开折叠 zo zO     所有 zR
-"" }}}
+" {{{ vim 技巧
+" 1.NORMAL模式下, SHIFT 相当于移动加速键,  w b e 移动光标很慢, 但是 W B E 走的很快.
+" 2.NORMAL模式下, C-o 跳转到光标之前的位置.
+" 3.插入模式下, CTRL-X CTRL-F 可以方便的补全当前目录的文件名.
+" 4.插入模式下, 当你发现一个单词写错了, 应该多用 CTRL-W 这比 <BackSpace> 快.
+" 5.VISUAL模式下, 用 v 命令选择文本时, 可以用 o 掉头选择, 有时很有用.
+" 6.排版
+"      :ce(nter) 本行文字居中  :le(ft) 本行文字靠左  :le(ft) 本行文字靠左  :ri(ght) 本行文字靠右
+"      gq 对选中的文字重排, 即对过长的文字进行断行
+"      :Pangu 格式化
+" 7.查看历史命令记录,NORMAL模式下'q:'
+" 8.在 每一 行尾 添加 something ,":'<,'>s/$/something/g"
+"   在 每一 行首 添加 something ,":'<,'>s/^/something/g"
+" 9.VISUAL模式选中后,zf可以自动为选中的部分生成{{{}}}折叠符,zd可以删除折叠符
+" 10.大小写互换,VISUAl选中后u/U可以大小写互换，同样~也可以
+" 11.INSERT模式下<c-w>删除上一个单词,<C-u>删除这一行光标前的所有内容
+" 11.数字序列生成.VISUAL块选数字后,g <C-a>:累计+1,<C-x>:累计-1
+" 12.删除某段行,":1,100d",删除1-100行
+" 13.第1列排序:'sort n' 增序; 'sort! n' 降序; '1,4sort n' 对指定行排序
+"    第2列排序(逗号隔开):'sort /[^,]*,/ n' 增序;'sort! /[^,]*,/ n'降序
+" 14.'sort nu' 排序+去重
+" 15. 相对行号的使用: 1) 向下跳转行 nj; 向上跳转行 nk;
+"                     2）删除多行 ndj, 删除从光标行-光标行以下的多行(相对行号);
+"                        区别于使用ndd, 非相对行号时使用ndd, 相当于删除n行,包含光标行, 删除相对行号的n-1行
+" 16. 折叠     zc zC     所有 zM
+"     打开折叠 zo zO     所有 zR
+" }}}
 
 " {{{ 编码格式
 " 设置文件编码格式
@@ -1261,31 +1261,21 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 " }}}
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
-" normal 模式             g==   ->   <leader><leader>
-" visual 模式             g=    ->   <leader><leader>
-
-" Where {expression} is some mathematical expression to be evaluated. The result is then available to be pasted from the default register.
 "nmap zz <Plug>(crunch-operator)
-" nmap <localleader>c <Plug>(crunch-operator-line)
 nmap <leader>, <Plug>(crunch-operator-line)
-" xmap <localleader>c <Plug>(visual-crunch-operator)
 xmap <leader>, <Plug>(visual-crunch-operator)
-
 " }}}
 
 " {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
-
 let g:exchange_no_mappings = 1
 
 "nmap cx <Plug>(Exchange)
 xmap X <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 nmap cxc <Plug>(ExchangeClear)
-
 " }}}
 
 " {{{ 循环 C-a C-x << Plugin -zef/vim-cycle >>
-
 augroup vim_cycle
     autocmd!
     au VimEnter * call AddCycleGroup(['set', 'get'])
@@ -1854,7 +1844,7 @@ augroup ScrollbarInit
 augroup END
 " }}}
 
-"" {{{ Language syntax highlighting << tree-sitter >>
+" {{{ Language syntax highlighting << tree-sitter >>
 lua <<EOF
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
@@ -1895,7 +1885,7 @@ parser_config.matlab = {
 
 EOF
 
-"" }}}
+" }}}
 
 " {{{ << luasnip >>
 lua <<EOF
@@ -2227,7 +2217,7 @@ require('luatab').setup{
 EOF
 " }}}
 
-"" {{{ << Plugin - lualine >>
+" {{{ << Plugin - lualine >>
 lua << END
 require "lualine".setup {
     globalstatus = true,
@@ -2470,7 +2460,7 @@ local neorg_callbacks = require("neorg.callbacks")
 EOF
 " }}}
 
-"" {{{ << Plugin - which-key.nvim >>
+" {{{ << Plugin - which-key.nvim >>
 "set timeout ttimeout timeoutlen=300 ttimeoutlen=0
 set timeoutlen=300
 lua << EOF
@@ -2698,11 +2688,11 @@ if exists('g:neovide')
     let g:neovide_hide_mouse_when_typing=v:true    " 输入时隐藏鼠标
     " let g:neovide_profiler = v:true                " 左上角显示帧数
 
-"Adjust transparency
+" Adjust transparency
     nnoremap <m-,> :let g:neovide_transparency-=0.02<CR>:let g:neovide_transparency<CR>
     nnoremap <m-.> :let g:neovide_transparency+=0.02<CR>:let g:neovide_transparency<CR>
 
-"Toggle fullscreen
+" Toggle fullscreen
     function Neovide_fullscreen()
         if g:neovide_fullscreen == v:true
             let g:neovide_fullscreen=v:false
@@ -2712,7 +2702,7 @@ if exists('g:neovide')
     endfunction
     nnoremap <m-CR> :call Neovide_fullscreen()<cr>
 
-"Adjust fontsize
+" Adjust fontsize
     let s:guifontsize=12
     let s:guifont="CodeNewRoman_Nerd_Font_Mono"
     function! AdjustFontSize(amount)

@@ -873,9 +873,8 @@ nnoremap  <leader>to  :FloatermNew<CR>
 nnoremap  <leader>tt  :FloatermToggle<CR>
 tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
 
-" nnoremap <F5> :FloatermNew<CR>git add init.vim<CR>git commit --allow-empty-message -m ""<CR>git push<CR>
-" command! Push execute "FloatermNew<CR>git add init.vim<CR>git commit --allow-empty-message -m ""<CR>git push<CR>"
-command! Push execute "FloatermNew!git add init.vim<CR>git commit --allow-empty-message -m \"\"<CR>git push<CR>"
+nnoremap <F5> :FloatermNew<CR>git add init.vim<CR>git commit --allow-empty-message -m ""<CR>git push<CR>
+" command! Push execute "FloatermNew!git add init.vim<CR>git commit --allow-empty-message -m \"\"<CR>git push<CR>"
 
 " Administrator CMD mode
 nnoremap  <leader>ta  :FloatermNew<CR>runas /user:ThinkPad\Administrator cmd<CR>1234<CR>

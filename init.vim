@@ -14,7 +14,7 @@
 
 " {{{ << Plugin - vimplug >>
 call plug#begin('D:/Program Files/Neovim/share/nvim/Mine/Plugged')
-"-------------lazy load-------------
+" -------------lazy load-------------
 Plug 'mg979/vim-visual-multi', { 'branch': 'master', 'on': [] }
 augroup load_multi
     autocmd!
@@ -1214,7 +1214,6 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
-"nmap <F12> <Plug>MarkdownPreview
 augroup markdown_preview
     autocmd!
     autocmd FileType markdown nnoremap <C-CR> <Plug>MarkdownPreview

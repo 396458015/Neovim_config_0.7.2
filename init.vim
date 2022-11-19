@@ -1072,11 +1072,11 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 "If you type a lower case character, the case will be ignored however if you type an upper case character it will only search for upper case characters
 let g:clever_f_smart_case=1
 
-"normal模式下按f键 再按 目标字母, 光标跳转到 光标后 的目标字母, 不限本行
-"normal模式下按F键 再按 目标字母, 光标跳转到 光标前 的目标字母, 不限本行
+" normal模式下按f键 再按 目标字母, 光标跳转到 光标后 的目标字母, 不限本行
+" normal模式下按F键 再按 目标字母, 光标跳转到 光标前 的目标字母, 不限本行
 
-"normal模式下按t键 再按 目标字母, 光标跳转到 光标后 的目标字母的前一个位置, 不限本行
-"normal模式下按T键 再按 目标字母, 光标跳转到 光标前 的目标字母的前一个位置, 不限本行
+" normal模式下按t键 再按 目标字母, 光标跳转到 光标后 的目标字母的前一个位置, 不限本行
+" normal模式下按T键 再按 目标字母, 光标跳转到 光标前 的目标字母的前一个位置, 不限本行
 " }}}
 
 " {{{ << Plugin - EasyAlign >>
@@ -1090,10 +1090,10 @@ let g:undotree_DiffAutoOpen = 1
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 set undodir=$VIM/vimfiles/undodir
 set undofile
-"if has("persistent_undo")
-    "set undodir=~/.undodir/
-    "set undofile
-"endif
+" if has("persistent_undo")
+"     set undodir=~/.undodir/
+"     set undofile
+" endif
 " }}}
 
 " {{{ << Plugin - expand-region >>
@@ -1150,9 +1150,9 @@ let g:vim_markdown_edit_url_in = 'vsplit'       " tab  vsplit  hsplit  current
 let g:vim_markdown_folding_disabled = 0         " 开启折叠功能
 let g:vim_markdown_folding_style_pythonic = 1   " 折叠样式
 let g:vim_markdown_folding_level = 1            " n级不自动折叠
-"let g:vim_markdown_override_foldtext = 0
+" let g:vim_markdown_override_foldtext = 0
 
-"<< Plugin - table-mode >>
+" << Plugin - table-mode >>
 augroup markdown_table
     autocmd!
     au FileType markdown let g:table_mode_corner = '|'
@@ -1220,7 +1220,7 @@ augroup markdown_preview
 augroup END
 
 " 设置预览代码高亮(绝对路径)
-"let g:mkdp_highlight_css = 'D:\Program Files\VIM\vimfiles\bundle\iamcco markdown-preview.nvim\markdown_highlight_solarized_dark.css'
+" let g:mkdp_highlight_css = 'D:\Program Files\VIM\vimfiles\bundle\iamcco markdown-preview.nvim\markdown_highlight_solarized_dark.css'
 let g:mkdp_highlight_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\markdown.css'
 let g:mkdp_markdown_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\github-markdown.css'
 " }}}
@@ -1234,8 +1234,8 @@ let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
-"The last two lines con­fig­ure the con­ceal­ment. This is a fea­ture where LaTeX code is re­placed or made in­vis­i­ble when your cur­sor is not on that line. By mak­ing \[, \], $ in­vis­i­ble, they’re less ob­tru­sive which gives you a bet­ter overview of the doc­u­ment. This fea­ture also re­places \bigcap by by ∩, \in by ∈ etc.
-"let g:tex_conceal='abdmg'
+" The last two lines con­fig­ure the con­ceal­ment. This is a fea­ture where LaTeX code is re­placed or made in­vis­i­ble when your cur­sor is not on that line. By mak­ing \[, \], $ in­vis­i­ble, they’re less ob­tru­sive which gives you a bet­ter overview of the doc­u­ment. This fea­ture also re­places \bigcap by by ∩, \in by ∈ etc.
+" let g:tex_conceal='abdmg'
 
 " To prevent conceal in LaTeX files
 let g:vimtex_syntax_conceal_default = 0
@@ -1260,7 +1260,7 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 " }}}
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
-"nmap zz <Plug>(crunch-operator)
+" nmap zz <Plug>(crunch-operator)
 nmap <leader>, <Plug>(crunch-operator-line)
 xmap <leader>, <Plug>(visual-crunch-operator)
 " }}}
@@ -1268,7 +1268,7 @@ xmap <leader>, <Plug>(visual-crunch-operator)
 " {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
 let g:exchange_no_mappings = 1
 
-"nmap cx <Plug>(Exchange)
+" nmap cx <Plug>(Exchange)
 xmap X <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 nmap cxc <Plug>(ExchangeClear)
@@ -1324,12 +1324,12 @@ nnoremap <F2> :AddHeader<CR>
 " }}}
 
 " {{{ increment date << vim-speeddating-master >>
-"修改该插件默认的日期格式，原始格式太奇葩
-"查看日期格式':SpeedDatingFormat'
-"在'D:\Program Files\Neovim\share\nvim\Mine\Plugged\vim-speeddating-master\plugin\speeddating.vim'增加新格式
-"SpeedDatingFormat %Y-%m-%d %a %H:%M               " define 1
-"SpeedDatingFormat %Y-%m-%d (%a)%*                 " define 2
-"SpeedDatingFormat %Y-%m-%d %a                     " define 3
+" 修改该插件默认的日期格式，原始格式太奇葩
+" 查看日期格式':SpeedDatingFormat'
+" 在'D:\Program Files\Neovim\share\nvim\Mine\Plugged\vim-speeddating-master\plugin\speeddating.vim'增加新格式
+" SpeedDatingFormat %Y-%m-%d %a %H:%M               " define 1
+" SpeedDatingFormat %Y-%m-%d (%a)%*                 " define 2
+" SpeedDatingFormat %Y-%m-%d %a                     " define 3
 " }}}
 
 " {{{ text objects  << targets.vim >>
@@ -2278,7 +2278,7 @@ END
 
 " ✗ ✖️ ❌ ⚡ ⚠️ 🔍📝❓🚫⛔❗🍅⏰
 " Modified 📝
-"⏰⏳⌛
+" ⏰⏳⌛
 
 if &bg == 'dark'
     lua require'lualine'.setup {options = { theme = 'max_lualine_theme_nightfox' }}
@@ -2390,9 +2390,8 @@ require("todo-comments").setup {
      }
 EOF
 
-" , , , , ,
-" , , , ,﫠
-"
+"  , , , , ,
+"  , , , ,﫠
 " }}}
 " {{{ norg << nvim-norg >>
 lua <<EOF

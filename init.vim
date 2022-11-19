@@ -70,11 +70,11 @@ function! LoadPlug_Vim(timer) abort
     call plug#load('vim-visual-star-search')
 endfunction
 
-"Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
-"Plug g:plug_home. '/vimtex-master', { 'for': 'tex' }
-"Plug g:plug_home. '/pangu.vim-master'
-"Plug g:plug_home. '/vim-repeat-master'
-"Plug g:plug_home. '/vimcdoc-master'
+" Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
+" Plug g:plug_home. '/vimtex-master', { 'for': 'tex' }
+" Plug g:plug_home. '/pangu.vim-master'
+" Plug g:plug_home. '/vim-repeat-master'
+" Plug g:plug_home. '/vimcdoc-master'
 
 " ===================================================================
 " --------------------------- lua plugins ---------------------------
@@ -204,7 +204,7 @@ if has('multi_byte')
     set fileencodings=utf-8,gbk,gb18030,big5,ucs-bom,euc-jp,latin1
 endif
 
-"解决vim编辑matlab文件保存后, matlab中文为乱码的问题
+" 解决vim编辑matlab文件保存后, matlab中文为乱码的问题
 augroup matlab_filetype
     autocmd!
     "autocmd FileType matlab set fileencoding=GB2312       "GB2312=cp936
@@ -256,7 +256,7 @@ set expandtab                        " 在输入tab后,vim用个空格来填充�
 set lazyredraw                       " 延时绘制(提升性能)
 set shortmess-=S
 
-"set wildmode=list:longest,full       " Command <Tab> completion, list matches
+" set wildmode=list:longest,full       " Command <Tab> completion, list matches
 set wildmode=longest,full       " Command <Tab> completion, list matches
 set wildmenu                         " enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~          " stuff to ignore when tab completing
@@ -287,7 +287,7 @@ set hlsearch                         " 开启高亮显示结果
 set incsearch                        " 开启实时搜索功能
 set ignorecase                       " 忽略大小写
 set smartcase
-"set nowrapscan                     " 搜索到文件两端时不重新搜索
+" set nowrapscan                     " 搜索到文件两端时不重新搜索
 set vb t_vb=                         " 关闭提示音
 set guicursor+=a:blinkon0            " 设置光标不闪烁
 set hidden                           " 允许在有未保存的修改时切换缓冲区
@@ -297,7 +297,7 @@ set writebackup                      " 设置无备份文件
 set nobackup
 set autochdir                        " 设定文件浏览器目录为当前目录
 set wrap                             " 设置一行太长,自动换行
-"set norelativenumber                " 不显示相对行号
+" set norelativenumber                " 不显示相对行号
 set relativenumber                   " 显示相对行号
 set showcmd
 set formatoptions+=m                 " 如遇Unicode值大于255的文本,不必等到空格再折行
@@ -307,20 +307,20 @@ set magic                            " For regular expressions turn magic on
 
 " 代码折叠
 set foldmethod=marker                " 折叠类型---对文中标志折叠
-"set foldmethod=manual              " 折叠类型---手工
-"set foldmethod=syntax              " 折叠类型---语法高亮
-"set foldmethod=indent              " 折叠类型---缩进
+" set foldmethod=manual              " 折叠类型---手工
+" set foldmethod=syntax              " 折叠类型---语法高亮
+" set foldmethod=indent              " 折叠类型---缩进
 set foldcolumn=2                     " 显示折叠标志
 set foldlevel=33
-"set foldcolumn&                     " 去掉折叠标志
+" set foldcolumn&                     " 去掉折叠标志
 
 " 分屏设置
 set splitright                       " 新的窗口在右边打开
 set splitbelow                       " 新的窗口在下边打开
 
-"set listchars=tab:\|\ ,                                         " 显示Tab符,使用一高亮竖线代替
+" set listchars=tab:\|\ ,                                         " 显示Tab符,使用一高亮竖线代替
 set listchars=trail:.,extends:>,precedes:<,space:.               " 将空格用.表示
-"set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣ " <F3>为显示空格的开关
+" set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣ " <F3>为显示空格的开关
 
 " IOS:Windows  设置 clipboard 提高Nvim启动速率
 set clipboard+=unnamed               " 公用剪切板
@@ -354,7 +354,7 @@ augroup python_pep8
                 \set fileformat=unix     " 以unix格式存储文件,避免在推送到GITHUB或分享给其他用户时出现文件转换问题.
 augroup END
 
-"禁止屏闪和铃声
+" 禁止屏闪和铃声
 augroup genconfiggroup
     autocmd!
     autocmd GUIEnter * set vb t_vb=
@@ -460,7 +460,7 @@ nnoremap <leader>dt :diffthis<CR>
 
 
 " 插入时间
-"iab xtime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>
+" iab xtime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 iab xtime <c-r>=strftime("20%y-%m-%d %a %H:%M")<CR>
 iab xdate <c-r>=strftime("20%y-%m-%d (%a)")<CR>
 
@@ -526,8 +526,8 @@ inoremap <C-l> <C-Right>
 
 " ----------------- find and replace --------------
 nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>/<C-R>=expand("<cword>")<CR>/g<left><left>
-"nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>//g<left><left>
-"noremap \s :%s///g<left><left><left>
+" nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>//g<left><left>
+" noremap \s :%s///g<left><left><left>
 vnoremap <leader>z :s///g<left><left><left>
 
 " ----------------- make a list --------------
@@ -910,32 +910,32 @@ let g:VM_maps['Add Cursor Down']    = '<C-j>'
 " }}}
 
 " {{{ << Plugin - startify >>
-"let g:ascii = [
-"let g:startify_custom_header = [
-            "\ '                                                         .                                                      .               ',
-            "\ '                                                       .n                   .                 .                  n.             ',
-            "\ '                                                 .   .dP                  dP                   9b                 9b.    .      ',
-            "\ '                                                4    qXb         .       dX                     Xb       .        dXp     t     ',
-            "\ '                                               dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb    ',
-            "\ '                                               9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP    ',
-            "\ '                                                9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP     ',
-            "\ '                                                 `9XXXXXXXXXXXXXXXXXXXXX`~   ~`OOO8b   d8OOO`~   ~`XXXXXXXXXXXXXXXXXXXXXP`      ',
-            "\ '                                                   `9XXXXXXXXXXXP` `9XX`   DIE    `98v8P`  HUMAN   `XXP` `9XXXXXXXXXXXP`        ',
-            "\ '                                                       ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~            ',
-            "\ '                                                                       )b.  .dbo.dP``v``9b.odb.  .dX(                           ',
-            "\ '                                                                    ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.                           ',
-            "\ '                                     __                             dXXXXXXXXXXXP`   .   `9XXXXXXXXXXXb                         ',
-            "\ '                             __  __ /\_\    ___ ___                dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb                        ',
-            "\ '                            /\ \/\ \\/\ \ /'' __` __`\             9XXb`   `XXXXXb.dX|Xb.dXXXXX`   `dXXP                        ',
-            "\ '                            \ \ \_/ |\ \ \/\ \/\ \/\ \              ``      9XXXXXX(   )XXXXXXP      ``                         ',
-            "\ '                             \ \___/  \ \_\ \_\ \_\ \_\                      XXXX X.`v`.X XXXX                                  ',
-            "\ '                              \/__/    \/_/\/_/\/_/\/_/                     XP^X``b   d``X^XX                                   ',
-            "\ '                                                                             X. 9  `   `  P )X                                  ',
-            "\ '                                                                             `b  `       `  d`                                  ',
-            "\ '                                                                              `             `                                   ',
-            "\]
+" let g:ascii = [
+" let g:startify_custom_header = [
+"             \ '                                                         .                                                      .               ',
+"             \ '                                                       .n                   .                 .                  n.             ',
+"             \ '                                                 .   .dP                  dP                   9b                 9b.    .      ',
+"             \ '                                                4    qXb         .       dX                     Xb       .        dXp     t     ',
+"             \ '                                               dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb    ',
+"             \ '                                               9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP    ',
+"             \ '                                                9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP     ',
+"             \ '                                                 `9XXXXXXXXXXXXXXXXXXXXX`~   ~`OOO8b   d8OOO`~   ~`XXXXXXXXXXXXXXXXXXXXXP`      ',
+"             \ '                                                   `9XXXXXXXXXXXP` `9XX`   DIE    `98v8P`  HUMAN   `XXP` `9XXXXXXXXXXXP`        ',
+"             \ '                                                       ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~            ',
+"             \ '                                                                       )b.  .dbo.dP``v``9b.odb.  .dX(                           ',
+"             \ '                                                                    ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.                           ',
+"             \ '                                     __                             dXXXXXXXXXXXP`   .   `9XXXXXXXXXXXb                         ',
+"             \ '                             __  __ /\_\    ___ ___                dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb                        ',
+"             \ '                            /\ \/\ \\/\ \ /'' __` __`\             9XXb`   `XXXXXb.dX|Xb.dXXXXX`   `dXXP                        ',
+"             \ '                            \ \ \_/ |\ \ \/\ \/\ \/\ \              ``      9XXXXXX(   )XXXXXXP      ``                         ',
+"             \ '                             \ \___/  \ \_\ \_\ \_\ \_\                      XXXX X.`v`.X XXXX                                  ',
+"             \ '                              \/__/    \/_/\/_/\/_/\/_/                     XP^X``b   d``X^XX                                   ',
+"             \ '                                                                             X. 9  `   `  P )X                                  ',
+"             \ '                                                                             `b  `       `  d`                                  ',
+"             \ '                                                                              `             `                                   ',
+"             \]
 
-"let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+" let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 
 let g:startify_files_number = 16        " 起始页显示的列表长度
 " 设置书签
@@ -993,17 +993,17 @@ elseif &background ==# 'light'
     highlight StartifyFile ctermfg=10 guifg=#12970e
 endif
 
-"highlight StartifyPath ctermfg=10 guifg=#444B6A
-"highlight StartifySlash ctermfg=10 guifg=#444B6A
+" highlight StartifyPath ctermfg=10 guifg=#444B6A
+" highlight StartifySlash ctermfg=10 guifg=#444B6A
 
 highlight StartifyPath ctermfg=10 guifg=#994797
 highlight StartifySlash ctermfg=10 guifg=#994797
-"#6A5ACD
-"#994797
-"
+" #6A5ACD
+" #994797
+
 highlight StartifySection ctermfg=10 guifg=#7AA2F7
 
-"highlight StartifyHeader ctermfg=10 guifg=#F7768E
+" highlight StartifyHeader ctermfg=10 guifg=#F7768E
 highlight StartifyHeader ctermfg=10 guifg=#a600ff
 
 highlight StartifyFooter ctermfg=10 guifg=#F7768E
@@ -1061,15 +1061,15 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 " {{{ << Plugin - interestingwords >>
 " -----------------------------------------------------------------------------
 " 默认情况下的配置
-"nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
-"nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
+" nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
+" nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
 
-"nnoremap <silent> n :call WordNavigation('forward')<cr>
-"nnoremap <silent> N :call WordNavigation('backward')<cr>
+" nnoremap <silent> n :call WordNavigation('forward')<cr>
+" nnoremap <silent> N :call WordNavigation('backward')<cr>
 " }}}
 
 " {{{ 光标移动插件 << Plugin - clever-f >>
-"If you type a lower case character, the case will be ignored however if you type an upper case character it will only search for upper case characters
+" If you type a lower case character, the case will be ignored however if you type an upper case character it will only search for upper case characters
 let g:clever_f_smart_case=1
 
 " normal模式下按f键 再按 目标字母, 光标跳转到 光标后 的目标字母, 不限本行

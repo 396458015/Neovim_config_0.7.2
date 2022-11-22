@@ -2689,6 +2689,8 @@ if exists('g:neovide')
 " Adjust transparency
     nnoremap <m-,> :let g:neovide_transparency-=0.02<CR>:let g:neovide_transparency<CR>
     nnoremap <m-.> :let g:neovide_transparency+=0.02<CR>:let g:neovide_transparency<CR>
+    inoremap <m-,> <C-o>:let g:neovide_transparency-=0.02<CR><C-o>:let g:neovide_transparency<CR>
+    inoremap <m-.> <C-o>:let g:neovide_transparency+=0.02<CR><C-o>:let g:neovide_transparency<CR>
 
 " Toggle fullscreen
     function Neovide_fullscreen()
@@ -2710,6 +2712,9 @@ if exists('g:neovide')
     nnoremap <m--> :call AdjustFontSize(-1)<CR>
     nnoremap <m-=> :call AdjustFontSize(1)<CR>
     nnoremap <m-BS> :set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
+    inoremap <m--> <C-o>:call AdjustFontSize(-1)<CR>
+    inoremap <m-=> <C-o>:call AdjustFontSize(1)<CR>
+    inoremap <m-BS> <C-o>:set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
 
 endif
 " }}}

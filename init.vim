@@ -51,7 +51,6 @@ Plug 'wellle/targets.vim'
 
 Plug 'tpope/vim-eunuch', { 'on': []}
 Plug 'ntpeters/vim-better-whitespace', { 'on': []}
-Plug 'rhysd/clever-f.vim', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}
 Plug 'triglav/vim-visual-increment', { 'on': []}
@@ -62,7 +61,6 @@ call timer_start(700, 'LoadPlug_Vim')
 function! LoadPlug_Vim(timer) abort
     call plug#load('vim-eunuch')
     call plug#load('vim-better-whitespace')
-    call plug#load('clever-f.vim')
     call plug#load('vim-interestingwords')
     call plug#load('traces.vim')
     call plug#load('vim-visual-increment')
@@ -92,6 +90,10 @@ Plug 'Xuyuanp/scrollbar.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'b3nj5m1n/kommentary'
 Plug 'ellisonleao/weather.nvim'
+
+" motion
+Plug 'ggandor/leap.nvim'
+Plug 'ggandor/flit.nvim'
 
 " colorscheme
 Plug 'EdenEast/nightfox.nvim'
@@ -220,11 +222,11 @@ if exists('g:neovide')
     "set guifont=monaco:h12.5:cANSI                         " no Powerline/Nerd Font
     "set guifont=inconsolata_nerd_font_mono:h12.5:cANSI     " Nerd Font
 
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h11:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h11.5:cANSI      " 中文 Nerd Font
+    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
+    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
 else
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h11:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h11.5:cANSI      " 中文 Nerd Font
+    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
+    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
 endif
 
 " }}}
@@ -1066,17 +1068,6 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 
 " nnoremap <silent> n :call WordNavigation('forward')<cr>
 " nnoremap <silent> N :call WordNavigation('backward')<cr>
-" }}}
-
-" {{{ 光标移动插件 << Plugin - clever-f >>
-" If you type a lower case character, the case will be ignored however if you type an upper case character it will only search for upper case characters
-let g:clever_f_smart_case=1
-
-" normal模式下按f键 再按 目标字母, 光标跳转到 光标后 的目标字母, 不限本行
-" normal模式下按F键 再按 目标字母, 光标跳转到 光标前 的目标字母, 不限本行
-
-" normal模式下按t键 再按 目标字母, 光标跳转到 光标后 的目标字母的前一个位置, 不限本行
-" normal模式下按T键 再按 目标字母, 光标跳转到 光标前 的目标字母的前一个位置, 不限本行
 " }}}
 
 " {{{ << Plugin - EasyAlign >>
@@ -2216,7 +2207,7 @@ require('luatab').setup{
 EOF
 " }}}
 
-" {{{ << Plugin - lualine >>
+" {{{ << lualine >>
 lua << END
 require "lualine".setup {
     globalstatus = true,
@@ -2333,6 +2324,25 @@ require("indent_blankline").setup {
 --        "IndentBlanklineIndent6",
 --    },
 --}
+EOF
+" }}}
+
+" {{{ easymotion << leap.nvim >> << flit.nvim >>
+lua <<EOF
+-- leap config
+require('leap').add_default_mappings()
+--require('leap').opts.safe_labels = {}-- Disable auto jump first match
+require('leap').opts.highlight_unlabeled_phase_one_targets = true
+vim.keymap.set({'x', 'o', 'n'}, 'r', '<Plug>(leap-forward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'R', '<Plug>(leap-backward-to)')
+
+-- flit config
+require('flit').setup {
+  keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+  labeled_modes = "v",
+  multiline = true,
+  opts = {}
+}
 EOF
 " }}}
 
@@ -2715,7 +2725,6 @@ if exists('g:neovide')
     inoremap <m--> <C-o>:call AdjustFontSize(-1)<CR>
     inoremap <m-=> <C-o>:call AdjustFontSize(1)<CR>
     inoremap <m-BS> <C-o>:set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
-
 endif
 " }}}
 

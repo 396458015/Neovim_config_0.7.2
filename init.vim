@@ -452,7 +452,7 @@ vnoremap          P          Pgvy
 inoremap <C-BS> <Esc>b"_dei
 
 " 取消高亮
-nnoremap <silent> <BS> :nohlsearch<CR>
+nnoremap <silent> <BS> :nohl<CR>
 
 " Open Startify
 nnoremap <silent> <leader>st :Startify<CR>
@@ -2329,14 +2329,14 @@ EOF
 
 " {{{ easymotion << leap.nvim >> << flit.nvim >>
 lua <<EOF
--- leap config
-require('leap').add_default_mappings()
+-- << leap.nvim >> configure
 --require('leap').opts.safe_labels = {}-- Disable auto jump first match
 require('leap').opts.highlight_unlabeled_phase_one_targets = true
 vim.keymap.set({'x', 'o', 'n'}, 'r', '<Plug>(leap-forward-to)')
 vim.keymap.set({'x', 'o', 'n'}, 'R', '<Plug>(leap-backward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'gr', '<Plug>(leap-cross-window)')
 
--- flit config
+-- << flit.nvim >> configure
 require('flit').setup {
   keys = { f = 'f', F = 'F', t = 't', T = 'T' },
   labeled_modes = "v",

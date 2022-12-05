@@ -1252,8 +1252,8 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
 " nmap zz <Plug>(crunch-operator)
-nmap <leader>, <Plug>(crunch-operator-line)
-xmap <leader>, <Plug>(visual-crunch-operator)
+nmap <leader><space> <Plug>(crunch-operator-line)
+xmap <leader><space> <Plug>(visual-crunch-operator)
 " }}}
 
 " {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
@@ -2568,7 +2568,7 @@ f = {
 ['K'] = {'Uncolor Word'},
 ['/'] = {'Search <Pattern>'},
 ['.'] = {'Open Path'},
-[','] = {'Calculator'},
+['<space>'] = {'Calculator'},
 ['r'] = {
     name = 'VIMRC',
     ['c'] = {'Edit VIMRC' },

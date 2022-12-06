@@ -340,8 +340,8 @@ let g:clipboard = {
                     \ }
 
 " ENV-Python
-let g:python_host_prog  = 'C:\Python\Python37\python.exe'
-let g:python3_host_prog = 'C:\Python\Python37\python.exe'
+let g:python_host_prog  = "C:/Python/Python311/python.exe"
+let g:python3_host_prog = "C:/Python/Python311/python.exe"
 let $PYTHONUNBUFFERED=1              " 禁用python stdout缓冲
 
 augroup load_rpy
@@ -1366,6 +1366,7 @@ let g:Lf_IgnoreCurrentBufferName = 1
 
 " popup mode
 let g:Lf_WindowPosition = 'popup'
+let g:Lf_PopupColorscheme = "solarized"
 let g:Lf_WindowHeight = 0.33
 let g:Lf_PopupHeight = 0.33
 let g:Lf_PopupWidth = 0.75

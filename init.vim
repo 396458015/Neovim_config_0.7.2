@@ -706,9 +706,6 @@ cnoremap <C-k>      <up>
 " 在命令行粘贴的快捷键
 cnoremap <C-V> <C-R>+
 
-" cmp path bug
-cnoremap / \
-
 " $q is super useful when browsing on the command line
 " it deletes everything until the last slash
 " NORMAL Mode, Q                             --进入到Ex命令行模式
@@ -1252,8 +1249,8 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
 " nmap zz <Plug>(crunch-operator)
-nmap <leader><space> <Plug>(crunch-operator-line)
-xmap <leader><space> <Plug>(visual-crunch-operator)
+nmap <leader>, <Plug>(crunch-operator-line)
+xmap <leader>, <Plug>(visual-crunch-operator)
 " }}}
 
 " {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>

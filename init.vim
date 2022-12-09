@@ -1363,36 +1363,33 @@ let g:Lf_IgnoreCurrentBufferName = 1
 
 " popup mode
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupColorscheme = "solarized"
-let g:Lf_WindowHeight = 0.33
-let g:Lf_PopupHeight = 0.33
-let g:Lf_PopupWidth = 0.75
-let g:Lf_PopupPosition = [1, 0]
-let g:Lf_PopupPreviewPosition = 'bottom'
-let g:Lf_PreviewInPopup = 1
+let g:Lf_PopupColorscheme = "solarized" "gruvbox_default
+
+let g:Lf_WindowHeight = 0.9
+let g:Lf_PopupHeight = 0.7
+let g:Lf_PopupWidth = 0.4
+let g:Lf_PopupPosition = [7, 84]
+let g:Lf_PopupPreviewPosition = 'left'
 let g:Lf_PreviewCode = 1
+let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "CodeNewRoman Nerd Font Mono" }
 
 " BufTag和Function不自动预览,通过<C-p>预览.BufTag和Function默认是1.
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
 " 文件搜索
-" let g:Lf_ShortcutF = '<C-P>'
 nnoremap <silent> <localleader>fb :LeaderfFile :/<left><left>
 
 " 模糊搜索,很强大的功能,迅速秒搜
-" nnoremap <silent> <M-p> :Leaderf rg<CR>
 nnoremap <silent> <localleader>fp :Leaderf rg<CR>
 
 " 关键字搜索(仅当前文件里)
 nnoremap <silent> <localleader>fl :LeaderfLine<CR>
 
 " 变量搜索(仅当前文件里)
-"nnoremap <silent> <leader>jt :Leaderf bufTag --right<CR>
 nnoremap <silent> <localleader>ft :Leaderf bufTag<CR>
 
 " 函数搜索(仅当前文件里)
-"nnoremap <silent> <leader>jf :Leaderf function --right<CR>
 nnoremap <silent> <localleader>ff :Leaderf function<CR>
 
 " 配色搜索

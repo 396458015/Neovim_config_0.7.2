@@ -741,7 +741,7 @@ fun! ToggleHump()
     call setbufline('%', l, printf('%s%s%s', c1 == 1 ? '' : line[:c1-2], w, c2 == 1 ? '' : line[c2-1:]))
     call cursor(l, c1)
 endf
-vnoremap <localleader>t :call ToggleHump()<CR>
+vnoremap <localleader>hl :call ToggleHump()<CR>
 
 " CMD 调用 matlab scripts
 augroup matlab_run
@@ -1363,7 +1363,17 @@ let g:Lf_IgnoreCurrentBufferName = 1
 
 " popup mode
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupColorscheme = "solarized" "gruvbox_default
+let g:Lf_PopupColorscheme = "leaderf_colorscheme_nightfox"
+" let g:Lf_PopupColorscheme = "Consistent with the current color scheme"
+
+" change color
+let g:Lf_PopupPalette = {
+    \  'dark': {
+    \      'Lf_hl_cursorline': {
+    \                'guibg': '#364a82',
+    \              },
+    \      },
+    \  }
 
 let g:Lf_WindowHeight = 0.9
 let g:Lf_PopupHeight = 0.7
@@ -1387,7 +1397,7 @@ nnoremap <silent> <localleader>fp :Leaderf rg<CR>
 nnoremap <silent> <localleader>fl :LeaderfLine<CR>
 
 " 变量搜索(仅当前文件里)
-nnoremap <silent> <localleader>ft :Leaderf bufTag<CR>
+nnoremap <silent> <localleader>t :Leaderf bufTag<CR>
 
 " 函数搜索(仅当前文件里)
 nnoremap <silent> <localleader>ff :Leaderf function<CR>
@@ -2646,8 +2656,9 @@ end
 
 local LL_others = require('which-key')
 LL_others.register({
---['t'] = {':call ToggleHump()<CR>', ''},
-['t'] = {'Underline <-> Hump'},
+h = {
+    l = {'Underline <-> Hump' },
+    },
 f = {
     name = "LeaderF",
     b = {"Open File" },
@@ -2655,8 +2666,8 @@ f = {
     f = {"Function" },
     l = {"Word Line" },
     p = {"Fuzze Word" },
-    t = {"Tag" },
     },
+['t'] = {'Tag'},
 w = {
     name = "Weather Forecast",
     d = {"3 day" },

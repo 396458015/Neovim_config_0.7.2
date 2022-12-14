@@ -539,10 +539,6 @@ nnoremap <leader>b :put =range(,,1)<left><left><left><left>
 nnoremap < <<
 nnoremap > >>
 
-" ----------------- quick move --------------
-nnoremap <C-k> 4k
-nnoremap <C-j> 4j
-
 "---------------- 分屏快捷键设置 ----------------
 " 新建一个垂直分割窗口,放置在当前窗口右侧
 nnoremap <silent> sh :set splitright<CR>:vsplit<CR>

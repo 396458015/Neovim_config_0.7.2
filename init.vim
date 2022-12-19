@@ -141,6 +141,9 @@ Plug 'rafamadriz/friendly-snippets'
 " 1. add SpeedDatingFormat
 Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
 
+" 2. remap: "<leader>" to "\"; turn off the drag function
+Plug g:plug_home. '/vim-scripts-DrawIt', { 'on': 'DIstart' }
+
 " --------------------------
 " Modified plugins (lua)
 " 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
@@ -727,18 +730,6 @@ function! DeleteTillSlash()
     return g:cmd_edited
 endfunc
 
-" 驼峰和下划线转换
-fun! ToggleHump()
-    let [l, c1, c2] = [line('.'), col("'<"), col("'>")]
-    let line = getline(l)
-    echo c1 c2
-    let w = line[c1 - 1 : c2 - 2]
-    let w = w =~ '_' ? substitute(w, '\v_(.)', '\u\1', 'G') : substitute(substitute(w, '\v^(\u)', '\l\1', 'G'), '\v(\u)', '_\l\1', 'G')
-    call setbufline('%', l, printf('%s%s%s', c1 == 1 ? '' : line[:c1-2], w, c2 == 1 ? '' : line[c2-1:]))
-    call cursor(l, c1)
-endf
-vnoremap <localleader>hl :call ToggleHump()<CR>
-
 " CMD 调用 matlab scripts
 augroup matlab_run
     autocmd!
@@ -999,7 +990,8 @@ highlight StartifySlash ctermfg=10 guifg=#994797
 highlight StartifySection ctermfg=10 guifg=#7AA2F7
 
 " highlight StartifyHeader ctermfg=10 guifg=#F7768E
-highlight StartifyHeader ctermfg=10 guifg=#a600ff
+" highlight StartifyHeader ctermfg=10 guifg=#a600ff
+highlight StartifyHeader ctermfg=10 guifg=#8687b0
 
 highlight StartifyFooter ctermfg=10 guifg=#F7768E
 highlight StartifySpecial ctermfg=10 guifg=#444B6A
@@ -1337,6 +1329,17 @@ autocmd User targets#mappings#user call targets#mappings#extend({
 " d/c/y  +  i/I/a/A  +  (/[/,/...
 " d/c/y  +  i/I/a/A  +  "/'/`/...
 " --b:block   q:quote    a:argument
+" }}}
+
+" {{{ 画图 << vim-scripts/DrawIt >>
+nnoremap <silent> \di :DIstart<Cr>
+" 原本插件快捷键为 "leader", 将"leader"修改为"\"; 关闭拖动功能
+" BUG: 开启再关闭后,v会卡死.
+" +-------------------------------------+
+" | 开启:\di      关闭:\ds              |
+" | 橡皮:<SPACE>                        |
+" | 方框:\b       椭圆:\e       填充:\f |
+" +-------------------------------------+
 " }}}
 
 " ------------------------------- 需要Python支持的Plugins --------------------------------
@@ -2652,9 +2655,6 @@ end
 
 local LL_others = require('which-key')
 LL_others.register({
-h = {
-    l = {'Underline <-> Hump' },
-    },
 f = {
     name = "LeaderF",
     b = {"Open File" },

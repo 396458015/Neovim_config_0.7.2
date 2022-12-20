@@ -982,10 +982,11 @@ endif
 " highlight StartifyPath ctermfg=10 guifg=#444B6A
 " highlight StartifySlash ctermfg=10 guifg=#444B6A
 
-highlight StartifyPath ctermfg=10 guifg=#994797
-highlight StartifySlash ctermfg=10 guifg=#994797
+highlight StartifyPath ctermfg=10 guifg=#786591
+highlight StartifySlash ctermfg=10 guifg=#786591
 " #6A5ACD
-" #994797
+" purple:      #994797
+" dark purple: #786591
 
 highlight StartifySection ctermfg=10 guifg=#7AA2F7
 

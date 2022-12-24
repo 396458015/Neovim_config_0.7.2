@@ -975,7 +975,7 @@ highlight StartifyNumber ctermfg=10 guifg=#FF9E64
 
 if &background ==# 'dark'
     " highlight StartifyFile ctermfg=10 guifg=#9ECE6A
-    highlight StartifyFile ctermfg=10 guifg=#9cabca
+    highlight StartifyFile ctermfg=10 guifg=#9ECE6A
 elseif &background ==# 'light'
     highlight StartifyFile ctermfg=10 guifg=#12970e
 endif
@@ -989,7 +989,7 @@ highlight StartifySlash ctermfg=10 guifg=#786591
 " purple:      #994797
 " dark purple: #786591
 
-highlight StartifySection ctermfg=10 guifg=#658594
+highlight StartifySection ctermfg=10 guifg=#8687b0
 
 " highlight StartifyHeader ctermfg=10 guifg=#F7768E
 " highlight StartifyHeader ctermfg=10 guifg=#a600ff

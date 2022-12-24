@@ -989,7 +989,7 @@ highlight StartifySlash ctermfg=10 guifg=#786591
 " purple:      #994797
 " dark purple: #786591
 
-highlight StartifySection ctermfg=10 guifg=#8687b0
+highlight StartifySection ctermfg=10 guifg=#7AA2F7
 
 " highlight StartifyHeader ctermfg=10 guifg=#F7768E
 " highlight StartifyHeader ctermfg=10 guifg=#a600ff

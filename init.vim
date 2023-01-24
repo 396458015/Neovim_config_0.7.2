@@ -588,7 +588,7 @@ nnoremap <silent>   <C-right>  :vertical resize -3<CR>
 " -------------------- tabs -----------------------
 nnoremap <leader>tn :tabnew<CR>
 
-" 让gvim支持Alt+n来切换标签页
+" 支持Alt+n切换标签页
 :nn <M-1> 1gt
 :nn <M-2> 2gt
 :nn <M-3> 3gt

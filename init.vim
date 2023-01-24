@@ -4,7 +4,7 @@
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
 " Last Modified Date: 2022.10.31
-" Desc              : NEOVIM (support Python, Lua)
+" Desc              : NEOVIM 0.7.2(support Python, Lua)
 "  __  ____   __   ___     _____ __  __ ____   ____
 " |  \/  \ \ / /    \ \   / /_ _|  \/  |  _ \ / ___|
 " | |\/| |\ V /      \ \ / / | || |\/| | |_) | |

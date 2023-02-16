@@ -154,7 +154,7 @@ Plug g:plug_home. '/weather3day.nvim-main'
 
 call plug#end()
 
-lua <<EOF
+lua << EOF
 _G.__luacache_config = {
   chunks = {
     enable = true,
@@ -212,7 +212,7 @@ endif
 " 解决vim编辑matlab文件保存后, matlab中文为乱码的问题
 augroup matlab_filetype
     autocmd!
-    "autocmd FileType matlab set fileencoding=GB2312       "GB2312=cp936
+    " autocmd FileType matlab set fileencoding=GB2312       "GB2312=cp936
     autocmd FileType matlab set fileencoding=cp936       "GB2312=cp936
 augroup END
 
@@ -221,15 +221,17 @@ augroup END
 " {{{ 字体/字号
 " 英文
 if exists('g:neovide')
-    "set guifont=Consolas:h12.5
-    "set guifont=monaco:h12.5:cANSI                         " no Powerline/Nerd Font
-    "set guifont=inconsolata_nerd_font_mono:h12.5:cANSI     " Nerd Font
+    " English
+    set guifont=Delugia_Mono:h11.5:cANSI                     " Nerd Font(Cascadia Code)
+    " set guifont=CodeNewRoman_NFM:h12:cANSI                   " Nerd Font
+    " set guifont=OperatorMono_NF:h12:cANSI                    " Nerd Font
+    " set guifont=ComicMono_NF:h12:cANSI                       " Nerd Font
 
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
+    " Chinese
+    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI       " 中文 Nerd Font
 else
-    set guifont=CodeNewRoman_Nerd_Font_Mono:h12:cANSI       " Nerd Font
-    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI      " 中文 Nerd Font
+    set guifont=Delugia_Mono:h12.1:cANSI                     " Nerd Font(Cascadia Code)
+    set guifontwide=inconsolatago_qihei_nf:h12.5:cANSI       " 中文 Nerd Font
 endif
 
 " }}}
@@ -248,7 +250,7 @@ elseif &bg == 'light'
 endif
 
 language en
-language messages zh_CN.utf-8  " 解决consle提示信息输出乱码
+language messages zh_CN.utf-8        " 解决consle提示信息输出乱码
 filetype on                          " 侦测文件类型
 filetype indent on                   " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on                   " 针对不同的文件类型加载对应的插件
@@ -262,7 +264,7 @@ set lazyredraw                       " 延时绘制(提升性能)
 set shortmess-=S
 
 " set wildmode=list:longest,full       " Command <Tab> completion, list matches
-set wildmode=longest,full       " Command <Tab> completion, list matches
+set wildmode=longest,full            " Command <Tab> completion, list matches
 set wildmenu                         " enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~          " stuff to ignore when tab completing
 set wildignore+=*vim/backups*
@@ -279,7 +281,7 @@ set laststatus=2                     " 开启状态栏信息
 set cmdheight=1                      " 命令行的高度,默认为1,这里设为2
 set linebreak                        " 整词换行
 set backspace=2                      " 设置退格键可用
-set backspace=indent,eol,start    " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
+set backspace=indent,eol,start       " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
 set shiftwidth=4                     " 换行时行间交错使用4个空格
 set cindent shiftwidth=4             " 自动缩进4空格
 set smartindent                      " 智能自动缩进
@@ -302,7 +304,7 @@ set writebackup                      " 设置无备份文件
 set nobackup
 set autochdir                        " 设定文件浏览器目录为当前目录
 set wrap                             " 设置一行太长,自动换行
-" set norelativenumber                " 不显示相对行号
+" set norelativenumber                 " 不显示相对行号
 set relativenumber                   " 显示相对行号
 set showcmd
 set formatoptions+=m                 " 如遇Unicode值大于255的文本,不必等到空格再折行
@@ -317,15 +319,15 @@ set foldmethod=marker                " 折叠类型---对文中标志折叠
 " set foldmethod=indent              " 折叠类型---缩进
 set foldcolumn=2                     " 显示折叠标志
 set foldlevel=33
-" set foldcolumn&                     " 去掉折叠标志
+" set foldcolumn&                    " 去掉折叠标志
 
 " 分屏设置
 set splitright                       " 新的窗口在右边打开
 set splitbelow                       " 新的窗口在下边打开
 
-" set listchars=tab:\|\ ,                                         " 显示Tab符,使用一高亮竖线代替
+" set listchars=tab:\|\ ,                                          " 显示Tab符,使用一高亮竖线代替
 set listchars=trail:.,extends:>,precedes:<,space:.               " 将空格用.表示
-" set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣ " <F3>为显示空格的开关
+" set listchars=eol:¬,tab:>·,trail:.,extends:>,precedes:<,space:␣  " <F3>为显示空格的开关
 
 " IOS:Windows  设置 clipboard 提高Nvim启动速率
 set clipboard+=unnamed               " 公用剪切板
@@ -381,7 +383,7 @@ augroup line_font
 augroup END
 
 " Return to last edit position when opening files (You want this!)
-lua <<EOF
+lua << EOF
 vim.cmd([[ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
 EOF
 
@@ -460,9 +462,8 @@ nnoremap <silent> <BS> :nohl<CR>
 " Open Startify
 nnoremap <silent> <leader>st :Startify<CR>
 
-" 比较
-nnoremap <leader>dt :diffthis<CR>
-
+" 比较line
+nnoremap <leader>dt :Linediff<CR>
 
 " 插入时间
 " iab xtime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>
@@ -742,7 +743,7 @@ nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 " }}}
 
 " {{{ colorscheme << nightfox >>
-lua <<EOF
+lua << EOF
 require('nightfox').setup({
   options = {
     -- Compiled file's destination location
@@ -753,18 +754,15 @@ require('nightfox').setup({
     dim_inactive = false,   -- Non focused panes set to alternative background
     styles = {              -- Style to be applied to different syntax groups
       comments = "NONE",    -- Value is any valid attr-list value `:help attr-list`
-      conditionals = "NONE",
+      conditionals = "italic",
       constants = "NONE",
-      --functions = "NONE",
-      --keywords = "NONE",
-      --numbers = "NONE",
       operators = "NONE",
       strings = "NONE",
-      types = "NONE",
+      types = "italic,bold",
       variables = "NONE",
 
       functions = "italic",
-      keywords = "italic",
+      keywords = "bold",
       numbers = "italic",
     },
     inverse = {             -- Inverse highlight for different types
@@ -819,10 +817,17 @@ require("nightfox").setup({ palettes = palettes })
 --vim.cmd("colorscheme nightfox")
 --vim.cmd("colorscheme dayfox")
 EOF
+
 " }}}
 colorscheme nightfox
 " colorscheme dayfox
 " colorscheme carbonfox
+" {{{ highlihgt Diff
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#87af87 " 新增的行
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#86abdc " 删除的行
+highlight DiffChange cterm=none ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#8787af " 变化的行
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=bold guifg=bg guibg=#f7768e " 变化的文字
+" }}}
 
 " ------------------------------- Plugins Config --------------------------------
 " {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
@@ -985,7 +990,6 @@ endif
 
 highlight StartifyPath ctermfg=10 guifg=#786591
 highlight StartifySlash ctermfg=10 guifg=#786591
-" #6A5ACD
 " purple:      #994797
 " dark purple: #786591
 
@@ -1009,7 +1013,6 @@ EOF
 function! StartifyEntryFormat() abort
   return 'v:lua.webDevIcons(absolute_path) . " " . entry_path'
 endfunction
-
 " }}}
 
 " {{{ << Plugin - luochen1990/rainbow >>
@@ -1352,7 +1355,7 @@ let g:Lf_Ctags = "D:/Progra~1/Neovim/share/nvim/Mine/ctags.exe"
 let g:Lf_Rg = 'D:/Progra~1/Neovim/share/nvim/Mine/rg.exe'
 
 let g:Lf_ShowDevIcons = 1
-let g:Lf_DevIconsFont = "CodeNewRoman Nerd Font Mono"
+let g:Lf_DevIconsFont = "Delugia Mono"
 
 let g:Lf_ReverseOrder = 1
 
@@ -1383,7 +1386,7 @@ let g:Lf_PopupPosition = [7, 84]
 let g:Lf_PopupPreviewPosition = 'left'
 let g:Lf_PreviewCode = 1
 let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "CodeNewRoman Nerd Font Mono" }
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "Delugia Mono" }
 
 " BufTag和Function不自动预览,通过<C-p>预览.BufTag和Function默认是1.
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
@@ -1430,35 +1433,35 @@ let g:Lf_WildIgnore = {
 " }}}
 
 " {{{ 移动括号内被,分割的东东 << Plugin - Sideways.vim-main >>
-"nnoremap <c-h> :SidewaysLeft<cr>
-"nnoremap <c-l> :SidewaysRight<cr>
+" nnoremap <c-h> :SidewaysLeft<cr>
+" nnoremap <c-l> :SidewaysRight<cr>
 
-"用法
+" 用法
 " def function(one, two, three)    ------------>     def function(two, one, three):
 
 " }}}
 
 " {{{ 数列递增递减，字母序列递增递减 << Plugin - vim-visual-increment-master >>
-"字母序列的递增
+" 字母序列的递增
 set nrformats=alpha,octal,hex
 
-"用法
-"<C-a>增加(差值1)
-"<C-x>减小(差值1)
-"n<C-a>增加(差值n)
-"n<C-x>减小(差值n)
+" 用法
+" <C-a>增加(差值1)
+" <C-x>减小(差值1)
+" n<C-a>增加(差值n)
+" n<C-x>减小(差值n)
 
-"<C-a>增加
+" <C-a>增加
 " 1         1
 " 1   ----> 2
 " 1         3
 
-"<C-a>增加
+" <C-a>增加
 " a         a
 " a   ----> b
 " a         c
 
-"n<C-a>增加
+" n<C-a>增加
 " 1         1
 " 1   ----> 1+n
 " 1         1+2n
@@ -1466,11 +1469,11 @@ set nrformats=alpha,octal,hex
 
 " {{{ StartupTime << StartupTime >>
 let g:startuptime_tries = 10
-"augroup startuptime_mapping
+" augroup startuptime_mapping
 "  autocmd!
 "  autocmd CmdlineEnter : cnoremap sta StartupTime
 "  autocmd CmdlineLeave : cunmap sta
-"augroup END
+" augroup END
 nnoremap <silent> <F12> :StartupTime<CR>
 " }}}
 
@@ -1479,19 +1482,19 @@ nnoremap <silent> <F12> :StartupTime<CR>
 
 " {{{ screach << Telescope >>
 "" Find files using Telescope command-line sugar.
-"nnoremap <leader>ff <cmd>Telescope find_files<cr>
-"nnoremap <leader>fl <cmd>Telescope live_grep<cr>
-"nnoremap <leader>fb <cmd>Telescope buffers<cr>
-"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fl <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "" Using Lua functions
-"nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-"nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Initialize telescope
-lua <<EOF
+lua << EOF
 require("telescope").setup {
   defaults = {
     initial_mode = 'normal',
@@ -1572,7 +1575,7 @@ nnoremap <silent> <leader>fs :Telescope search_history<cr>
 " }}}
 
 " {{{ tree << nvim-tree >>
-lua <<EOF
+lua << EOF
 -- change color for arrows in tree to light blue
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
@@ -1604,7 +1607,7 @@ require'nvim-tree'.setup {
         mappings = {
             custom_only = true,
             list = {
-                { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+                { key = {"<Tab>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
                 --{ key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
                 { key = "<C-v>",                        cb = tree_cb("vsplit") },
                 { key = "<C-x>",                        cb = tree_cb("split") },
@@ -1680,7 +1683,7 @@ nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
 " }}}
 
 " {{{ scroll << neoscroll >>
-lua <<EOF
+lua << EOF
 require('neoscroll').setup({
     mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
                 '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
@@ -1841,7 +1844,7 @@ augroup END
 " }}}
 
 " {{{ Language syntax highlighting << tree-sitter >>
-lua <<EOF
+lua << EOF
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
   -- :TSInstallInfo 命令查看支持的语言
@@ -1884,7 +1887,7 @@ EOF
 " }}}
 
 " {{{ << luasnip >>
-lua <<EOF
+lua << EOF
 require("luasnip/loaders/from_vscode").lazy_load()
 EOF
 " }}}
@@ -1892,7 +1895,7 @@ EOF
 "                              5'cmp-path', 6'cmp-cmdline', 7'cmp_luasnip',
 "                              8'cmp-emoji' 9'cmp-calc',10'cmp-matlab',
 "                              11'cmp-under-comparator',12'cmp-dictionary'
-lua <<EOF
+lua << EOF
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -2109,7 +2112,7 @@ EOF
 " }}}
 " {{{ lsp << nvim-lsp-installer >> << nvim-lspconfig >>
 " nvim-lsp-installer
-lua <<EOF
+lua << EOF
 local needed = {
 	"pyright",
 	"vimls",
@@ -2161,7 +2164,7 @@ EOF
 " }}}
 
 " {{{ commnet << kommentary >>
-lua <<EOF
+lua << EOF
 vim.g.kommentary_create_default_mappings = false
 vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_increase", {})
 vim.api.nvim_set_keymap("x", "<leader>cc", "<Plug>kommentary_visual_increase", {})
@@ -2172,7 +2175,7 @@ EOF
 " }}}
 
 " {{{ tabline << luatab >>
-lua <<EOF
+lua << EOF
 --vim.opt.showtabline = 2 --只有一个tab也显示
 require('luatab').setup{
 	separator = function()
@@ -2334,7 +2337,7 @@ EOF
 " }}}
 
 " {{{ easymotion << leap.nvim >> << flit.nvim >>
-lua <<EOF
+lua << EOF
 -- << leap.nvim >> configure
 --require('leap').opts.safe_labels = {}-- Disable auto jump first match
 require('leap').opts.highlight_unlabeled_phase_one_targets = true
@@ -2353,7 +2356,7 @@ EOF
 " }}}
 
 " {{{ weather << nvim-weather >> << nvim-weather3day >>
-lua <<EOF
+lua << EOF
 vim.g.weather_city = "Xi'an"
 EOF
 nnoremap <silent> <localleader>we :Weather<CR>
@@ -2361,7 +2364,7 @@ nnoremap <silent> <localleader>wd :Weather3day<CR>
 " }}}
 
 " {{{ todo highlight << todo-comments.nvim >>
-lua <<EOF
+lua << EOF
 require("todo-comments").setup {
      signs = true, -- show icons in the signs column
      sign_priority = 8, -- sign priority
@@ -2410,7 +2413,7 @@ EOF
 "  , , , ,﫠
 " }}}
 " {{{ norg << nvim-norg >>
-lua <<EOF
+lua << EOF
 
 require('neorg').setup {
 	ensure_installed = { "norg" },
@@ -2549,7 +2552,7 @@ lua << EOF
 local L_all = require('which-key')
 L_all.register({
 ['a'] = {'Align'},
-['b'] = {'columns Num'},
+['b'] = {'Columns Num'},
 ['c'] = {
     name = 'Comment',
     ['c'] = {'Comment' },
@@ -2574,7 +2577,7 @@ f = {
 ['K'] = {'Uncolor Word'},
 ['/'] = {'Search <Pattern>'},
 ['.'] = {'Open Path'},
-['<space>'] = {'Calculator'},
+[','] = {'Calculator'},
 ['r'] = {
     name = 'VIMRC',
     ['c'] = {'Edit VIMRC' },
@@ -2718,17 +2721,23 @@ if exists('g:neovide')
 
 " Adjust fontsize
     let s:guifontsize=12
-    let s:guifont="CodeNewRoman_Nerd_Font_Mono"
+    let s:guifont="Delugia_Mono"
     function! AdjustFontSize(amount)
         let s:guifontsize = s:guifontsize + a:amount
         execute "set guifont=" .. s:guifont .. ":h" .. s:guifontsize
     endfunction
+    " keyboard
     nnoremap <m--> :call AdjustFontSize(-1)<CR>
     nnoremap <m-=> :call AdjustFontSize(1)<CR>
-    nnoremap <m-BS> :set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
+    nnoremap <m-BS> :set guifont=Delugia_Mono:h12.01<CR>
     inoremap <m--> <C-o>:call AdjustFontSize(-1)<CR>
     inoremap <m-=> <C-o>:call AdjustFontSize(1)<CR>
-    inoremap <m-BS> <C-o>:set guifont=CodeNewRoman_Nerd_Font_Mono:h12<CR>
+    inoremap <m-BS> <C-o>:set guifont=Delugia_Mono:h12.01<CR>
+    " mouse
+    noremap <m-ScrollWheelUp> :call AdjustFontSize(1)<CR>
+    noremap <m-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
+    inoremap <m-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
+    inoremap <m-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
 endif
 " }}}
 

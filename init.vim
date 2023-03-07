@@ -237,7 +237,6 @@ endif
 " }}}
 
 " {{{ 常规设置
-
 " 高亮设置
 syntax enable                        " 打开语法高亮
 syntax on                            " 开启文件类型侦测
@@ -831,7 +830,6 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=bold guifg=bg guibg=#f
 
 " ------------------------------- Plugins Config --------------------------------
 " {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
-
 tnoremap <Esc> <C-\><C-n>
 " nnoremap <S-p> :FloatermNew ipython<CR>
 " nnoremap <S-p> :FloatermNew  python<CR>
@@ -872,7 +870,6 @@ nnoremap  <leader>ta  :FloatermNew<CR>runas /user:ThinkPad\Administrator cmd<CR>
 
 " TOOl rg
 nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
-
 " }}}
 
 " {{{ << vim-visual-multi >>
@@ -897,7 +894,6 @@ let g:VM_maps['Add Cursor Down']    = '<C-j>'
 " let g:VM_maps['Add Cursor At Pos']  = '<C-x>'
 " let g:VM_maps['Add Cursor At Word'] = '<C-w>'
 " let g:VM_maps['Remove Region']      = 'q'
-
 " }}}
 
 " {{{ << Plugin - startify >>
@@ -1042,7 +1038,6 @@ let g:rainbow_conf = {
 " }}}
 
 " {{{ << Plugin - vim-better-whitespace >>
-" -----------------------------------------------------------------------------
 " 行尾空格红色显示.使用:StripWhitespace去除行尾空格.
 nnoremap <leader>si :StripWhitespace<CR>
 let g:better_whitespace_guicolor='red'
@@ -1051,7 +1046,6 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 " }}}
 
 " {{{ << Plugin - interestingwords >>
-" -----------------------------------------------------------------------------
 " 默认情况下的配置
 " nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
 " nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
@@ -1061,7 +1055,6 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 " }}}
 
 " {{{ << Plugin - EasyAlign >>
-" -----------------------------------------------------------------------------
 nmap <leader>a <Plug>(EasyAlign)
 xmap <leader>a <Plug>(EasyAlign)
 " }}}
@@ -1071,10 +1064,6 @@ let g:undotree_DiffAutoOpen = 1
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 set undodir=$VIM/vimfiles/undodir
 set undofile
-" if has("persistent_undo")
-"     set undodir=~/.undodir/
-"     set undofile
-" endif
 " }}}
 
 " {{{ << Plugin - expand-region >>
@@ -1089,7 +1078,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 
 " {{{ MarkDown Plugins - << plasticboyvim-markdown >> << markdown-toc >> << table-mode >> << Plugin - icebreaker gustav >> << Pangu >>
-
 " << Plugin - plasticboyvim - markdown >>
 augroup markdown_type
     autocmd!
@@ -1168,7 +1156,6 @@ augroup END
 " }}}
 
 " {{{ MarkDown Preview - << Plugin - iamcco/markdown-preview.nvim >> (需安装:nodejs 和 yarn)
-
 " 安装nodejs 和 yarn. 若不能预览markdown(通过:mess查看,有vim-node-rpc error)
 " 解决途径:通过系统 CMD 到该插件 app 目录下(\Vim\vimfiles\bundle\iamcco markdown-preview.nvim\app)执行 yarn install 即可使用.
 
@@ -1241,7 +1228,6 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 " }}}
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>
-" nmap zz <Plug>(crunch-operator)
 nmap <leader>, <Plug>(crunch-operator-line)
 xmap <leader>, <Plug>(visual-crunch-operator)
 " }}}
@@ -1283,7 +1269,6 @@ augroup vim_cycle
 
     au VimEnter * call AddCycleGroup(['TODO', 'DONE', 'WAITING', 'INPROGRESS', 'CANCELED', 'NOTE'])
 augroup END
-"
 " }}}
 
 " {{{ 选中文字加括号 << Plugin - sandwich >>
@@ -1469,11 +1454,6 @@ set nrformats=alpha,octal,hex
 
 " {{{ StartupTime << StartupTime >>
 let g:startuptime_tries = 10
-" augroup startuptime_mapping
-"  autocmd!
-"  autocmd CmdlineEnter : cnoremap sta StartupTime
-"  autocmd CmdlineLeave : cunmap sta
-" augroup END
 nnoremap <silent> <F12> :StartupTime<CR>
 " }}}
 
@@ -2170,7 +2150,6 @@ vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_increase", {})
 vim.api.nvim_set_keymap("x", "<leader>cc", "<Plug>kommentary_visual_increase", {})
 vim.api.nvim_set_keymap("n", "<leader>ci", "<Plug>kommentary_line_decrease", {})
 vim.api.nvim_set_keymap("x", "<leader>ci", "<Plug>kommentary_visual_decrease", {})
-
 EOF
 " }}}
 
@@ -2414,7 +2393,6 @@ EOF
 " }}}
 " {{{ norg << nvim-norg >>
 lua << EOF
-
 require('neorg').setup {
 	ensure_installed = { "norg" },
 	    highlight = { -- Be sure to enable highlights if you haven't!

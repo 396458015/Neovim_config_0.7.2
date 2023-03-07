@@ -222,7 +222,7 @@ augroup END
 " 英文
 if exists('g:neovide')
     " English
-    set guifont=Delugia_Mono:h11.5:cANSI                     " Nerd Font(Cascadia Code)
+    set guifont=Delugia\ Mono:h11.5                            " Nerd Font(Cascadia Code)
     " set guifont=CodeNewRoman_NFM:h12:cANSI                   " Nerd Font
     " set guifont=OperatorMono_NF:h12:cANSI                    " Nerd Font
     " set guifont=ComicMono_NF:h12:cANSI                       " Nerd Font

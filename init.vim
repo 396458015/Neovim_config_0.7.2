@@ -29,10 +29,8 @@ Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-endwise', { 'for': [ 'matlab' ] }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
-Plug 'chrisbra/csv.vim'
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
 Plug 'terryma/vim-expand-region', { 'on': [ '<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)'] }
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'AndrewRadev/linediff.vim', { 'on': 'Linediff' }
 Plug 'tommcdo/vim-exchange', { 'on': [ '<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)'] }
 Plug 'alpertuna/vim-header', { 'on': 'AddHeader' }
@@ -46,6 +44,7 @@ Plug 'zef/vim-cycle'
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
 Plug 'wellle/targets.vim'
+Plug 'chrisbra/csv.vim'
 
 "------------------- lazy load vim plug -------------------
 
@@ -90,6 +89,7 @@ Plug 'Xuyuanp/scrollbar.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'b3nj5m1n/kommentary'
 Plug 'ellisonleao/weather.nvim'
+Plug 'Vonr/align.nvim'
 
 " motion
 Plug 'ggandor/leap.nvim'
@@ -1052,11 +1052,6 @@ let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'u
 
 " nnoremap <silent> n :call WordNavigation('forward')<cr>
 " nnoremap <silent> N :call WordNavigation('backward')<cr>
-" }}}
-
-" {{{ << Plugin - EasyAlign >>
-nmap <leader>a <Plug>(EasyAlign)
-xmap <leader>a <Plug>(EasyAlign)
 " }}}
 
 " {{{ << Plugin - Undotree >>
@@ -2452,6 +2447,16 @@ nnoremap <silent> <leader>ss :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\not
 " {{{ << neorg-telescope >>
 lua << EOF
 local neorg_callbacks = require("neorg.callbacks")
+EOF
+" }}}
+
+" {{{ << Plugin - Vonr/align.nvim >>
+lua << EOF
+local NS = { noremap = true, silent = true }
+--vim.keymap.set('x','<leader>aa',function()require'align'.align_to_char(1,true)end,NS)--Alignsto1character,lookingleft
+--vim.keymap.set('x','<leader>as',function()require'align'.align_to_char(2,true,true)end,NS)--Alignsto2characters,lookingleftandwithpreviews
+vim.keymap.set('x','<leader>a',function()require'align'.align_to_string(false,true,true)end,NS)--Alignstoastring,lookingleftandwithpreviews
+--vim.keymap.set('x','<leader>ar',function()require'align'.align_to_string(true,true,true)end,NS)--AlignstoaLuapattern,lookingleftandwithpreviews
 EOF
 " }}}
 

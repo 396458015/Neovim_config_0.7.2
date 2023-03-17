@@ -742,7 +742,7 @@ augroup END
 nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 " }}}
 
-" {{{ colorscheme << nightfox >>
+" {{{ Colorscheme << nightfox >>
 lua << EOF
 require('nightfox').setup({
   options = {
@@ -819,7 +819,7 @@ require("nightfox").setup({ palettes = palettes })
 EOF
 
 " }}}
-" {{{ colorscheme << tokyonight >>
+" {{{ Colorscheme << tokyonight >>
 lua << EOF
 require("tokyonight").setup({
   -- your configuration comes here
@@ -863,7 +863,7 @@ colorscheme nightfox
 " colorscheme dayfox
 " colorscheme tokyonight-day | set background=light
 
-" {{{ highlihgt Diff
+" {{{ Highlihgt Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#87af87 " 新增的行
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#86abdc " 删除的行
 highlight DiffChange cterm=none ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#8787af " 变化的行

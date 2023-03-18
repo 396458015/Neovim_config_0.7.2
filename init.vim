@@ -393,8 +393,8 @@ augroup Buffer_quit
     autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 augroup END
 
-" highlihgt yank
-" highlight HighlightedyankRegion ctermbg=237 guibg=#994797
+" Highlihgt yank
+set background=light " 放到这里的目的,为了tokyonight-day显示复制颜色(HighlightedyankRegion)
 highlight HighlightedyankRegion ctermbg=237 guibg=#c34043
 augroup highlight_yank
     autocmd!
@@ -861,7 +861,7 @@ EOF
 " }}}
 colorscheme nightfox
 " colorscheme dayfox
-" colorscheme tokyonight-day | set background=light
+" colorscheme tokyonight-day
 
 " {{{ Highlihgt Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#87af87 " 新增的行

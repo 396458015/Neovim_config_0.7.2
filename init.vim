@@ -859,9 +859,18 @@ require("tokyonight").setup({
 EOF
 " colorscheme tokyonight-night tokyonight-storm tokyonight-moon
 " }}}
-colorscheme nightfox
-" colorscheme dayfox
-" colorscheme tokyonight-day
+" {{{ Random colorscheme
+lua << EOF
+random_color = {
+    'nightfox',
+--    'dayfox',
+    'tokyonight-day'
+}
+math.randomseed(os.time())
+local mycolor = random_color[math.random(table.getn(random_color))]
+vim.cmd('colorscheme ' .. mycolor)
+EOF
+" }}}
 
 " {{{ Highlihgt Diff
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=bold guifg=bg guibg=#87af87 " 新增的行

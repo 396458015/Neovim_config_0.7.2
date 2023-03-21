@@ -794,19 +794,40 @@ local palettes = {
     sel0    = "#364a82", --visual
     sel1    = "#228b22", --visual Selected
   },
+  duskfox   = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
+  terafox   = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
+  nordfox   = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
+  carbonfox = {
+    white   = "#abb2bf",
+    fg1     = "#b2b2b2",
+    comment = "#5c6370",
+    sel0    = "#364a82", --visual
+    sel1    = "#228b22", --visual Selected
+  },
   dayfox    = {
     bg1     = "#e1e2e7",
     fg1     = "#4d688e",
     fg3     = "#a8aecb", --line number
     sel0    = "#99a7df", --visual
     orange  = "#b15c00", --number
-  },
-  carbonfox  = {
-    white   = "#abb2bf",
-    fg1     = "#b2b2b2",
-    comment = "#5c6370",
-    sel0    = "#364a82", --visual
-    sel1    = "#228b22", --visual Selected
   },
 }
 
@@ -864,9 +885,9 @@ lua << EOF
 random_color = {
     'tokyonight-day',
     'dayfox',
-    'nightfox',
-    'nightfox',
-    'nightfox',
+    'duskfox',
+    'terafox',
+    'nordfox',
     'nightfox',
     'nightfox',
     'nightfox',

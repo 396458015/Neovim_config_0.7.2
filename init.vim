@@ -887,11 +887,11 @@ random_color = {
     'dayfox',
     'duskfox',
     'terafox',
+    'nightfox',
     'nordfox',
-    'nightfox',
-    'nightfox',
-    'nightfox',
-    'nightfox',
+    'nordfox',
+    'nordfox',
+    'nordfox',
 }
 math.randomseed(os.time())
 local mycolor = random_color[math.random(table.getn(random_color))]
@@ -2332,12 +2332,21 @@ END
 " Modified 📝
 " ⏰⏳⌛
 
-if &bg == 'dark'
-    lua require'lualine'.setup {options = { theme = 'max_lualine_theme_nightfox' }}
-elseif &bg == 'light'
-    lua require'lualine'.setup {options = { theme = 'max_lualine_theme_dayfox' }}
-endif
-
+lua << EOF
+if vim.g.colors_name == 'nightfox' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_nightfox' }}
+elseif vim.g.colors_name == 'nordfox' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_nordfox' }}
+elseif vim.g.colors_name == 'duskfox' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_duskfox' }}
+elseif vim.g.colors_name == 'terafox' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_terafox' }}
+elseif vim.g.colors_name == 'dayfox' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_dayfox' }}
+elseif vim.g.colors_name == 'tokyonight' then
+    require'lualine'.setup {options = { theme = 'max_lualine_theme_dayfox' }}
+end
+EOF
 " }}}
 
 " {{{ indentLine << indent-blankline.nvim >>

@@ -862,9 +862,15 @@ EOF
 " {{{ Random colorscheme
 lua << EOF
 random_color = {
---    'dayfox',
     'tokyonight-day',
-    'nightfox'
+    'dayfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
 }
 math.randomseed(os.time())
 local mycolor = random_color[math.random(table.getn(random_color))]

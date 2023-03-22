@@ -1962,160 +1962,160 @@ EOF
 lua << EOF
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
   -- Setup nvim-cmp.
-  local cmp = require'cmp'
+local cmp = require'cmp'
 
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  window = {
+      completion = cmp.config.window.bordered(),
+      --completion = {
+      --    completeopt = "menu,menuone,noinsert",
+      --},
+      documentation = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          winhighlight = "Normal:#51A266,NormalNC:#0C0C0C",
+      },
+  },
+  experimental = {
+      ghost_text = true,
+      native_menu = false,
+  },
+  sorting = {
+      comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          require("cmp-under-comparator").under,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+      },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+    ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+        elseif require("luasnip").expand_or_jumpable() then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+        else
+            fallback()
+        end
+    end, { "i", "s" }
+    ),
+    --["<Tab>"] = function(fallback)
+    --  if cmp.visible() then
+    --    cmp.select_next_item()
+    --  elseif luasnip.expand_or_jumpable() then
+    --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+    --  else
+    --    fallback()
+    --  end
+    --end,
+    --["<S-Tab>"] = function(fallback)
+    --  if cmp.visible() then
+    --    cmp.select_prev_item()
+    --  elseif luasnip.jumpable(-1) then
+    --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+    --  else
+    --    fallback()
+    --  end
+    --end
+  }),
+  formatting = {
+      format = function(entry, vim_item)
+          local icons = {
+              Text = "",
+              Method = "ƒ",
+              Function = "",
+              Constructor = "",
+              Field = "⌘",
+              Variable = "",
+              Class = "𝓒",
+              Interface = "ﰮ",
+              Module = "",
+              Property = "",
+              Unit = "",
+              Value = "",
+              Enum = "",
+              Keyword = "",
+              Snippet = "",
+              Color = "",
+              File = "",
+              Reference = "",
+              Folder = "",
+              EnumMember = "",
+              Constant = "",
+              Struct = "פּ",
+              Event = "",
+              Operator = "",
+              TypeParameter = "",
+              Table = " ",
+              Object = "",
+              Tag = " ",
+              Array = " ",
+              Boolean = "蘒",
+              Number = "",
+              String = "",
+              Calendar = " ",
+              Watch = "",
+          }
+          vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+
+          vim_item.menu = ({
+              luasnip = '[SNIP]',
+              path = '[PATH]',
+              buffer = '[BUF]',
+              calc = '[CALC]',
+              -- nuspell = '[SPELL]',
+              -- spell = '[SPELL]',
+              emoji = '[EMOJI]',
+              nvim_lsp = '[LSP]',
+              -- cmp_tabnine = '[TN]',
+              -- tmux = '[TMUX]',
+              -- conjure = '[CJ]',
+              -- orgmode = '[ORG]',
+              cmp_matlab = '[MAT]',
+              dictionary = '[Dict]',
+              latex_symbols = '[TEX]',
+              treesitter = '[TS]',
+          })[entry.source.name]
+          return vim_item
       end,
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        --completion = {
-        --    completeopt = "menu,menuone,noinsert",
-        --},
-        documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-            winhighlight = "Normal:#51A266,NormalNC:#0C0C0C",
-        },
-    },
-    experimental = {
-        ghost_text = true,
-        native_menu = false,
-    },
-    sorting = {
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            require("cmp-under-comparator").under,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-      ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-              cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-          elseif require("luasnip").expand_or_jumpable() then
-              vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-          else
-              fallback()
-          end
-      end, { "i", "s" }
-      ),
-      --["<Tab>"] = function(fallback)
-      --  if cmp.visible() then
-      --    cmp.select_next_item()
-      --  elseif luasnip.expand_or_jumpable() then
-      --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-      --  else
-      --    fallback()
-      --  end
-      --end,
-      --["<S-Tab>"] = function(fallback)
-      --  if cmp.visible() then
-      --    cmp.select_prev_item()
-      --  elseif luasnip.jumpable(-1) then
-      --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-      --  else
-      --    fallback()
-      --  end
-      --end
-    }),
-    formatting = {
-        format = function(entry, vim_item)
-            local icons = {
-                Text = "",
-                Method = "ƒ",
-                Function = "",
-                Constructor = "",
-                Field = "⌘",
-                Variable = "",
-                Class = "𝓒",
-                Interface = "ﰮ",
-                Module = "",
-                Property = "",
-                Unit = "",
-                Value = "",
-                Enum = "",
-                Keyword = "",
-                Snippet = "",
-                Color = "",
-                File = "",
-                Reference = "",
-                Folder = "",
-                EnumMember = "",
-                Constant = "",
-                Struct = "פּ",
-                Event = "",
-                Operator = "",
-                TypeParameter = "",
-                Table = " ",
-                Object = "",
-                Tag = " ",
-                Array = " ",
-                Boolean = "蘒",
-                Number = "",
-                String = "",
-                Calendar = " ",
-                Watch = "",
-            }
-            vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-
-            vim_item.menu = ({
-                luasnip = '[SNIP]',
-                path = '[PATH]',
-                buffer = '[BUF]',
-                calc = '[CALC]',
-                -- nuspell = '[SPELL]',
-                -- spell = '[SPELL]',
-                emoji = '[EMOJI]',
-                nvim_lsp = '[LSP]',
-                -- cmp_tabnine = '[TN]',
-                -- tmux = '[TMUX]',
-                -- conjure = '[CJ]',
-                -- orgmode = '[ORG]',
-                cmp_matlab = '[MAT]',
-                dictionary = '[Dict]',
-                latex_symbols = '[TEX]',
-                treesitter = '[TS]',
-            })[entry.source.name]
-            return vim_item
-        end,
-    },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'path' },
-      { name = 'luasnip' }, -- For luasnip users.
-      { name = 'buffer' },
-      { name = 'emoji' },
-      { name = 'calc' },
-      { name = 'cmp_matlab' },
-      { name = 'neorg' },
-      {	name = "dictionary", keyword_length = 2 },
-      {	name = "latex_symbols" },
-      {	name = "treesitter" },
-    })
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'buffer' },
+    { name = 'emoji' },
+    { name = 'calc' },
+    { name = 'cmp_matlab' },
+    { name = 'neorg' },
+    {	name = "dictionary", keyword_length = 2 },
+    {	name = "latex_symbols" },
+    {	name = "treesitter" },
   })
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
-    })
+})
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
   })
+})
 
 --  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 --  cmp.setup.cmdline('/', {

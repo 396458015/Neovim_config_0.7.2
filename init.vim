@@ -417,6 +417,16 @@ augroup END
 
 " }}}
 
+" {{{ 中英输入法切换
+augroup input_switching
+    autocmd!
+    autocmd VimEnter * :silent :!D:/Progra~1/Neovim/share/nvim/Mine/im-select.exe 1033
+    " autocmd InsertEnter * :silent :!D:/Progra~1/Neovim/share/nvim/Mine/im-select.exe 2052
+    autocmd InsertLeave * :silent :!D:/Progra~1/Neovim/share/nvim/Mine/im-select.exe 1033
+    autocmd VimLeave * :silent :!D:/Progra~1/Neovim/share/nvim/Mine/im-select.exe 1033
+augroup END
+" }}}
+
 " {{{ 自定义映射
 " ; 代替 :
 map ; :
@@ -887,11 +897,12 @@ random_color = {
     'dayfox',
     'duskfox',
     'terafox',
+    'nordfox',
     'nightfox',
-    'nordfox',
-    'nordfox',
-    'nordfox',
-    'nordfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
+    'nightfox',
 }
 math.randomseed(os.time())
 local mycolor = random_color[math.random(table.getn(random_color))]

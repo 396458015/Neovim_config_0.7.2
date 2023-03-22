@@ -1947,7 +1947,6 @@ parser_config.matlab = {
 }
 
 EOF
-
 " }}}
 
 " {{{ << luasnip >>
@@ -1972,9 +1971,6 @@ cmp.setup({
   },
   window = {
       completion = cmp.config.window.bordered(),
-      --completion = {
-      --    completeopt = "menu,menuone,noinsert",
-      --},
       documentation = {
           border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
           winhighlight = "Normal:#51A266,NormalNC:#0C0C0C",
@@ -2014,24 +2010,6 @@ cmp.setup({
         end
     end, { "i", "s" }
     ),
-    --["<Tab>"] = function(fallback)
-    --  if cmp.visible() then
-    --    cmp.select_next_item()
-    --  elseif luasnip.expand_or_jumpable() then
-    --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-    --  else
-    --    fallback()
-    --  end
-    --end,
-    --["<S-Tab>"] = function(fallback)
-    --  if cmp.visible() then
-    --    cmp.select_prev_item()
-    --  elseif luasnip.jumpable(-1) then
-    --    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-    --  else
-    --    fallback()
-    --  end
-    --end
   }),
   formatting = {
       format = function(entry, vim_item)
@@ -2097,7 +2075,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'path' },
-    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'emoji' },
     { name = 'calc' },
@@ -2116,23 +2094,6 @@ cmp.setup.filetype('gitcommit', {
     { name = 'buffer' },
   })
 })
-
---  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
---  cmp.setup.cmdline('/', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = {
---      { name = 'buffer' }
---    }
---  })
---
---  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---  cmp.setup.cmdline(':', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = {
---      { name = 'path' },
---      { name = 'cmdline' }
---    }
---  })
 
 local search_config = {
     mapping = cmp.mapping.preset.cmdline(),

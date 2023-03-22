@@ -893,8 +893,8 @@ EOF
 " {{{ Random colorscheme
 lua << EOF
 random_color = {
-    'tokyonight-day',
-    'dayfox',
+--    'tokyonight-day',
+--    'dayfox',
     'duskfox',
     'terafox',
     'nordfox',
@@ -2103,9 +2103,9 @@ cmp.setup({
     { name = 'calc' },
     { name = 'cmp_matlab' },
     { name = 'neorg' },
-    {	name = "dictionary", keyword_length = 2 },
-    {	name = "latex_symbols" },
-    {	name = "treesitter" },
+    { name = "dictionary", keyword_length = 2 },
+    { name = "latex_symbols" },
+    { name = "treesitter" },
   })
 })
 -- Set configuration for specific filetype.

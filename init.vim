@@ -2247,9 +2247,6 @@ require "lualine".setup {
     options = {
         icons_enabled = true,
         theme = 'auto',
-        --theme = 'max_lualine_theme_nightfox',
-        --theme = 'max_lualine_theme_dayfox',
-        -- component_separators = { left = '', right = '\\' },
         component_separators = { left = '', right = '\\' },
         section_separators = { left = '', right = ''},
         disabled_filetypes = {'NvimTree'},

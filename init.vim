@@ -2119,6 +2119,7 @@ EOF
 " nvim-lsp-installer
 lua << EOF
 local needed = {
+	"pylsp",
 	"pyright",
 	"vimls",
 }

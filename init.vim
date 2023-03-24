@@ -2545,7 +2545,6 @@ require('neorg').setup {
         },
     },
 }
-
 EOF
 nnoremap <silent> <leader>ss :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\notes_norg\index.norg<CR>
 " }}}

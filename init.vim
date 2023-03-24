@@ -67,11 +67,8 @@ function! LoadPlug_Vim(timer) abort
     call plug#load('vim-visual-star-search')
 endfunction
 
-" Plug g:plug_home. '/sideways.vim-main', { 'for': ['matlab','python','fortran'] }
 " Plug g:plug_home. '/vimtex-master', { 'for': 'tex' }
-" Plug g:plug_home. '/pangu.vim-master'
 " Plug g:plug_home. '/vim-repeat-master'
-" Plug g:plug_home. '/vimcdoc-master'
 
 " ===================================================================
 " --------------------------- lua plugins ---------------------------
@@ -109,15 +106,11 @@ Plug 'folke/todo-comments.nvim'
 Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
 Plug 'nvim-neorg/neorg-telescope'
 
-" Syntax highlighting
+" treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
 Plug 'yioneko/nvim-yati'
 
-" Auto completion-lsp
-Plug 'williamboman/nvim-lsp-installer', { 'frozen': 1 } "CANCELED:Updated
-Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
-
-" Auto completion-cmp
+" cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -129,10 +122,15 @@ Plug 'hrsh7th/cmp-calc'
 Plug 'mstanciu552/cmp-matlab'
 Plug 'lukas-reineke/cmp-under-comparator'
 Plug 'uga-rosa/cmp-dictionary'
-Plug 'kdheepak/cmp-latex-symbols'
 Plug 'ray-x/cmp-treesitter'
+" Plug 'kdheepak/cmp-latex-symbols'
 
-" Auto completion-Snippets
+" lsp
+Plug 'williamboman/nvim-lsp-installer', { 'frozen': 1 } "CANCELED:Updated
+Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
+Plug 'folke/trouble.nvim'
+
+" Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
@@ -652,9 +650,6 @@ function! GuiTabLabel()
 endfunction
 
 " -------------------- Buffer ---------------------
-" Close the current buffer
-nnoremap <leader>x :Bclose<cr>:tabclose<cr>gT
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -1907,7 +1902,8 @@ augroup ScrollbarInit
 augroup END
 " }}}
 
-" {{{ Language syntax highlighting << tree-sitter >>
+
+" {{{ treesitter
 lua << EOF
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
@@ -1948,21 +1944,12 @@ parser_config.matlab = {
 
 EOF
 " }}}
-
-" {{{ << luasnip >>
+" {{{ cmp
 lua << EOF
 require("luasnip/loaders/from_vscode").lazy_load()
-EOF
-" }}}
-" {{{ Auto completion plugins :1'nvim-cmp', 2'nvim-lspconfig', 3'cmp-nvim-lsp', 4'cmp-buffer',
-"                              5'cmp-path', 6'cmp-cmdline', 7'cmp_luasnip',
-"                              8'cmp-emoji' 9'cmp-calc',10'cmp-matlab',
-"                              11'cmp-under-comparator',12'cmp-dictionary'
-lua << EOF
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
-  -- Setup nvim-cmp.
-local cmp = require'cmp'
 
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
+local cmp = require'cmp'
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -2056,18 +2043,16 @@ cmp.setup({
               path = '[PATH]',
               buffer = '[BUF]',
               calc = '[CALC]',
-              -- nuspell = '[SPELL]',
-              -- spell = '[SPELL]',
               emoji = '[EMOJI]',
               nvim_lsp = '[LSP]',
-              -- cmp_tabnine = '[TN]',
-              -- tmux = '[TMUX]',
-              -- conjure = '[CJ]',
-              -- orgmode = '[ORG]',
               cmp_matlab = '[MAT]',
               dictionary = '[Dict]',
-              latex_symbols = '[TEX]',
               treesitter = '[TS]',
+              --latex_symbols = '[TEX]',
+              --orgmode = '[ORG]',
+              --cmp_tabnine = '[TN]',
+              --nuspell = '[SPELL]',
+              --spell = '[SPELL]',
           })[entry.source.name]
           return vim_item
       end,
@@ -2082,11 +2067,11 @@ cmp.setup({
     { name = 'cmp_matlab' },
     { name = 'neorg' },
     { name = "dictionary", keyword_length = 2 },
-    { name = "latex_symbols" },
     { name = "treesitter" },
+    --{ name = "latex_symbols" },
   })
 })
--- Set configuration for specific filetype.
+
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
@@ -2101,12 +2086,9 @@ local search_config = {
         { name = 'buffer' },
         }
     }
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', search_config)
 cmp.setup.cmdline('?', search_config)
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
@@ -2122,7 +2104,6 @@ require("cmp_dictionary").setup({
 		--["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-8813.dic" },
 		["*"] = { "D:/Program Files/Neovim/share/nvim/Mine/Directionary-69903.dic" },
 	},
-	-- The following are default values.
 	exact = 2,
 	first_case_insensitive = true,
 	document = false,
@@ -2132,10 +2113,9 @@ require("cmp_dictionary").setup({
 	capacity = 5,
 	debug = false,
 })
-
 EOF
 " }}}
-" {{{ lsp << nvim-lsp-installer >> << nvim-lspconfig >>
+" {{{ lsp
 " nvim-lsp-installer
 lua << EOF
 local needed = {
@@ -2155,8 +2135,6 @@ require("nvim-lsp-installer").setup({
     }
 })
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
@@ -2176,17 +2154,87 @@ for _, lsp in pairs(needed) do
       on_attach = on_attach,
       capabilities = capabilities,
       flags = {
-        -- This will be the default in neovim 0.7+
         debounce_text_changes = 150,
       }
     }
   end
 end
 
--- 取消代码诊断信息显示
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+-- diagnostic
+vim.diagnostic.config({
+    underline = true,
+    signs = true,
+    --virtual_text = true,
+    virtual_text = false,
+    float = {
+        show_header = true,
+        source = 'if_many',
+        border = 'rounded',
+        focusable = false,
+    },
+    update_in_insert = false, -- default to false
+    severity_sort = false, -- default to false
+})
+
+local diagnostics_active = true
+local toggle_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.show()
+  else
+    vim.diagnostic.hide()
+  end
+end
+vim.keymap.set('n', '<F6>', toggle_diagnostics)
+
+vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
+
+--vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end -- 取消代码诊断信息显示
 EOF
 " }}}
+" {{{ << trouble >>
+lua << EOF
+require("trouble").setup {
+    position = "right", -- position of the list can be: bottom, top, left, right
+    height = 10, -- height of the trouble list when position is top or bottom
+    width = 50, -- width of the list when position is left or right
+    icons = true, -- use devicons for filenames
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+    fold_open = "", -- icon used for open folds
+    fold_closed = "", -- icon used for closed folds
+    group = true, -- group results by file
+    padding = true, -- add an extra new line on top of the list
+    action_keys = { -- key mappings for actions in the trouble list
+        close = "q", -- close the list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r", -- manually refresh
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        next = "j" -- next item
+    },
+    indent_lines = true, -- add an indent guide below the fold icons
+    auto_open = false, -- automatically open the list when you have diagnostics
+    auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_fold = false, -- automatically fold a file trouble list at creation
+    auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+    signs = {
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "﫠"
+    },
+    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+}
+
+vim.keymap.set("n", "<leader>x", "<cmd>TroubleToggle<cr>",
+  {silent = true, noremap = true})
+EOF
+" }}}
+
 
 " {{{ commnet << kommentary >>
 lua << EOF
@@ -2608,7 +2656,7 @@ f = {
     f = {"File Browser" },
     },
 ['z'] = {'Replace Word'},
-['x'] = {'Close Tab'},
+['x'] = {'LSP diagnostic'},
 ['q'] = {'Close Buffer'},
 ['w'] = {'Python Send'},
 ['u'] = {'Undotree'},

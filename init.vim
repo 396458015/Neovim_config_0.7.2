@@ -111,11 +111,10 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANC
 Plug 'yioneko/nvim-yati'
 
 " cmp
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/cmp-calc'
@@ -128,6 +127,7 @@ Plug 'ray-x/cmp-treesitter'
 " lsp
 Plug 'williamboman/nvim-lsp-installer', { 'frozen': 1 } "CANCELED:Updated
 Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'folke/trouble.nvim'
 
 " Snippets
@@ -2120,7 +2120,6 @@ EOF
 lua << EOF
 local needed = {
 	"pylsp",
-	"pyright",
 	"vimls",
 }
 
@@ -2160,6 +2159,25 @@ for _, lsp in pairs(needed) do
     }
   end
 end
+
+require('lspconfig').pylsp.setup {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+        pylsp = {
+            plugins = {
+                jedi_completion = {
+                    enabled = true,
+                    fuzzy = true,
+                    include_params = true, -- this line enables snippets
+                    cache_for = { 'numpy','matplotlib' },
+                },
+                pycodestyle = {
+                    maxLineLength = 150,
+                },
+            },
+        },
+    },
+}
 
 -- diagnostic
 vim.diagnostic.config({

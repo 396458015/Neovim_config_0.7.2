@@ -115,7 +115,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/cmp-calc'
 Plug 'mstanciu552/cmp-matlab'
@@ -131,7 +130,8 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'saadparwaiz1/cmp_luasnip'
+" Plug 'rafamadriz/friendly-snippets'  " 下载后转移至Mine文件夹,增加了matlab snippet等等
 
 "------------------------------------------------------------------------
 "--------------------------- Modified plugins ---------------------------
@@ -1945,7 +1945,9 @@ EOF
 " }}}
 " {{{ cmp
 lua << EOF
-require("luasnip/loaders/from_vscode").lazy_load()
+-- Snippets
+-- require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load({paths = {"D:/Program Files/Neovim/share/nvim/Mine/friendly-snippets"} })
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
 local cmp = require'cmp'
@@ -2014,7 +2016,7 @@ cmp.setup({
               Value = "",
               Enum = "",
               Keyword = "",
-              Snippet = "",
+              Snippet = "✂️",
               Color = "",
               File = "",
               Reference = "",

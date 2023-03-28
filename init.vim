@@ -1943,12 +1943,16 @@ parser_config.matlab = {
 
 EOF
 " }}}
-" {{{ cmp
+" {{{ luasnip & snippets
 lua << EOF
 -- Snippets
 -- require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip/loaders/from_vscode").lazy_load({paths = {"D:/Program Files/Neovim/share/nvim/Mine/friendly-snippets"} })
-
+EOF
+nnoremap <silent> <leader>rm :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\friendly-snippets\snippets\add_snippets\matlab.json<CR>
+" }}}
+" {{{ cmp
+lua << EOF
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
 local cmp = require'cmp'
 cmp.setup({
@@ -2645,9 +2649,10 @@ f = {
 ['.'] = {'Open Path'},
 [','] = {'Calculator'},
 ['r'] = {
-    name = 'VIMRC',
+    name = 'VIMRC & Snippets',
     ['c'] = {'Edit VIMRC' },
     ['r'] = {'Reload VIMRC' },
+    ['m'] = {'Matlab Snippets' },
     },
 ['s'] = {
     name = 'Tools',

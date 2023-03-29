@@ -1665,7 +1665,8 @@ require'nvim-tree'.setup {
         mappings = {
             custom_only = true,
             list = {
-                { key = {"<Tab>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+                { key = {"<cr>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
+                { key = {"<Tab>"},                      cb = tree_cb("next_sibling") },
                 --{ key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
                 { key = "<C-v>",                        cb = tree_cb("vsplit") },
                 { key = "<C-x>",                        cb = tree_cb("split") },

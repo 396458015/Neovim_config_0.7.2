@@ -1986,13 +1986,12 @@ cmp.setup({
       },
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-    ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-c>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close(), },
+    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true, },
     ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
@@ -2002,6 +2001,16 @@ cmp.setup({
             fallback()
         end
     end, { "i", "s" }
+    ),
+	["<S-Tab>"] = cmp.mapping(function(fallback)
+	if cmp.visible() then
+	   	cmp.select_prev_item()
+	elseif require("luasnip").jumpable(-1) then
+		vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+	else
+		fallback()
+	end
+	end, { "i", "s" }
     ),
   }),
   formatting = {

@@ -2757,6 +2757,9 @@ w = {
     },
 }, { prefix = ',' })
 
+-- change whichkey background color
+vim.api.nvim_set_hl(0, "WhichKeyFloat", { ctermbg = 'black', ctermfg = 'black' })
+vim.api.nvim_set_hl(0, "WhichKeyBorder", { ctermbg = 'black', ctermfg = 'black' })
 EOF
 " }}}
 

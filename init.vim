@@ -48,7 +48,6 @@ Plug 'wellle/targets.vim'
 Plug 'chrisbra/csv.vim'
 
 "------------------- lazy load vim plug -------------------
-
 Plug 'ntpeters/vim-better-whitespace', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}

@@ -3,14 +3,15 @@
 " License           : 0.0.2
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
-" Last Modified Date: 2022.10.31
+" Last Modified Date: 2023.04.03
 " Desc              : NEOVIM 0.7.2(support Python, Lua)
-"  __  ____   __   ___     _____ __  __ ____   ____
-" |  \/  \ \ / /    \ \   / /_ _|  \/  |  _ \ / ___|
-" | |\/| |\ V /      \ \ / / | || |\/| | |_) | |
-" | |  | | | |        \ V /  | || |  | |  _ <| |___
-" |_|  |_| |_|         \_/  |___|_|  |_|_| \_\\____|
-" ======================================================
+"                          __
+"  __  ____   __   __  __ /\_\    ___ ___     ____   ____
+" |  \/  \ \ / /  /\ \/\ \\/\ \ /'' __` _`\  |  _ \ / ___|
+" | |\/| |\ V /   \ \ \_/ |\ \ \/\ \/\ \/\ \ | |_) | |
+" | |  | | | |     \ \___/  \ \_\ \_\ \_\ \_\|  _ <| |___
+" |_|  |_| |_|      \/__/    \/_/\/_/\/_/\/_/|_| \_\\____|
+" ========================================================
 
 " {{{ << Plugin - vimplug >>
 call plug#begin('D:/Program Files/Neovim/share/nvim/Mine/Plugged')
@@ -48,7 +49,6 @@ Plug 'chrisbra/csv.vim'
 
 "------------------- lazy load vim plug -------------------
 
-Plug 'tpope/vim-eunuch', { 'on': []}
 Plug 'ntpeters/vim-better-whitespace', { 'on': []}
 Plug 'lfv89/vim-interestingwords', { 'on': []}
 Plug 'markonm/traces.vim', { 'on': []}
@@ -58,7 +58,6 @@ Plug 'bronson/vim-visual-star-search', { 'on': []}  " Start a * or # search from
 
 call timer_start(700, 'LoadPlug_Vim')
 function! LoadPlug_Vim(timer) abort
-    call plug#load('vim-eunuch')
     call plug#load('vim-better-whitespace')
     call plug#load('vim-interestingwords')
     call plug#load('traces.vim')
@@ -912,6 +911,11 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=bold guifg=bg guibg=#f
 " }}}
 
 " ------------------------------- Plugins Config --------------------------------
+" {{{ << Plugin - markonm/traces.vim >>
+let g:traces_normal_preview = 1
+let g:traces_num_range_preview = 1
+" }}}
+
 " {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
 tnoremap <Esc> <C-\><C-n>
 " nnoremap <S-p> :FloatermNew ipython<CR>
@@ -980,39 +984,12 @@ let g:VM_maps['Add Cursor Down']    = '<C-j>'
 " }}}
 
 " {{{ << Plugin - startify >>
-" let g:ascii = [
-" let g:startify_custom_header = [
-"             \ '                                                         .                                                      .               ',
-"             \ '                                                       .n                   .                 .                  n.             ',
-"             \ '                                                 .   .dP                  dP                   9b                 9b.    .      ',
-"             \ '                                                4    qXb         .       dX                     Xb       .        dXp     t     ',
-"             \ '                                               dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb    ',
-"             \ '                                               9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP    ',
-"             \ '                                                9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP     ',
-"             \ '                                                 `9XXXXXXXXXXXXXXXXXXXXX`~   ~`OOO8b   d8OOO`~   ~`XXXXXXXXXXXXXXXXXXXXXP`      ',
-"             \ '                                                   `9XXXXXXXXXXXP` `9XX`   DIE    `98v8P`  HUMAN   `XXP` `9XXXXXXXXXXXP`        ',
-"             \ '                                                       ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~            ',
-"             \ '                                                                       )b.  .dbo.dP``v``9b.odb.  .dX(                           ',
-"             \ '                                                                    ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.                           ',
-"             \ '                                     __                             dXXXXXXXXXXXP`   .   `9XXXXXXXXXXXb                         ',
-"             \ '                             __  __ /\_\    ___ ___                dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb                        ',
-"             \ '                            /\ \/\ \\/\ \ /'' __` __`\             9XXb`   `XXXXXb.dX|Xb.dXXXXX`   `dXXP                        ',
-"             \ '                            \ \ \_/ |\ \ \/\ \/\ \/\ \              ``      9XXXXXX(   )XXXXXXP      ``                         ',
-"             \ '                             \ \___/  \ \_\ \_\ \_\ \_\                      XXXX X.`v`.X XXXX                                  ',
-"             \ '                              \/__/    \/_/\/_/\/_/\/_/                     XP^X``b   d``X^XX                                   ',
-"             \ '                                                                             X. 9  `   `  P )X                                  ',
-"             \ '                                                                             `b  `       `  d`                                  ',
-"             \ '                                                                              `             `                                   ',
-"             \]
+let g:startify_files_number = 16  " 起始页显示的列表长度
 
-" let g:startify_custom_header = g:ascii + startify#fortune#boxed()
-
-let g:startify_files_number = 16        " 起始页显示的列表长度
-" 设置书签
 let g:startify_bookmarks            = [
             \ '~/bookmarks',
             \]
-" 设置footer(header)
+
 let g:startify_custom_footer = [
             \ '                                                                   ',
             \ '                                                                   ',
@@ -1733,10 +1710,17 @@ require'nvim-tree'.setup {
 
 --创建文档后自动打开
 --require "nvim-tree.events".on_file_created(function(file) vim.cmd("edit " .. file.fname) end)
+
+-- change nvim-tree background color (transparency)
+vim.api.nvim_command("hi NvimTreeNormal guibg=none ctermbg=none guifg=none")
+vim.api.nvim_command("hi NvimTreeStatusLine guibg=none ctermbg=none guifg=none")
+vim.api.nvim_command("hi NvimTreeStatusLineNC guibg=none ctermbg=none guifg=none")
+vim.api.nvim_command("hi NvimTreeNormalNC guibg=none ctermbg=none guifg=none")
+--vim.api.nvim_command("hi NvimTreeVertSplit guibg=none ctermbg=none guifg=none")
 EOF
 
+" 快捷键
 nnoremap <silent> <leader>e :NvimTreeToggle<CR>
-" 跳转到 目录, 浏览文件
 nnoremap <leader>. :NvimTreeOpen  :\<left><left>
 nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
 " }}}
@@ -2757,7 +2741,7 @@ w = {
     },
 }, { prefix = ',' })
 
--- change whichkey background color
+-- change whichkey background color (transparency)
 vim.api.nvim_set_hl(0, "WhichKeyFloat", { ctermbg = 'black', ctermfg = 'black' })
 vim.api.nvim_set_hl(0, "WhichKeyBorder", { ctermbg = 'black', ctermfg = 'black' })
 EOF

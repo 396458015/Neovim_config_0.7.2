@@ -22,10 +22,7 @@ augroup load_multi
     autocmd InsertEnter * call plug#load('vim-visual-multi') | autocmd! load_multi
 augroup END
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': [ 'markdown' ]}
 Plug 'mattn/calendar-vim',  { 'on': 'CalendarVR' }
-Plug 'icebreaker/gustav.vim', { 'for': [ 'markdown' ] }
-Plug 'dhruvasagar/vim-table-mode', { 'for': [ 'markdown' ] }
 Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-endwise', { 'for': [ 'matlab' ] }
@@ -37,9 +34,12 @@ Plug 'tommcdo/vim-exchange', { 'on': [ '<Plug>(Exchange)', '<Plug>(ExchangeLine)
 Plug 'alpertuna/vim-header', { 'on': 'AddHeader' }
 Plug 'iqxd/vim-mine-sweeping', { 'on': [ 'MineSweep' ]}
 Plug 'Yggdroot/LeaderF', { 'on': [ 'LeaderfFile', 'Leaderf', 'LeaderfLine'] }
+Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': [ 'markdown' ]}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
+Plug 'icebreaker/gustav.vim', { 'for': [ 'markdown' ] }
+Plug 'dhruvasagar/vim-table-mode', { 'for': [ 'markdown' ] }
 Plug 'mhinz/vim-startify'
 Plug 'zef/vim-cycle'
 Plug 'machakann/vim-sandwich'
@@ -454,9 +454,9 @@ vnoremap          p          pgvy
 vnoremap          P          Pgvy
 
 " 单词的 选/改/删
-" nnoremap <silent> vi viw
-" nnoremap <silent> ci ciw
-" nnoremap <silent> di diw
+nnoremap <silent> vi viw
+nnoremap <silent> ci ciw
+nnoremap <silent> di diw
 
 " IDE like delete
 inoremap <C-BS> <Esc>b"_dei

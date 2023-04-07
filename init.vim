@@ -100,9 +100,9 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-lua/plenary.nvim'
 
 " notes
-Plug 'folke/todo-comments.nvim'
 Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
 Plug 'nvim-neorg/neorg-telescope'
+Plug 'folke/todo-comments.nvim'
 
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
@@ -122,7 +122,8 @@ Plug 'ray-x/cmp-treesitter'
 " Plug 'kdheepak/cmp-latex-symbols'
 
 " lsp
-Plug 'williamboman/nvim-lsp-installer', { 'frozen': 1 } "CANCELED:Updated
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
 Plug 'hrsh7th/cmp-nvim-lsp'
 
@@ -2114,35 +2115,28 @@ require("cmp_dictionary").setup({
 EOF
 " }}}
 " {{{ lsp
-" nvim-lsp-installer
 lua << EOF
-local needed = {
-	"pylsp",
-	"vimls",
-}
+local needed = { "pylsp", "vimls" }
 
-require("nvim-lsp-installer").setup({
-    ensure_installed = needed,
-    automatic_installation = false, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+require("mason").setup({
     ui = {
         icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
         }
     }
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+require("mason-lspconfig").setup({
+    ensure_installed = needed
+})
 
 for _, lsp in pairs(needed) do
   if lsp == 'diagnosticls' then
-
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes={ 'markdown'},
       flags = {
         debounce_text_changes = 150,
       }
@@ -2209,7 +2203,7 @@ vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua vim.diagnostic.open_float()<CR>',
 --vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end -- 取消代码诊断信息显示
+--vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end -- 取消代码诊断信息显示
 EOF
 " }}}
 

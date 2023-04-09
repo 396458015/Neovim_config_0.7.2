@@ -1646,7 +1646,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {"python","fortran","c","vim","lua","latex","markdown","norg","norg_meta","matlab"},
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
   incremental_selection = {
     enable = true,

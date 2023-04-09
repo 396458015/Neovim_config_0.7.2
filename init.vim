@@ -3,7 +3,7 @@
 " License           : 0.0.2
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
-" Last Modified Date: 2023.04.03
+" Last Modified Date: 2023.04.09
 " Desc              : NEOVIM 0.7.2(support Python, Lua)
 "                          __
 "  __  ____   __   __  __ /\_\    ___ ___     ____   ____
@@ -25,20 +25,16 @@ augroup END
 Plug 'mattn/calendar-vim',  { 'on': 'CalendarVR' }
 Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'tpope/vim-endwise', { 'for': [ 'matlab' ] }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
 Plug 'terryma/vim-expand-region', { 'on': [ '<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)'] }
 Plug 'AndrewRadev/linediff.vim', { 'on': 'Linediff' }
-Plug 'tommcdo/vim-exchange', { 'on': [ '<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)'] }
 Plug 'alpertuna/vim-header', { 'on': 'AddHeader' }
 Plug 'iqxd/vim-mine-sweeping', { 'on': [ 'MineSweep' ]}
 Plug 'Yggdroot/LeaderF', { 'on': [ 'LeaderfFile', 'Leaderf', 'LeaderfLine'] }
 Plug 'voldikss/vim-floaterm', { 'on': [ 'FloatermNew', 'FloatermSend'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': [ 'markdown' ]}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
-Plug 'icebreaker/gustav.vim', { 'for': [ 'markdown' ] }
 Plug 'dhruvasagar/vim-table-mode', { 'for': [ 'markdown' ] }
 Plug 'mhinz/vim-startify'
 Plug 'zef/vim-cycle'
@@ -70,84 +66,84 @@ endfunction
 
 " ===================================================================
 " --------------------------- lua plugins ---------------------------
-Plug 'nathom/filetype.nvim'
-Plug 'lewis6991/impatient.nvim'
-Plug 'alvarosevilla95/luatab.nvim'
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'kevinhwang91/nvim-hlslens'
-Plug 'chentoast/marks.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'windwp/nvim-autopairs'
-Plug 'karb94/neoscroll.nvim'
-Plug 'Xuyuanp/scrollbar.nvim'
-Plug 'folke/which-key.nvim'
-Plug 'b3nj5m1n/kommentary'
-Plug 'ellisonleao/weather.nvim'
-Plug 'Vonr/align.nvim'
+ Plug 'nathom/filetype.nvim'
+ Plug 'lewis6991/impatient.nvim'
+ Plug 'alvarosevilla95/luatab.nvim'
+ Plug 'lukas-reineke/indent-blankline.nvim'
+ Plug 'kevinhwang91/nvim-hlslens'
+ Plug 'chentoast/marks.nvim'
+ Plug 'kyazdani42/nvim-web-devicons'
+ Plug 'kyazdani42/nvim-tree.lua'
+ Plug 'windwp/nvim-autopairs'
+ Plug 'karb94/neoscroll.nvim'
+ Plug 'Xuyuanp/scrollbar.nvim'
+ Plug 'folke/which-key.nvim'
+ Plug 'b3nj5m1n/kommentary'
+ Plug 'ellisonleao/weather.nvim'
+ Plug 'Vonr/align.nvim'
 
-" motion
-Plug 'ggandor/leap.nvim'
-Plug 'ggandor/flit.nvim'
+ " motion
+ Plug 'ggandor/leap.nvim'
+ Plug 'ggandor/flit.nvim'
 
-" colorscheme
-Plug 'EdenEast/nightfox.nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+ " colorscheme
+ Plug 'EdenEast/nightfox.nvim'
+ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
-" Telescope
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'nvim-lua/plenary.nvim'
+ " Telescope
+ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+ Plug 'nvim-telescope/telescope-file-browser.nvim'
+ Plug 'nvim-lua/plenary.nvim'
 
-" notes
-Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
-Plug 'nvim-neorg/neorg-telescope'
-Plug 'folke/todo-comments.nvim'
+ " notes
+ Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
+ Plug 'nvim-neorg/neorg-telescope'
+ Plug 'folke/todo-comments.nvim'
 
-" treesitter
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
-Plug 'yioneko/nvim-yati'
+ " treesitter
+ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
+ Plug 'yioneko/nvim-yati'
 
-" cmp
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-emoji'
-Plug 'hrsh7th/cmp-calc'
-Plug 'mstanciu552/cmp-matlab'
-Plug 'lukas-reineke/cmp-under-comparator'
-Plug 'uga-rosa/cmp-dictionary'
-Plug 'ray-x/cmp-treesitter'
-" Plug 'kdheepak/cmp-latex-symbols'
+ " cmp
+ Plug 'hrsh7th/nvim-cmp'
+ Plug 'hrsh7th/cmp-buffer'
+ Plug 'hrsh7th/cmp-path'
+ Plug 'hrsh7th/cmp-cmdline'
+ Plug 'hrsh7th/cmp-emoji'
+ Plug 'hrsh7th/cmp-calc'
+ Plug 'mstanciu552/cmp-matlab'
+ Plug 'lukas-reineke/cmp-under-comparator'
+ Plug 'uga-rosa/cmp-dictionary'
+ Plug 'ray-x/cmp-treesitter'
+ " Plug 'kdheepak/cmp-latex-symbols'
 
-" lsp
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
-Plug 'hrsh7th/cmp-nvim-lsp'
+ " lsp
+ Plug 'williamboman/mason.nvim'
+ Plug 'williamboman/mason-lspconfig.nvim'
+ Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
+ Plug 'hrsh7th/cmp-nvim-lsp'
 
-" Snippets
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-" Plug 'rafamadriz/friendly-snippets'  " 下载后转移至Mine文件夹,增加了matlab snippet等等
+ " Snippets
+ Plug 'L3MON4D3/LuaSnip'
+ Plug 'saadparwaiz1/cmp_luasnip'
+ " Plug 'rafamadriz/friendly-snippets'  " 下载后转移至Mine文件夹,增加了matlab snippet等等
 
-"------------------------------------------------------------------------
-"--------------------------- Modified plugins ---------------------------
-" Modified plugins (viml)
-" 1. add SpeedDatingFormat
-Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
+ "------------------------------------------------------------------------
+ "--------------------------- Modified plugins ---------------------------
+ " Modified plugins (viml)
+ " 1. add SpeedDatingFormat
+ Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
 
-" 2. remap: "<leader>" to "\"; turn off the drag function
-Plug g:plug_home. '/vim-scripts-DrawIt', { 'on': 'DIstart' }
+ " 2. remap: "<leader>" to "\"; turn off the drag function
+ Plug g:plug_home. '/vim-scripts-DrawIt', { 'on': 'DIstart' }
 
-" --------------------------
-" Modified plugins (lua)
-" 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
-Plug g:plug_home. '/lualine.nvim-master'
+ " --------------------------
+ " Modified plugins (lua)
+ " 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
+ Plug g:plug_home. '/lualine.nvim-master'
 
-" 2. weather report for 3 days
-Plug g:plug_home. '/weather3day.nvim-main'
+ " 2. weather report for 3 days
+ Plug g:plug_home. '/weather3day.nvim-main'
 
 call plug#end()
 
@@ -166,75 +162,39 @@ require('impatient')
 EOF
 " }}}
 
-" {{{ vim 技巧
-" 1.NORMAL模式下, SHIFT 相当于移动加速键,  w b e 移动光标很慢, 但是 W B E 走的很快.
-" 2.NORMAL模式下, C-o 跳转到光标之前的位置.
-" 3.插入模式下, CTRL-X CTRL-F 可以方便的补全当前目录的文件名.
-" 4.插入模式下, 当你发现一个单词写错了, 应该多用 CTRL-W 这比 <BackSpace> 快.
-" 5.VISUAL模式下, 用 v 命令选择文本时, 可以用 o 掉头选择, 有时很有用.
-" 6.排版
-"      :ce(nter) 本行文字居中  :le(ft) 本行文字靠左  :le(ft) 本行文字靠左  :ri(ght) 本行文字靠右
-"      gq 对选中的文字重排, 即对过长的文字进行断行
-"      :Pangu 格式化
-" 7.查看历史命令记录,NORMAL模式下'q:'
-" 8.在 每一 行尾 添加 something ,":'<,'>s/$/something/g"
-"   在 每一 行首 添加 something ,":'<,'>s/^/something/g"
-" 9.VISUAL模式选中后,zf可以自动为选中的部分生成{{{}}}折叠符,zd可以删除折叠符
-" 10.大小写互换,VISUAl选中后u/U可以大小写互换，同样~也可以
-" 11.INSERT模式下<c-w>删除上一个单词,<C-u>删除这一行光标前的所有内容
-" 11.数字序列生成.VISUAL块选数字后,g <C-a>:累计+1,<C-x>:累计-1
-" 12.删除某段行,":1,100d",删除1-100行
-" 13.第1列排序:'sort n' 增序; 'sort! n' 降序; '1,4sort n' 对指定行排序
-"    第2列排序(逗号隔开):'sort /[^,]*,/ n' 增序;'sort! /[^,]*,/ n'降序
-" 14.'sort nu' 排序+去重
-" 15. 相对行号的使用: 1) 向下跳转行 nj; 向上跳转行 nk;
-"                     2）删除多行 ndj, 删除从光标行-光标行以下的多行(相对行号);
-"                        区别于使用ndd, 非相对行号时使用ndd, 相当于删除n行,包含光标行, 删除相对行号的n-1行
-" 16. 折叠     zc zC     所有 zM
-"     打开折叠 zo zO     所有 zR
-" }}}
-
 " {{{ 编码格式
-" 设置文件编码格式
 if has('multi_byte')
-    " 内部工作编码
     set encoding=utf-8
     set termencoding=utf-8
     set fileencoding=utf-8
-    " 打开文件时自动尝试下面顺序的编码
-    "set fileencodings=ucs-bom,utf-8,gbk,gb18030,big5,euc-jp,latin1
     set fileencodings=utf-8,gbk,gb18030,big5,ucs-bom,euc-jp,latin1
 endif
 
 " 解决vim编辑matlab文件保存后, matlab中文为乱码的问题
 augroup matlab_filetype
     autocmd!
-    " autocmd FileType matlab set fileencoding=GB2312       "GB2312=cp936
     autocmd FileType matlab set fileencoding=cp936       "GB2312=cp936
 augroup END
-
 " }}}
 
 " {{{ 字体/字号
-" 英文
 if exists('g:neovide')
-    " English
-    set guifont=Delugia\ Mono:h11.5                   " Nerd Font(Cascadia Code)
+    " English font
+    set guifont=Delugia\ Mono:h11.5                   " Nerd Font (Cascadia Code)
     " set guifont=CodeNewRoman_NFM:h12                " Nerd Font
     " set guifont=OperatorMono_NF:h12                 " Nerd Font
     " set guifont=ComicMono_NF:h12                    " Nerd Font
 
-    " Chinese
+    " Chinese font
     set guifontwide=inconsolatago_qihei_nf:h12.5      " 中文 Nerd Font
 else
-    set guifont=Delugia_Mono:h12.1                    " Nerd Font(Cascadia Code)
+    set guifont=Delugia_Mono:h12.1                    " Nerd Font (Cascadia Code)
     set guifontwide=inconsolatago_qihei_nf:h12.5      " 中文 Nerd Font
 endif
-
 " }}}
 
 " {{{ 常规设置
-" 高亮设置
+" 高亮
 syntax enable                        " 打开语法高亮
 syntax on                            " 开启文件类型侦测
 syntax sync minlines=64
@@ -242,7 +202,6 @@ if &bg == 'dark'
     hi CursorLine gui=NONE guibg=#3C4452
 elseif &bg == 'light'
     hi CursorLine gui=NONE guibg=#c6cbd9
-    " hi CursorLine gui=NONE guibg=#CCCCCC
 endif
 
 language en
@@ -277,7 +236,7 @@ set laststatus=2                     " 开启状态栏信息
 set cmdheight=1                      " 命令行的高度,默认为1,这里设为2
 set linebreak                        " 整词换行
 set backspace=2                      " 设置退格键可用
-set backspace=indent,eol,start       " More powerful backspacing (indent:如果用了:set indent,:set ai等自动缩进,想用退格键将字段缩进的删掉,必须设置这个选项.否则不响应.eol:如果插入模式下在行开头,想通过退格键合并两行,需要设置eol.start:要想删除此次插入前的输入,需设置这个.)
+set backspace=indent,eol,start
 set shiftwidth=4                     " 换行时行间交错使用4个空格
 set cindent shiftwidth=4             " 自动缩进4空格
 set smartindent                      " 智能自动缩进
@@ -308,7 +267,7 @@ set formatoptions+=B                 " 合并两行中文时,不在中间加空�
 set whichwrap+=<,>,h,l               " 允许backspace和光标键跨越行边界
 set magic                            " For regular expressions turn magic on
 
-" 代码折叠
+" Fold
 set foldmethod=marker                " 折叠类型---对文中标志折叠
 " set foldmethod=manual              " 折叠类型---手工
 " set foldmethod=syntax              " 折叠类型---语法高亮
@@ -345,16 +304,10 @@ let g:python_host_prog  = "C:/Python/Python311/python.exe"
 let g:python3_host_prog = "C:/Python/Python311/python.exe"
 let $PYTHONUNBUFFERED=1              " 禁用python stdout缓冲
 
-augroup load_rpy
+augroup python_related
     autocmd!
-    autocmd BufNewFile,BufRead *.rpy set syntax=python | autocmd! load_rpy
-augroup END
-
-" Python:PEP8风格的缩进
-augroup python_pep8
-    autocmd!
-    au BufNewFile,BufRead *.py
-                \set fileformat=unix     " 以unix格式存储文件,避免在推送到GITHUB或分享给其他用户时出现文件转换问题.
+    autocmd BufNewFile,BufRead *.py set fileformat=unix     " 以unix格式存储文件,避免在推送到GITHUB或分享给其他用户时出现文件转换问题.
+    autocmd BufNewFile,BufRead *.rpy set syntax=python
 augroup END
 
 " 禁止屏闪和铃声
@@ -394,7 +347,6 @@ set background=light " 放到这里的目的,为了tokyonight-day显示复制颜
 highlight HighlightedyankRegion ctermbg=237 guibg=#c34043
 augroup highlight_yank
     autocmd!
-    " au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=120}
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="HighlightedyankRegion", timeout=120}
 augroup END
 
@@ -410,7 +362,6 @@ augroup END
 "     autocmd InsertLeave * set cul    " 离开插入模式 恢复 高亮当前行
 "     autocmd InsertLeave * set cuc    " 离开插入模式 恢复 高亮当前列
 " augroup END
-
 " }}}
 
 " {{{ 中英输入法切换
@@ -423,15 +374,12 @@ augroup input_switching
 augroup END
 " }}}
 
-" {{{ 自定义映射
-" ; 代替 :
+" {{{ mapping
 map ; :
 
-" Disable the default s key
 noremap s <nop>
 xmap s <nop>
 
-" leader & localleader keys
 nnoremap <Space> <nop>
 nnoremap , <nop>
 let g:mapleader = "\<Space>"
@@ -472,7 +420,6 @@ nnoremap <silent> <leader>st :Startify<CR>
 nnoremap <leader>dt :Linediff<CR>
 
 " 插入时间
-" iab xtime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 iab xtime <c-r>=strftime("20%y-%m-%d %a %H:%M")<CR>
 iab xdate <c-r>=strftime("20%y-%m-%d (%a)")<CR>
 
@@ -485,15 +432,11 @@ nnoremap <silent> <Tab> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " zM                        --关闭所有折叠
 " zR                        --打开所有折叠
 
-"-------------------- vimrc ----------------------
-" 打开配置文件vimrc
+" vimrc
 nnoremap <silent> <leader>rc :edit $MYVIMRC<cr>
-
-" 重新加载vimrc
 nnoremap <silent> <leader>rr :source $MYVIMRC<CR>
 
-" --------------- Spell checking ------------------
-" 拼写检查
+" spell checking
 nnoremap <Leader>sc :set spell!<CR>
 
 nnoremap <leader>sn ]s
@@ -503,8 +446,7 @@ nnoremap <leader>sa zg
 " 显示单词拼写建议
 nnoremap <leader>s? z=
 
-" ------------------- 光标移动 --------------------
-" INSERT Mode下使用光标移动指令
+" 光标移动
 inoremap <m-h> <Left>
 inoremap <m-j> <Down>
 inoremap <m-k> <Up>
@@ -513,28 +455,6 @@ inoremap <m-l> <Right>
 " INSERT Mode下使用光标移动一个单词
 inoremap <C-h> <C-Left>
 inoremap <C-l> <C-Right>
-
-" INSERT Mode Cursor Movement
-" inoremap <C-a> <ESC>I
-" inoremap <C-e> <ESC>A
-
-" NORMAL Mode下 Alt + L将光标移动到行尾
-" nnoremap <m-l> <ESC>$
-
-" NORMAL Mode下 Alt + H将光标移动到行首
-" nnoremap <m-h> <ESC>0
-
-" NORMAL Mode下 Alt + K 将光标移到上一行的末尾
-" nnoremap <A-k> <ESC>k$
-
-" INSERT Mode下 Ctrl + K 将光标移到上一行的末尾
-" inoremap  <ESC>kA
-
-" INSERT Mode下 Ctrl + L 将光标移到行尾
-" inoremap  <ESC>A
-
-" INSERT Mode下 Ctrl + H 将光标移到行首
-" inoremap  <ESC>I
 
 " ----------------- find and replace --------------
 nnoremap <leader>z :%s/\<<C-R>=expand("<cword>")<CR>\>/<C-R>=expand("<cword>")<CR>/g<left><left>
@@ -550,32 +470,19 @@ nnoremap < <<
 nnoremap > >>
 
 "---------------- 分屏快捷键设置 ----------------
-" 新建一个垂直分割窗口,放置在当前窗口右侧
 nnoremap <silent> sh :set splitright<CR>:vsplit<CR>
-" 新建一个垂直分割窗口startify,放置在当前窗口右侧
-nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
-" 新建一个水平分割窗口,放置在当前窗口下方
 nnoremap <silent> sj :set splitbelow<CR>:split<CR>
-" buffers/quickfix 分屏窗口移动,split navigations,smart way to move between windows
-
-" 设置两个分屏为垂直分割.Place the two screens side by side
-" nnoremap sv <C-w>t<C-w>H
-" 设置两个分屏为水平分割.Place the two screens up and down
-" nnoremap sh <C-w>t<C-w>K
+nnoremap <silent> st :set splitright<CR>:vsplit<CR>:Startify<CR>
 
 " 互换分割窗口.Rotate screens
-" nnoremap srv <C-w>b<C-w>H
 nnoremap <S-h> <C-w>b<C-w>H
 " nnoremap srh <C-w>b<C-w>K
 
+" 光标移动
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
 "nnoremap <C-j> <C-W><C-J>
 "nnoremap <C-k> <C-W><C-K>
-
-" gf vim垂直分屏打开文件
-nnoremap gf <C-w>f<C-w>L
-vnoremap gf <C-w>f<C-w>L
 
 " terminal 分屏窗口移动,split navigations,smart way to move between windows
 tnoremap <C-h> <C-w><C-h>
@@ -585,17 +492,11 @@ tnoremap <C-l> <C-w><C-l>
 
 "---------------- 调整分屏尺寸 ----------------
 nnoremap <silent>   <C-up>  :resize -3<CR>
-" 调整上下分屏尺寸
 nnoremap <silent>   <C-down>  :resize +3<CR>
-" 调整左右分屏尺寸
 nnoremap <silent>   <C-left>  :vertical resize +3<CR>
-" 调整左右分屏尺寸
 nnoremap <silent>   <C-right>  :vertical resize -3<CR>
 
-" -------------------- tabs -----------------------
-nnoremap <leader>tn :tabnew<CR>
-
-" 支持Alt+n切换标签页
+" ----------- 支持Alt+n切换标签页 -----------
 :nn <M-1> 1gt
 :nn <M-2> 2gt
 :nn <M-3> 3gt
@@ -611,39 +512,30 @@ nnoremap <leader>tn :tabnew<CR>
 nn <silent> <M-left> :if tabpagenr() == 1\|exe "tabm ".tabpagenr("$")\|el\|exe "tabm ".(tabpagenr()-2)\|en<CR>
 nn <silent> <M-right> :if tabpagenr() == tabpagenr("$")\|tabm 0\|el\|exe "tabm ".tabpagenr()\|en<CR>
 
-" 标签页的标题修改
-set guitablabel=%{GuiTabLabel()}
 " 修改标签页的标题
-" set up tab labels with tab number, buffer name, number of windows
+set guitablabel=%{GuiTabLabel()}
 function! GuiTabLabel()
     let label = ''
     let bufnrlist = tabpagebuflist(v:lnum)
-    " Add '+' if one of the buffers in the tab page is modified
     for bufnr in bufnrlist
         if getbufvar(bufnr, "&modified")
             let label = '+'
             break
         endif
     endfor
-    " Append the tab number
     let label .= v:lnum.': '
-    " Append the buffer name
     let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
     if name == ''
-        " give a name to no-name documents
         if &buftype=='quickfix'
             let name = '[Quickfix List]'
         else
             let name = '[No Name]'
         endif
     else
-        " get only the file name
         let name = fnamemodify(name,":t")
     endif
     let label .= name
-    " Append the number of windows in the tab page
     let wincount = tabpagewinnr(v:lnum, '$')
-    "return label . '  [' . wincount . ']'
     return label
 endfunction
 
@@ -716,13 +608,11 @@ cno $q <C-\>eDeleteTillSlash()<CR>
 
 function! DeleteTillSlash()
     let g:cmd = getcmdline()
-
     if has("win16") || has("win32")
         let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
     else
         let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
     endif
-
     if g:cmd == g:cmd_edited
         if has("win16") || has("win32")
             let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
@@ -730,26 +620,14 @@ function! DeleteTillSlash()
             let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
         endif
     endif
-
     return g:cmd_edited
 endfunc
-
-" CMD 调用 matlab scripts
-augroup matlab_run
-    autocmd!
-    autocmd FileType matlab nnoremap <silent><C-CR> :! matlab -nosplash -nodesktop -r %:r<CR><CR>
-augroup END
-" TERMINAL运行matlab代码,以'test.m'代码为例 'matlab -nosplash -nodesktop -r test'
-
-" neovim 调用SumatraPdf 打开pdf, pdf名字存在空格, 对文件名单引号处理 '*.pdf'
-nnoremap gX :!SumatraPdf <C-r><C-l><CR>
 " }}}
 
 " {{{ Colorscheme << nightfox >>
 lua << EOF
 require('nightfox').setup({
   options = {
-    -- Compiled file's destination location
     compile_path = vim.fn.stdpath("cache") .. "/nightfox",
     compile_file_suffix = "_compiled", -- Compiled file suffix
     transparent = false,    -- Disable setting background
@@ -768,13 +646,12 @@ require('nightfox').setup({
       keywords = "bold",
       numbers = "italic",
     },
-    inverse = {             -- Inverse highlight for different types
+    inverse = {
       match_paren = true,
-      visual = false,
-      --visual = true,
+      visual = false,       --default is true
       search = false,
     },
-    modules = {             -- List of various plugins and additional options
+    modules = {
       nvimtree = true,
       cmp = true,
       telescope = true,
@@ -783,7 +660,6 @@ require('nightfox').setup({
     },
     }
 })
-
 --note: nightfox color change: (1) white:   #dfdfe0 -> #abb2bf  ps:白色变浅
 --                             (2) fg1:     #cdcecf -> #abb2bf  ps:白色变浅,同上
 --                             (3) comment: #738091 -> #5c6370  ps:注释颜色变浅
@@ -841,20 +717,15 @@ require("nightfox").setup({ palettes = palettes })
 --vim.cmd("colorscheme nightfox")
 --vim.cmd("colorscheme dayfox")
 EOF
-
 " }}}
 " {{{ Colorscheme << tokyonight >>
 lua << EOF
 require("tokyonight").setup({
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
   style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   light_style = "day", -- The theme is used when the background is set to light
   transparent = false, -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
-    -- Style to be applied to different syntax groups
-    -- Value is any valid attr-list value for `:help nvim_set_hl`
     comments = { italic = false },
     keywords = { bold = true },
     functions = { italic = true },
@@ -869,15 +740,8 @@ require("tokyonight").setup({
   dim_inactive = false, -- dims inactive windows
   lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 
-  --- You can override specific color groups to use other groups or a hex color
-  --- function will be called with a ColorScheme table
-  ---@param colors ColorScheme
   on_colors = function(colors) end,
 
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights Highlights
-  ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
 })
 EOF
@@ -916,33 +780,47 @@ let g:traces_normal_preview = 1
 let g:traces_num_range_preview = 1
 " }}}
 
-" {{{ Compiler code & Python REPL & FORTRAN << floaterm && REPL >>
+" {{{ Compiler code & Python & REPL & Matlab & Fortran << floaterm && REPL >>
+hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
+let g:floaterm_autoclose=0
+let g:floaterm_keymap_kill = '<C-q>'
+let g:floaterm_keymap_next = '<leader>tn'
+
+nnoremap  <leader>to  :FloatermNew<CR>
+nnoremap  <leader>tt  :FloatermToggle<CR>
 tnoremap <Esc> <C-\><C-n>
-" nnoremap <S-p> :FloatermNew ipython<CR>
-" nnoremap <S-p> :FloatermNew  python<CR>
+" tnoremap  <leader>tt  <C-\><C-n>:FloatermToggle<CR>
+
+" SumatraPdf open pdf
+nnoremap <A-o> :FloatermNew SumatraPdf <C-r><C-l><CR>
+
+" TOOl rg
+nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
+
 augroup Compiler_code
     autocmd!
     autocmd FileType floaterm nnoremap <buffer> <Esc> :q<CR>
-    " Python
+    " -- Python --
     autocmd FileType python nnoremap <C-CR> :FloatermNew py "%:p"<CR>
     autocmd FileType python noremap! <C-CR>  <Esc>:FloatermToggle<CR>
-    autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<CR>
-    " Python REPL
+    " autocmd FileType python tnoremap <C-CR>  <C-\><C-n>:FloatermToggle<CR>
+    " -- Python REPL --
     nnoremap <leader>tp :FloatermNew --width=0.5 --wintype=vsplit --name=repl --position=rightbelow ipython<CR>
     autocmd FileType python nnoremap <leader>w :FloatermSend<CR>
     autocmd FileType python vnoremap <leader>w :FloatermSend<CR>
-    " FORTRAN
+    " -- Matlab --
+    autocmd FileType matlab nnoremap <silent><C-CR> :! matlab -nosplash -nodesktop -r %:r<CR><CR>
+    " TERMINAL运行matlab代码,以'test.m'代码为例 'matlab -nosplash -nodesktop -r test'
+    " -- Fortran --
     autocmd FileType fortran nnoremap <C-CR> :FloatermNew<CR>compilervars.bat intel64<CR>ifort<Space>
+    " -- Typst --
+    " highligth file 'D:\Program Files\Neovim\share\nvim\runtime\syntax\typst.vim'
+    autocmd BufRead,BufNewFile *.typ setlocal filetype=typst
+    autocmd FileType typst nnoremap <C-CR> :FloatermNew --height=1.0 typst watch %:p<CR>
+    autocmd FileType typst command! TypstPDF execute "FloatermNew! sumatrapdf %:p<C-h><C-h><C-h>pdf<CR>"
 augroup END
 
-let g:floaterm_autoclose=0  "0: Always do NOT close floaterm window
-hi FloatermBorder guibg=#3e4452 guifg=#c94f6d
-
-" CMD mode
-nnoremap  <leader>to  :FloatermNew<CR>
-nnoremap  <leader>tt  :FloatermToggle<CR>
-tnoremap <leader>tt  <C-\><C-n>:FloatermToggle<CR>
-" nnoremap <F5> :FloatermNew<CR>git add init.vim<CR>git commit --allow-empty-message -m ""<CR>git push<CR>
+" Git
 command! Push execute "FloatermNew!git add init.vim<CR>git commit --allow-empty-message -m \"\"<CR>git push<CR>"
 command! Pull execute "FloatermNew!git fetch --all<CR>git reset --hard origin/main<CR>"
 command! Gitlog execute "FloatermNew!git log --all --oneline --graph<CR>"
@@ -954,9 +832,6 @@ nnoremap  <leader>ta  :FloatermNew<CR>runas /user:ThinkPad\Administrator cmd<CR>
 " 开启管理员账号: net user administrator /active:yes
 " 关闭管理员账号: net user administrator /active:no
 " 设置管理员密码(1234): net user administrator 1234
-
-" TOOl rg
-nnoremap <leader>tr :FloatermNew<CR>rg.exe<Space>
 " }}}
 
 " {{{ << vim-visual-multi >>
@@ -965,7 +840,6 @@ augroup visual_multi_yank
     autocmd User visual_multi_mappings nmap <buffer> <leader>y "+y
 augroup END
 
-" let g:VM_theme                      = 'ocean'
 let g:VM_theme                      = 'iceblue'
 let g:VM_highlight_matches          = 'underline'
 let g:VM_maps                       = {}
@@ -989,7 +863,6 @@ let g:startify_files_number = 16  " 起始页显示的列表长度
 let g:startify_bookmarks            = [
             \ '~/bookmarks',
             \]
-
 let g:startify_custom_footer = [
             \ '                                                                   ',
             \ '                                                                   ',
@@ -1030,31 +903,18 @@ let g:startify_custom_footer = [
             \]
 
 highlight StartifyBracket ctermfg=10 guifg=#444B6A
-" highlight StartifyFile ctermfg=10 guifg=#9ECE6A
-" highlight StartifyFile ctermfg=10 guifg=#12970e
 highlight StartifyNumber ctermfg=10 guifg=#FF9E64
 
 if &background ==# 'dark'
-    " highlight StartifyFile ctermfg=10 guifg=#9ECE6A
     highlight StartifyFile ctermfg=10 guifg=#9ECE6A
 elseif &background ==# 'light'
     highlight StartifyFile ctermfg=10 guifg=#12970e
 endif
 
-" highlight StartifyPath ctermfg=10 guifg=#444B6A
-" highlight StartifySlash ctermfg=10 guifg=#444B6A
-
 highlight StartifyPath ctermfg=10 guifg=#786591
 highlight StartifySlash ctermfg=10 guifg=#786591
-" purple:      #994797
-" dark purple: #786591
-
 highlight StartifySection ctermfg=10 guifg=#7AA2F7
-
-" highlight StartifyHeader ctermfg=10 guifg=#F7768E
-" highlight StartifyHeader ctermfg=10 guifg=#a600ff
 highlight StartifyHeader ctermfg=10 guifg=#8687b0
-
 highlight StartifyFooter ctermfg=10 guifg=#F7768E
 highlight StartifySpecial ctermfg=10 guifg=#444B6A
 
@@ -1105,15 +965,6 @@ let g:strip_whitespace_on_save=0
 let g:better_whitespace_filetypes_blacklist=['startify', 'diff', 'gitcommit', 'unite', 'qf', 'help']
 " }}}
 
-" {{{ << Plugin - interestingwords >>
-" 默认情况下的配置
-" nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
-" nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
-
-" nnoremap <silent> n :call WordNavigation('forward')<cr>
-" nnoremap <silent> N :call WordNavigation('backward')<cr>
-" }}}
-
 " {{{ << Plugin - Undotree >>
 let g:undotree_DiffAutoOpen = 1
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
@@ -1122,14 +973,45 @@ set undofile
 " }}}
 
 " {{{ << Plugin - expand-region >>
-" Default is press + to expand the visual selection and _ to shrink it.
-" Customize the key mapping if you don't like the default.
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 
-" {{{ << Plugin - endwise >>
-" 'end'补全,支持Matlab
+" {{{ MarkDown Preview - << Plugin - iamcco/markdown-preview.nvim >> (需安装:nodejs 和 yarn)
+" 安装nodejs 和 yarn. 若不能预览markdown(通过:mess查看,有vim-node-rpc error)
+" 解决途径:通过系统 CMD 到该插件 app 目录下(\Vim\vimfiles\bundle\iamcco markdown-preview.nvim\app)执行 yarn install 即可使用.
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1,
+            \ 'sequence_diagrams': {}
+            \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
+
+augroup markdown_preview
+    autocmd!
+    autocmd FileType markdown nnoremap <C-CR> <Plug>MarkdownPreview
+augroup END
+
+" 设置预览代码高亮(绝对路径)
+" let g:mkdp_highlight_css = 'D:\Program Files\VIM\vimfiles\bundle\iamcco markdown-preview.nvim\markdown_highlight_solarized_dark.css'
+let g:mkdp_highlight_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\markdown.css'
+let g:mkdp_markdown_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\github-markdown.css'
 " }}}
 
 " {{{ MarkDown Plugins - << plasticboyvim-markdown >> << markdown-toc >> << table-mode >> << Plugin - icebreaker gustav >> << Pangu >>
@@ -1167,7 +1049,6 @@ let g:vim_markdown_fenced_languages = [
             \ 'makefile=make',
             \ 'py=python'
             \ ]
-
 let g:vim_markdown_follow_anchor = 1
 let g:vim_markdown_edit_url_in = 'vsplit'       " tab  vsplit  hsplit  current
 
@@ -1185,67 +1066,6 @@ augroup markdown_table
     au FileType markdown let g:table_mode_auto_align = 0
     autocmd FileType markdown TableModeEnable
 augroup END
-
-" << Plugin - markdown-toc >>
-":GenTocGFM  :GenTocRedcarpet :GenTocGitLab :GenTocMarked
-augroup markdown_gentoc
-    autocmd!
-    autocmd FileType markdown nnoremap <leader>tc :GenTocMarked<CR>
-augroup END
-
-" << Plugin - icebreaker gustav >> todo list
-augroup markdown_gustav
-    autocmd!
-    " - [ ]
-    autocmd FileType markdown noremap <Leader>_ :call gustav#add()<CR>
-    " - [x] turn - [x]
-    autocmd FileType markdown noremap <Leader>- :call gustav#toggle()<CR>
-augroup END
-
-" << Plugin - Pangu >>
-" 手动执行该命令,将当前文件进行规范化
-" `:Pangu` 命令
-
-" 自动格式化,标准化中文排版(当前未启用)
-"autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
-" }}}
-
-" {{{ MarkDown Preview - << Plugin - iamcco/markdown-preview.nvim >> (需安装:nodejs 和 yarn)
-" 安装nodejs 和 yarn. 若不能预览markdown(通过:mess查看,有vim-node-rpc error)
-" 解决途径:通过系统 CMD 到该插件 app 目录下(\Vim\vimfiles\bundle\iamcco markdown-preview.nvim\app)执行 yarn install 即可使用.
-
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_open_ip = ''
-let g:mkdp_echo_preview_url = 0
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-            \ 'mkit': {},
-            \ 'katex': {},
-            \ 'uml': {},
-            \ 'maid': {},
-            \ 'disable_sync_scroll': 0,
-            \ 'sync_scroll_type': 'middle',
-            \ 'hide_yaml_meta': 1,
-            \ 'sequence_diagrams': {}
-            \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
-augroup markdown_preview
-    autocmd!
-    autocmd FileType markdown nnoremap <C-CR> <Plug>MarkdownPreview
-augroup END
-
-" 设置预览代码高亮(绝对路径)
-" let g:mkdp_highlight_css = 'D:\Program Files\VIM\vimfiles\bundle\iamcco markdown-preview.nvim\markdown_highlight_solarized_dark.css'
-let g:mkdp_highlight_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\markdown.css'
-let g:mkdp_markdown_css = 'D:\Program Files\Neovim\share\nvim\Mine\Plugged\iamcco markdown-preview.nvim\github-markdown.css'
 " }}}
 
 " {{{ LATEX插件 << Plugin - lervag/vimtex >>
@@ -1256,8 +1076,6 @@ let g:vimtex_quickfix_mode=0
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
-
-" The last two lines con­fig­ure the con­ceal­ment. This is a fea­ture where LaTeX code is re­placed or made in­vis­i­ble when your cur­sor is not on that line. By mak­ing \[, \], $ in­vis­i­ble, they’re less ob­tru­sive which gives you a bet­ter overview of the doc­u­ment. This fea­ture also re­places \bigcap by by ∩, \in by ∈ etc.
 " let g:tex_conceal='abdmg'
 
 " To prevent conceal in LaTeX files
@@ -1285,15 +1103,6 @@ nnoremap <silent><F11> :ScreenSaver<CR>
 " {{{ 计算器 << Plugin - arecarn/crunch >>
 nmap <leader>, <Plug>(crunch-operator-line)
 xmap <leader>, <Plug>(visual-crunch-operator)
-" }}}
-
-" {{{ 移动行(剪切-粘贴) << Plugin -tommcdo/vim-exchange >>
-let g:exchange_no_mappings = 1
-
-" nmap cx <Plug>(Exchange)
-xmap X <Plug>(Exchange)
-nmap cxx <Plug>(ExchangeLine)
-nmap cxc <Plug>(ExchangeClear)
 " }}}
 
 " {{{ 循环 C-a C-x << Plugin -zef/vim-cycle >>
@@ -1329,7 +1138,6 @@ augroup END
 " {{{ 选中文字加括号 << Plugin - sandwich >>
 " use vim-sandwich with vim-surround keymappings
 runtime macros/sandwich/keymap/surround.vim
-
 " S        -对选中部分的两侧加符号
 " dss      -删除两侧符号
 " css      -改变两侧符号
@@ -1472,39 +1280,16 @@ let g:Lf_WildIgnore = {
         \}
 " }}}
 
-" {{{ 移动括号内被,分割的东东 << Plugin - Sideways.vim-main >>
-" nnoremap <c-h> :SidewaysLeft<cr>
-" nnoremap <c-l> :SidewaysRight<cr>
-
-" 用法
-" def function(one, two, three)    ------------>     def function(two, one, three):
-
-" }}}
-
 " {{{ 数列递增递减，字母序列递增递减 << Plugin - vim-visual-increment-master >>
-" 字母序列的递增
 set nrformats=alpha,octal,hex
-
 " 用法
-" <C-a>增加(差值1)
-" <C-x>减小(差值1)
-" n<C-a>增加(差值n)
-" n<C-x>减小(差值n)
+" <C-a>增加(差值1) <C-x>减小(差值1)
+" n<C-a>增加(差值n) n<C-x>减小(差值n)
 
-" <C-a>增加
-" 1         1
-" 1   ----> 2
-" 1         3
-
-" <C-a>增加
-" a         a
-" a   ----> b
-" a         c
-
-" n<C-a>增加
-" 1         1
-" 1   ----> 1+n
-" 1         1+2n
+" <C-a>增加       <C-a>增加       n<C-a>增加
+" 1         1     a         a     1         1
+" 1   ----> 2     a   ----> b     1   ----> 1+n
+" 1         3     a         c     1         1+2n
 " }}}
 
 " {{{ StartupTime << StartupTime >>
@@ -1633,7 +1418,6 @@ require'nvim-tree'.setup {
     open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
     hijack_cursor = true, --- hijack the cursor in the tree to put it at the start of the filename
     update_focused_file = {enable = true, update_cwd = true, ignore_list = {}},
-
     view = {
         adaptive_size = true,
         number = true,
@@ -1707,7 +1491,6 @@ require'nvim-tree'.setup {
         dotfiles = true,
     },
 }
-
 --创建文档后自动打开
 --require "nvim-tree.events".on_file_created(function(file) vim.cmd("edit " .. file.fname) end)
 
@@ -1719,7 +1502,7 @@ vim.api.nvim_command("hi NvimTreeNormalNC guibg=none ctermbg=none guifg=none")
 --vim.api.nvim_command("hi NvimTreeVertSplit guibg=none ctermbg=none guifg=none")
 EOF
 
-" 快捷键
+" mapping
 nnoremap <silent> <leader>e :NvimTreeToggle<CR>
 nnoremap <leader>. :NvimTreeOpen  :\<left><left>
 nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
@@ -1758,7 +1541,6 @@ EOF
 " {{{ pair << nvim-autopairs >>
 lua << EOF
 require("nvim-autopairs").setup {}
-
 local disable_filetype = { "TelescopePrompt" }
 local disable_in_macro = false  -- disable when recording or executing a macro
 local disable_in_visualblock = false -- disable when insert after visual block mode
@@ -1779,31 +1561,13 @@ EOF
 " {{{ marks << nvim-marks >>
 lua << EOF
 require'marks'.setup {
-  -- whether to map keybinds or not. default true
   default_mappings = false,
-  -- which builtin marks to show. default {}
   builtin_marks = { ".", "<", ">", "^" },
-  -- whether movements cycle back to the beginning/end of buffer. default true
   cyclic = true,
-  -- whether the shada file is updated after modifying uppercase marks. default false
-  --force_write_shada = false,
   force_write_shada = false,
-  -- how often (in ms) to redraw signs/recompute mark positions.
-  -- higher values will have better performance but may cause visual lag,
-  -- while lower values may cause performance penalties. default 150.
   refresh_interval = 250,
-  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
-  -- marks, and bookmarks.
-  -- can be either a table with all/none of the keys, or a single number, in which case
-  -- the priority applies to all marks.
-  -- default 10.
   sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
-  -- disables mark tracking for specific filetypes. default {}
   excluded_filetypes = {},
-  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
-  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
-  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
-  -- default virt_text is "".
   bookmark_0 = {
     sign = "⚑",
     virt_text = "hello world"
@@ -1850,19 +1614,7 @@ require('hlslens').setup({
         render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
     end
 })
-
 EOF
-
-" Integrate with vim-visual-multi
-" lua << EOF
-" --vim.cmd([[
-" --    aug VMlens
-" --        au!
-" --        au User visual_multi_start lua require('vmlens').start()
-" --        au User visual_multi_exit lua require('vmlens').exit()
-" --    aug END
-" --]])
-" EOF
 
 " mapping
 nnoremap <leader>/ /\<<C-R>=expand("<cword>")<CR>\><left><left>
@@ -1891,15 +1643,11 @@ augroup END
 lua << EOF
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
-  -- :TSInstallInfo 命令查看支持的语言
   ensure_installed = {"python","fortran","c","vim","lua","latex","markdown","norg","norg_meta","matlab"},
-  --ensure_installed = "maintained",
-  -- 启用代码高亮功能
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  -- 启用增量选择
   incremental_selection = {
     enable = true,
   },
@@ -1925,7 +1673,6 @@ parser_config.matlab = {
     },
     filetype = "matlab",
 }
-
 EOF
 " }}}
 " {{{ luasnip & snippets
@@ -2116,7 +1863,7 @@ EOF
 " }}}
 " {{{ lsp
 lua << EOF
-local needed = { "pylsp", "vimls" }
+local lsp_list = { "pylsp", "vimls" }
 
 require("mason").setup({
     ui = {
@@ -2129,10 +1876,10 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-    ensure_installed = needed
+    ensure_installed = lsp_list
 })
 
-for _, lsp in pairs(needed) do
+for _, lsp in pairs(lsp_list) do
   if lsp == 'diagnosticls' then
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -2175,16 +1922,15 @@ require('lspconfig').pylsp.setup {
 vim.diagnostic.config({
     underline = true,
     signs = true,
-    --virtual_text = true,
-    virtual_text = false,
+    virtual_text = false, -- default is true
     float = {
         show_header = true,
         source = 'if_many',
         border = 'rounded',
         focusable = false,
     },
-    update_in_insert = false, -- default to false
-    severity_sort = false, -- default to false
+    update_in_insert = false, -- default is false
+    severity_sort = false, -- default is false
 })
 
 local diagnostics_active = true
@@ -2203,7 +1949,7 @@ vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua vim.diagnostic.open_float()<CR>',
 --vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 
---vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end -- 取消代码诊断信息显示
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end -- 取消代码诊断信息显示
 EOF
 " }}}
 
@@ -2261,7 +2007,7 @@ EOF
 " }}}
 
 " {{{ << lualine >>
-lua << END
+lua << EOF
 require "lualine".setup {
     globalstatus = true,
     options = {
@@ -2280,8 +2026,8 @@ require "lualine".setup {
             mode = 0,
             max_length = vim.o.columns * 2 / 3,
             symbols = {
-                --modified = ' [+]',
                 modified = ' [𝓐 ]',
+                --modified = ' [+]',
                 --modified = ' ',
                 --modified = ' -->🈚',
                 alternate_file = ' o',
@@ -2315,13 +2061,6 @@ require "lualine".setup {
     },
 }
 
-END
-
-" ✗ ✖️ ❌ ⚡ ⚠️ 🔍📝❓🚫⛔❗🍅⏰
-" Modified 📝
-" ⏰⏳⌛
-
-lua << EOF
 if vim.g.colors_name == 'nightfox' then
     require'lualine'.setup {options = { theme = 'max_lualine_theme_nightfox' }}
 elseif vim.g.colors_name == 'nordfox' then
@@ -2336,6 +2075,9 @@ elseif vim.g.colors_name == 'tokyonight' then
     require'lualine'.setup {options = { theme = 'max_lualine_theme_dayfox' }}
 end
 EOF
+" ✗ ✖️ ❌ ⚡ ⚠️ 🔍📝❓🚫⛔❗🍅⏰
+" Modified 📝
+" ⏰⏳⌛
 " }}}
 
 " {{{ indentLine << indent-blankline.nvim >>
@@ -2346,7 +2088,6 @@ vim.g.indent_blankline_buftype_exclude = {
     "quickfix",
     "prompt",
 }
-
 vim.g.indent_blankline_filetype_exclude = {
     "help",
     "startify",
@@ -2356,46 +2097,23 @@ vim.g.indent_blankline_filetype_exclude = {
     "NvimTree",
     "checkhealth",
 }
-
 require("indent_blankline").setup {
     space_char_blankline = " ",
     show_current_context = true,
     show_current_context_start = true,
 }
-
---rainbow indentline
---vim.opt.termguicolors = true
---vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
---vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
---vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
---vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
---vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
---vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
---
---require("indent_blankline").setup {
---    space_char_blankline = " ",
---    char_highlight_list = {
---        "IndentBlanklineIndent1",
---        "IndentBlanklineIndent2",
---        "IndentBlanklineIndent3",
---        "IndentBlanklineIndent4",
---        "IndentBlanklineIndent5",
---        "IndentBlanklineIndent6",
---    },
---}
 EOF
 " }}}
 
 " {{{ easymotion << leap.nvim >> << flit.nvim >>
 lua << EOF
--- << leap.nvim >> configure
---require('leap').opts.safe_labels = {}-- Disable auto jump first match
+-- leap.nvim
 require('leap').opts.highlight_unlabeled_phase_one_targets = true
 vim.keymap.set({'x', 'o', 'n'}, 'r', '<Plug>(leap-forward-to)')
 vim.keymap.set({'x', 'o', 'n'}, 'R', '<Plug>(leap-backward-to)')
 vim.keymap.set({'x', 'o', 'n'}, 'gr', '<Plug>(leap-cross-window)')
 
--- << flit.nvim >> configure
+-- flit.nvim
 require('flit').setup {
   keys = { f = 'f', F = 'F', t = 't', T = 'T' },
   labeled_modes = "v",
@@ -2458,7 +2176,6 @@ require("todo-comments").setup {
          },
      }
 EOF
-
 "  , , , , ,
 "  , , , ,﫠
 " }}}
@@ -2605,7 +2322,7 @@ lua << EOF
     v = { "j", "k" },
   },
 }
-  }
+}
 
 local L_all = require('which-key')
 L_all.register({
@@ -2653,11 +2370,12 @@ f = {
     },
 ['t'] = {
     name = 'Terminal',
-    ['o'] = {'Terminal' },
-    ['t'] = {'Term-Toggle' },
-    ['r'] = {'Terminal rg' },
+    ['o'] = {'Term New' },
+    ['t'] = {'Term Toggle' },
+    ['n'] = {'Term Next' },
+    ['r'] = {'Term Rg' },
     ['p'] = {'IPyhon' },
-    ['a'] = {'Terminal(Admin)' },
+    ['a'] = {'Term(Admin)' },
     },
 }, { prefix = '<leader>' })
 

@@ -1641,17 +1641,17 @@ augroup END
 
 " {{{ treesitter
 lua << EOF
+local treesitter_list = { "python", "fortran", "c", "vim", "lua", "latex", "markdown", "norg", "norg_meta", "matlab" }
 require 'nvim-treesitter.install'.compilers = { "clang" }
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"python","fortran","c","vim","lua","latex","markdown","norg","norg_meta","matlab"},
+  ensure_installed = treesitter_list,
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = treesitter_list,
   },
   incremental_selection = {
     enable = true,
   },
-  -- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.
   indent = {
     enable = true,
   },
@@ -1979,7 +1979,8 @@ require('luatab').setup{
     --end,
     modified = function(bufnr)
         --return vim.fn.getbufvar(bufnr, '&modified') == 1 and '[+] ' or ''
-        return vim.fn.getbufvar(bufnr, '&modified') == 1 and '● ' or ''
+        --return vim.fn.getbufvar(bufnr, '&modified') == 1 and '● ' or ''
+        return vim.fn.getbufvar(bufnr, '&modified') == 1 and ' ' or ''
         --return vim.fn.getbufvar(bufnr, '&modified') == 1 and '🈚 ' or ''
     end,
     title = function(bufnr)

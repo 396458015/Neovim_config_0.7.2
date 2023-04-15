@@ -66,84 +66,85 @@ endfunction
 
 " ===================================================================
 " --------------------------- lua plugins ---------------------------
- Plug 'nathom/filetype.nvim'
- Plug 'lewis6991/impatient.nvim'
- Plug 'alvarosevilla95/luatab.nvim'
- Plug 'lukas-reineke/indent-blankline.nvim'
- Plug 'kevinhwang91/nvim-hlslens'
- Plug 'chentoast/marks.nvim'
- Plug 'kyazdani42/nvim-web-devicons'
- Plug 'kyazdani42/nvim-tree.lua'
- Plug 'windwp/nvim-autopairs'
- Plug 'karb94/neoscroll.nvim'
- Plug 'Xuyuanp/scrollbar.nvim'
- Plug 'folke/which-key.nvim'
- Plug 'b3nj5m1n/kommentary'
- Plug 'ellisonleao/weather.nvim'
- Plug 'Vonr/align.nvim'
+Plug 'nathom/filetype.nvim'
+Plug 'lewis6991/impatient.nvim'
+Plug 'alvarosevilla95/luatab.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'kevinhwang91/nvim-hlslens'
+Plug 'chentoast/marks.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'windwp/nvim-autopairs'
+Plug 'karb94/neoscroll.nvim'
+Plug 'Xuyuanp/scrollbar.nvim'
+Plug 'folke/which-key.nvim'
+Plug 'b3nj5m1n/kommentary'
+Plug 'ellisonleao/weather.nvim'
+Plug 'Vonr/align.nvim'
 
- " motion
- Plug 'ggandor/leap.nvim'
- Plug 'ggandor/flit.nvim'
+" motion
+Plug 'ggandor/leap.nvim'
+Plug 'ggandor/flit.nvim'
 
- " colorscheme
- Plug 'EdenEast/nightfox.nvim'
- Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+" colorscheme
+Plug 'EdenEast/nightfox.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
- " Telescope
- Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
- Plug 'nvim-telescope/telescope-file-browser.nvim'
- Plug 'nvim-lua/plenary.nvim'
+" Telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-lua/plenary.nvim'
 
- " notes
- Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
- Plug 'nvim-neorg/neorg-telescope'
- Plug 'folke/todo-comments.nvim'
+" notes
+Plug 'nvim-neorg/neorg', { 'tag': '0.0.12' }
+Plug 'nvim-neorg/neorg-telescope'
+Plug 'folke/todo-comments.nvim'
 
- " treesitter
- Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
- Plug 'yioneko/nvim-yati'
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'frozen': 1 } "CANCELED:Updated
+Plug 'yioneko/nvim-yati'
 
- " cmp
- Plug 'hrsh7th/nvim-cmp'
- Plug 'hrsh7th/cmp-buffer'
- Plug 'hrsh7th/cmp-path'
- Plug 'hrsh7th/cmp-cmdline'
- Plug 'hrsh7th/cmp-emoji'
- Plug 'hrsh7th/cmp-calc'
- Plug 'mstanciu552/cmp-matlab'
- Plug 'lukas-reineke/cmp-under-comparator'
- Plug 'uga-rosa/cmp-dictionary'
- Plug 'ray-x/cmp-treesitter'
- " Plug 'kdheepak/cmp-latex-symbols'
+" cmp
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-calc'
+Plug 'mstanciu552/cmp-matlab'
+Plug 'lukas-reineke/cmp-under-comparator'
+Plug 'uga-rosa/cmp-dictionary'
+Plug 'ray-x/cmp-treesitter'
+" Plug 'kdheepak/cmp-latex-symbols'
 
- " lsp
- Plug 'williamboman/mason.nvim'
- Plug 'williamboman/mason-lspconfig.nvim'
- Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
- Plug 'hrsh7th/cmp-nvim-lsp'
+" lsp
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig', { 'frozen': 1 } "CANCELED:Updated
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'ray-x/lsp_signature.nvim'
 
- " Snippets
- Plug 'L3MON4D3/LuaSnip'
- Plug 'saadparwaiz1/cmp_luasnip'
- " Plug 'rafamadriz/friendly-snippets'  " 下载后转移至Mine文件夹,增加了matlab snippet等等
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+" Plug 'rafamadriz/friendly-snippets'  " 下载后转移至Mine文件夹,增加了matlab snippet等等
 
- "------------------------------------------------------------------------
- "--------------------------- Modified plugins ---------------------------
- " Modified plugins (viml)
- " 1. add SpeedDatingFormat
- Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
+"------------------------------------------------------------------------
+"--------------------------- Modified plugins ---------------------------
+" Modified plugins (viml)
+" 1. add SpeedDatingFormat
+Plug g:plug_home. '/vim-speeddating-master', { 'for': [ 'org', 'norg', 'markdown' ] }
 
- " 2. remap: "<leader>" to "\"; turn off the drag function
- Plug g:plug_home. '/vim-scripts-DrawIt', { 'on': 'DIstart' }
+" 2. remap: "<leader>" to "\"; turn off the drag function
+Plug g:plug_home. '/vim-scripts-DrawIt', { 'on': 'DIstart' }
 
- " --------------------------
- " Modified plugins (lua)
- " 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
- Plug g:plug_home. '/lualine.nvim-master'
+" --------------------------
+" Modified plugins (lua)
+" 1. theme = 'max_lualine_theme_dark' | theme = 'max_lualine_theme_light'
+Plug g:plug_home. '/lualine.nvim-master'
 
- " 2. weather report for 3 days
- Plug g:plug_home. '/weather3day.nvim-main'
+" 2. weather report for 3 days
+Plug g:plug_home. '/weather3day.nvim-main'
 
 call plug#end()
 
@@ -180,6 +181,7 @@ augroup END
 " {{{ 字体/字号
 if exists('g:neovide')
     " English font
+    " set guifont=Delugia\ Mono:h15.5                   " Nerd Font (Cascadia Code)
     set guifont=Delugia\ Mono:h11.5                   " Nerd Font (Cascadia Code)
     " set guifont=CodeNewRoman_NFM:h12                " Nerd Font
     " set guifont=OperatorMono_NF:h12                 " Nerd Font
@@ -658,7 +660,13 @@ require('nightfox').setup({
       treesitter = true,
       whichkey = true,
     },
-    }
+    },
+  groups = {
+    all = {
+      NormalFloat = { bg = "bg1" },
+      NormalNC = { bg = "NONE" },
+    },
+  },
 })
 --note: nightfox color change: (1) white:   #dfdfe0 -> #abb2bf  ps:白色变浅
 --                             (2) fg1:     #cdcecf -> #abb2bf  ps:白色变浅,同上
@@ -1697,7 +1705,7 @@ cmp.setup({
       completion = cmp.config.window.bordered(),
       documentation = {
           border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-          winhighlight = "Normal:#51A266,NormalNC:#0C0C0C",
+          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
       },
   },
   experimental = {
@@ -1917,6 +1925,66 @@ require('lspconfig').pylsp.setup {
         },
     },
 }
+
+-- lsp hint <lsp_signature.nvim>
+vim.api.nvim_command("hi lsp_signature_highlight guifg=black guibg=#f68e26")
+cfg = {
+ debug = false, -- set to true to enable debug logging
+ log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+ -- default is  ~/.cache/nvim/lsp_signature.log
+ verbose = false, -- show debug line number
+
+ bind = true, -- This is mandatory, otherwise border config won't get registered.
+              -- If you want to hook lspsaga or other signature handler, pls set to false
+ doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+                -- set to 0 if you DO NOT want any API comments be shown
+                -- This setting only take effect in insert mode, it does not affect signature help in normal
+                -- mode, 10 by default
+
+ max_height = 12, -- max height of signature floating_window
+ max_width = 80, -- max_width of signature floating_window
+ noice = false, -- set to true if you using noice to render markdown
+ wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
+
+ floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+ floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+ -- will set to true when fully tested, set to false will use whichever side has more space
+ -- this setting will be helpful if you do not want the PUM and floating win overlap
+
+ floating_window_off_x = 1, -- adjust float windows x position.
+ floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
+
+ close_timeout = 4000, -- close floating window after ms when laster parameter is entered
+ fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+ hint_enable = true, -- virtual hint enable
+ --hint_prefix = "🐼 ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+ hint_prefix = " ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+ hint_scheme = "String",
+ hi_parameter = "lsp_signature_highlight",  -- "Cursor" "IncSearch" "Visual" "Search"
+ handler_opts = {
+   border = "rounded"   -- double, rounded, single, shadow, none, or a table of borders
+ },
+
+ always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
+
+ auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
+ extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+ zindex = 200, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+
+ padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+
+ transparency = nil, -- disabled by default, allow floating win transparent value 1~100
+ shadow_blend = 36, -- if you using shadow as border use this set the opacity
+ shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+ timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
+ toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+
+ select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
+ move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
+}
+vim.keymap.set("n", "<leader>h", vim.lsp.buf.signature_help, bufopts)
+require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
+require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
 
 -- diagnostic
 vim.diagnostic.config({

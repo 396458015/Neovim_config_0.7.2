@@ -23,7 +23,6 @@ augroup load_multi
 augroup END
 
 Plug 'mattn/calendar-vim',  { 'on': 'CalendarVR' }
-Plug 'itchyny/screensaver.vim', { 'on': 'ScreenSaver' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
@@ -1102,10 +1101,6 @@ augroup latex_set
     autocmd FileType tex nnoremap <localleader>lc <plug>(vimtex-clean)
     autocmd FileType tex nnoremap <localleader>lC <plug>(vimtex-clean-full)
 augroup END
-" }}}
-
-" {{{ 屏保插件 << Plugin - itchyny/screensaver.vim >>
-nnoremap <silent><F11> :ScreenSaver<CR>
 " }}}
 
 " {{{ 计算器 << Plugin - arecarn/crunch >>

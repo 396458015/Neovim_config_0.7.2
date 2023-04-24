@@ -3,7 +3,7 @@
 " License           : 0.0.2
 " Author            : Max <ismaxiaolong@gmail.com>
 " Date              : 2022.06.24
-" Last Modified Date: 2023.04.09
+" Last Modified Date: 2023.04.24
 " Desc              : NEOVIM 0.7.2(support Python, Lua)
 "                          __
 "  __  ____   __   __  __ /\_\    ___ ___     ____   ____

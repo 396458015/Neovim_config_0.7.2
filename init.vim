@@ -114,6 +114,8 @@ Plug 'mstanciu552/cmp-matlab'
 Plug 'lukas-reineke/cmp-under-comparator'
 Plug 'uga-rosa/cmp-dictionary'
 Plug 'ray-x/cmp-treesitter'
+Plug 'tzachar/cmp-tabnine', { 'do': 'powershell ./install.ps1' }
+Plug 'onsails/lspkind.nvim'
 " Plug 'kdheepak/cmp-latex-symbols'
 
 " lsp
@@ -1688,6 +1690,24 @@ nnoremap <silent> <leader>rm :<C-U>e D:\Program Files\Neovim\share\nvim\Mine\fri
 " }}}
 " {{{ cmp
 lua << EOF
+local lspkind = require('lspkind')
+local source_mapping = {
+    nvim_lsp = '[LSP]',
+    path = '[PATH]',
+    luasnip = '[SNIP]',
+    buffer = '◉[BUF]',
+    calc = '[CALC]',
+    emoji = '[EMOJI]',
+    cmp_matlab = '[MAT]',
+    dictionary = '📑[Dict]',
+    treesitter = '[TS]',
+    cmp_tabnine = '[T9]',
+    --latex_symbols = '[TEX]',
+    --orgmode = '[ORG]',
+    --nuspell = '[SPELL]',
+    --spell = '[SPELL]',
+}
+
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect'}
 local cmp = require'cmp'
 cmp.setup({
@@ -1708,7 +1728,9 @@ cmp.setup({
       native_menu = false,
   },
   sorting = {
+      priority_weight = 2,
       comparators = {
+          require('cmp_tabnine.compare'),
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.score,
@@ -1748,76 +1770,41 @@ cmp.setup({
     ),
   }),
   formatting = {
-      format = function(entry, vim_item)
-          local icons = {
-              Text = "",
-              Method = "ƒ",
-              Function = "",
-              Constructor = "",
-              Field = "⌘",
-              Variable = "",
-              Class = "𝓒",
-              Interface = "ﰮ",
-              Module = "",
-              Property = "",
-              Unit = "",
-              Value = "",
-              Enum = "",
-              Keyword = "",
-              Snippet = "✂️",
-              Color = "",
-              File = "",
-              Reference = "",
-              Folder = "",
-              EnumMember = "",
-              Constant = "",
-              Struct = "פּ",
-              Event = "",
-              Operator = "",
-              TypeParameter = "",
-              Table = " ",
-              Object = "",
-              Tag = " ",
-              Array = " ",
-              Boolean = "蘒",
-              Number = "",
-              String = "",
-              Calendar = " ",
-              Watch = "",
-          }
-          vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+        fields = { "abbr", "kind", "menu" },
+        --fields = { "kind", "abbr", "menu" },
+		format = function(entry, vim_item)
+	 		--vim_item.kind = lspkind.symbolic(vim_item.kind, {mode = "symbol"})
+            vim_item.kind = string.format('%s %s', lspkind.symbolic(vim_item.kind, {mode = "symbol"}), vim_item.kind)
+	 		vim_item.menu = source_mapping[entry.source.name]
+	 		if entry.source.name == "cmp_tabnine" then
+                local detail = (entry.completion_item.labelDetails or {}).detail
+	 			vim_item.kind = ""
+	 			if detail and detail:find('.*%%.*') then
+	 				vim_item.kind = vim_item.kind .. ' ' .. detail
+	 			end
 
-          vim_item.menu = ({
-              luasnip = '[SNIP]',
-              path = '[PATH]',
-              buffer = '[BUF]',
-              calc = '[CALC]',
-              emoji = '[EMOJI]',
-              nvim_lsp = '[LSP]',
-              cmp_matlab = '[MAT]',
-              dictionary = '[Dict]',
-              treesitter = '[TS]',
-              --latex_symbols = '[TEX]',
-              --orgmode = '[ORG]',
-              --cmp_tabnine = '[TN]',
-              --nuspell = '[SPELL]',
-              --spell = '[SPELL]',
-          })[entry.source.name]
-          return vim_item
-      end,
+	 			if (entry.completion_item.data or {}).multiline then
+	 				vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+	 			end
+	 		end
+	 		local maxwidth = 80
+	 		vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+	 		return vim_item
+	  end,
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'emoji' },
-    { name = 'calc' },
-    { name = 'cmp_matlab' },
-    { name = 'neorg' },
-    { name = "dictionary", keyword_length = 2 },
-    { name = "treesitter" },
-    --{ name = "latex_symbols" },
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+      { name = 'calc' },
+      { name = 'emoji' },
+      { name = 'cmp_matlab' },
+      { name = 'neorg' },
+      { name = "dictionary", keyword_length = 2 },
+      { name = "treesitter" },
+      { name = "cmp_tabnine" },
+      --{ name = "latex_symbols" },
   })
 })
 
@@ -1862,6 +1849,47 @@ require("cmp_dictionary").setup({
 	capacity = 5,
 	debug = false,
 })
+
+-- cmp-tabnine
+local tabnine = require('cmp_tabnine.config')
+tabnine:setup({
+	max_lines = 1000,
+	max_num_results = 20,
+	sort = true,
+	run_on_every_keystroke = true,
+	snippet_placeholder = '..',
+	ignored_file_types = {
+		-- default is not to ignore
+		-- uncomment to ignore in lua:
+		-- lua = true
+	},
+	show_prediction_strength = false
+})
+
+-- lsp-kind (change icons)
+require('lspkind').presets['default']['Constructor']   =''
+require('lspkind').presets['default']['Field']         ='⌘'
+require('lspkind').presets['default']['Interface']     ='ﰮ'
+require('lspkind').presets['default']['Unit']          =''
+require('lspkind').presets['default']['Snippet']       ='✂️'
+require('lspkind').presets['default']['Reference']     =''
+require('lspkind').presets['default']['Struct']        =''
+require('lspkind').presets['default']['Event']         =''
+require('lspkind').presets['default']['TypeParameter'] =''
+
+--change cmp color
+vim.api.nvim_command("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080")
+vim.api.nvim_command("highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6") --Abbr
+vim.api.nvim_command("highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch")
+vim.api.nvim_command("highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE") --Variable
+vim.api.nvim_command("highlight! link CmpItemKindInterface CmpItemKindVariable")
+vim.api.nvim_command("highlight! link CmpItemKindText CmpItemKindVariable")
+vim.api.nvim_command("highlight! CmpItemKindFunction guibg=NONE guifg=#9d79d6") --Function
+vim.api.nvim_command("highlight! link CmpItemKindMethod CmpItemKindFunction")
+vim.api.nvim_command("highlight! CmpItemKindKeyword guibg=NONE guifg=#63cdcf") --Keyword
+vim.api.nvim_command("highlight! link CmpItemKindProperty CmpItemKindKeyword")
+vim.api.nvim_command("highlight! link CmpItemKindUnit CmpItemKindKeyword")
+vim.api.nvim_command("highlight! CmpItemKindSnippet guibg=NONE guifg=#d64f44") --Snippet
 EOF
 " }}}
 " {{{ lsp

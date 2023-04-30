@@ -22,7 +22,6 @@ augroup load_multi
     autocmd InsertEnter * call plug#load('vim-visual-multi') | autocmd! load_multi
 augroup END
 
-Plug 'mattn/calendar-vim',  { 'on': 'CalendarVR' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'arecarn/vim-crunch', { 'on': [ '<Plug>(crunch-operator-line)', '<Plug>(visual-crunch-operator)'] }
@@ -184,15 +183,18 @@ if exists('g:neovide')
     " English font
     " set guifont=Delugia\ Mono:h15.5                   " Nerd Font (Cascadia Code)
     set guifont=Delugia\ Mono:h11.5                   " Nerd Font (Cascadia Code)
-    " set guifont=CodeNewRoman_NFM:h12                " Nerd Font
-    " set guifont=OperatorMono_NF:h12                 " Nerd Font
-    " set guifont=ComicMono_NF:h12                    " Nerd Font
+    " set guifont=CodeNewRoman\ NFM:h12                " Nerd Font
+    " set guifont=OperatorMono\ NF:h12                 " Nerd Font
+    " set guifont=ComicMono\ NF:h12                    " Nerd Font
 
     " Chinese font
-    set guifontwide=inconsolatago_qihei_nf:h12.5      " 中文 Nerd Font
+    set guifontwide=inconsolatago\ qihei\ nf:h12.5      " 中文 Nerd Font
 else
-    set guifont=Delugia_Mono:h12.1                    " Nerd Font (Cascadia Code)
-    set guifontwide=inconsolatago_qihei_nf:h12.5      " 中文 Nerd Font
+    set guifont=Delugia\ Mono:h12.1                    " Nerd Font (Cascadia Code)
+    " set guifont=CodeNewRoman\ NFM:h12                " Nerd Font
+    " set guifont=OperatorMono\ NF:h12                 " Nerd Font
+    " set guifont=ComicMono\ NF:h12                    " Nerd Font
+    set guifontwide=inconsolatago\ qihei\ nf:h12.5      " 中文 Nerd Font
 endif
 " }}}
 
@@ -1513,36 +1515,6 @@ nnoremap <leader>. :NvimTreeOpen  :\<left><left>
 nnoremap <silent> <F7> :NvimTreeOpen c:\Users\ThinkPad\Desktop\<CR>
 " }}}
 
-" {{{ scroll << neoscroll >>
-lua << EOF
-require('neoscroll').setup({
-    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-    hide_cursor = true,          -- Hide cursor while scrolling
-    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-    easing_function = nil,       -- Default easing function
-    pre_hook = nil,              -- Function to run before the scrolling animation starts
-    post_hook = nil,             -- Function to run after the scrolling animation ends
-    performance_mode = false,    -- Disable "Performance Mode" on all buffers.
-})
-
-local t = {}
-t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '45'}}
-t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '45'}}
-t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '90'}}
-t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '90'}}
-t['<C-y>'] = {'scroll', {'-0.10', 'false', '20'}}
-t['<C-e>'] = {'scroll', { '0.10', 'false', '20'}}
-t['zt']    = {'zt', {'90'}}
-t['zz']    = {'zz', {'90'}}
-t['zb']    = {'zb', {'90'}}
-require('neoscroll.config').set_mappings(t)
-EOF
-" }}}
-
 " {{{ pair << nvim-autopairs >>
 lua << EOF
 require("nvim-autopairs").setup {}
@@ -1700,7 +1672,7 @@ local source_mapping = {
     emoji = '[EMOJI]',
     cmp_matlab = '[MAT]',
     dictionary = '📑[Dict]',
-    treesitter = '[TS]',
+    treesitter = '🌲[TS]',
     cmp_tabnine = '[T9]',
     --latex_symbols = '[TEX]',
     --orgmode = '[ORG]',
@@ -2119,9 +2091,9 @@ require "lualine".setup {
             max_length = vim.o.columns * 2 / 3,
             symbols = {
                 modified = ' [𝓐 ]',
+                --modified = ' -->🈚',
                 --modified = ' [+]',
                 --modified = ' ',
-                --modified = ' -->🈚',
                 alternate_file = ' o',
                 directory = ' z',
             },
@@ -2551,8 +2523,9 @@ EOF
 " }}}
 
 " ------- GUI -------
-" {{{ GUI << NEOVIDE >>
-if exists('g:neovide')
+" {{{ GUI << neovide >>
+if exists('g:neovide') || exists('g:nvy')
+    " {{{ neovide-config
     let g:neovide_cursor_vfx_mode = "railgun"
     " let g:neovide_cursor_vfx_mode = "torpedo"
     " let g:neovide_cursor_vfx_mode = "pixiedust"
@@ -2609,6 +2582,106 @@ if exists('g:neovide')
     noremap <m-ScrollWheelDown> :call AdjustFontSize(-1)<CR>
     inoremap <m-ScrollWheelUp> <Esc>:call AdjustFontSize(1)<CR>a
     inoremap <m-ScrollWheelDown> <Esc>:call AdjustFontSize(-1)<CR>a
+    " }}}
+" {{{ plugin << neoscroll >>
+lua << EOF
+require('neoscroll').setup({
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+    hide_cursor = true,          -- Hide cursor while scrolling
+    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = nil,       -- Default easing function
+    pre_hook = nil,              -- Function to run before the scrolling animation starts
+    post_hook = nil,             -- Function to run after the scrolling animation ends
+    performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+})
+
+local t = {}
+t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '45'}}
+t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '45'}}
+t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '90'}}
+t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '90'}}
+t['<C-y>'] = {'scroll', {'-0.10', 'false', '20'}}
+t['<C-e>'] = {'scroll', { '0.10', 'false', '20'}}
+t['zt']    = {'zt', {'90'}}
+t['zz']    = {'zz', {'90'}}
+t['zb']    = {'zb', {'90'}}
+require('neoscroll.config').set_mappings(t)
+EOF
+" }}}
+endif
+" }}}
+
+" {{{ GUI << goneovim >>
+if exists('g:goneovim')
+lua << EOF
+function guifontscale(n)
+    if type(n) ~= "number" then
+        return
+    end
+
+    local gfa = {}
+    for c in vim.gsplit(vim.o.guifont, ":") do
+        table.insert(gfa, c)
+    end
+    local gfa_wide = {}
+    for c in vim.gsplit(vim.o.guifontwide, ":") do
+        table.insert(gfa_wide, c)
+    end
+    local buildnewgf = ""
+    local buildnewgf_wide = ""
+    for k, v in ipairs(gfa) do
+        if v:find("h", 1, true) == 1 then
+            local fweight = ""
+            for w in vim.gsplit(v, "h") do
+                if tonumber(w) == nil then
+                    goto continue
+                end
+                local wn = tonumber(w)
+                wn = wn + n
+                fweight = fweight .. tostring(wn)
+                ::continue::
+            end
+            buildnewgf = buildnewgf .. "h" .. fweight .. ":"
+        else
+            v = string.gsub(v, " ", "_")
+            buildnewgf = buildnewgf ..  v .. ":"
+        end
+    end
+    for k, v in ipairs(gfa_wide) do
+        if v:find("h", 1, true) == 1 then
+            local fweight = ""
+            for w in vim.gsplit(v, "h") do
+                if tonumber(w) == nil then
+                    goto continue
+                end
+                local wn = tonumber(w)
+                wn = wn + n
+                fweight = fweight .. tostring(wn)
+                ::continue::
+            end
+            buildnewgf_wide = buildnewgf_wide .. "h" .. fweight .. ":"
+        else
+            v = string.gsub(v, " ", "_")
+            buildnewgf_wide = buildnewgf_wide ..  v .. ":"
+        end
+    end
+
+    local setcmd = "set guifont=" .. buildnewgf
+    vim.cmd(setcmd)
+    setcmd = "set guifontwide=" .. buildnewgf_wide
+    vim.cmd(setcmd)
+end
+vim.keymap.set("n", "<m-->", ":lua guifontscale(-1)<CR>", { silent = true  })
+vim.keymap.set("n", "<m-=>", ":lua guifontscale(1)<CR>", { silent = true  })
+
+--other mapping
+vim.keymap.set("n", "<m-CR>", ":GonvimMaximize<CR>", { silent = true  })
+vim.keymap.set("n", "<leader>rg", ":e $HOME/.goneovim/settings.toml<CR>", { silent = true  })
+EOF
 endif
 " }}}
 
